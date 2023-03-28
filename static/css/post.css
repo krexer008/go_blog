@@ -160,7 +160,7 @@ body {
 
 .footer {
     height: 378px;
-    background: url("/static/img/footer__background.jpg") no-repeat center / cover;
+    background: url("/static/img/footer_background.jpg") no-repeat center / cover;
     display: flex;
     flex-direction: column;
 }

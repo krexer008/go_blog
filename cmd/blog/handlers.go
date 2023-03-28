@@ -7,13 +7,15 @@ import (
 )
 
 type indexPage struct {
-	Title          string
-	IntroTitle     string
-	IntroSubtitle  string
-	MenuItems      []menuData
-	PostCategories []categoryData
-	FeaturedPosts  []featuredPostData
-	RecentPosts    []recentPostData
+	Title           string
+	Logo            string
+	IntroTitle      string
+	IntroSubtitle   string
+	MenuItems       []menuData
+	PostCategories  []categoryData
+	FeaturedPosts   []featuredPostData
+	RecentPosts     []recentPostData
+	SubscribeHeader string
 }
 
 type featuredPostData struct {
@@ -28,12 +30,14 @@ type featuredPostData struct {
 }
 
 type recentPostData struct {
-	Title       string
-	Subtitle    string
-	ImgModifier string
-	Author      string
-	AuthorImg   string
-	PublishDate string
+	Title         string
+	Subtitle      string
+	Label         bool
+	PostCategory  string
+	PostThumbnail string
+	Author        string
+	AuthorImg     string
+	PublishDate   string
 }
 
 type menuData struct {
@@ -55,13 +59,52 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := indexPage{
-		Title:          "Escape",
-		IntroTitle:     "Let's do it together.",
-		IntroSubtitle:  "We travel the world in search of stories. Come along for the ride.",
-		MenuItems:      menuItems(),
-		PostCategories: postCategories(),
-		FeaturedPosts:  featuredPosts(),
-		RecentPosts:    recentPosts(),
+		Title:           "Escape",
+		Logo:            "Escape",
+		IntroTitle:      "Let's do it together.",
+		IntroSubtitle:   "We travel the world in search of stories. Come along for the ride.",
+		MenuItems:       menuItems(),
+		PostCategories:  postCategories(),
+		FeaturedPosts:   featuredPosts(),
+		RecentPosts:     recentPosts(),
+		SubscribeHeader: "Stay in touch",
+	}
+
+	err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
+	if err != nil {
+		http.Error(w, "Internal Server Error", 500)
+		log.Println(err.Error())
+		return
+	}
+
+	log.Println("Request completed succesfully")
+
+}
+
+type postPage struct {
+	Logo            string
+	MenuItems       []menuData
+	Title           string
+	Subtitle        string
+	PostImage       string
+	SubscribeHeader string
+}
+
+func post(w http.ResponseWriter, r *http.Request) {
+	ts, err := template.ParseFiles("pages/post.html") // Главная страница блога
+	if err != nil {
+		http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+		log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
+		return                                      // Не забываем завершить выполнение ф-ии
+	}
+
+	data := postPage{
+		Logo:            "Escape",
+		PostImage:       "static/img/intro_image_the_road_ahead.jpg",
+		Title:           "The Road Ahead",
+		Subtitle:        "The road ahead might be paved - it might not be.",
+		MenuItems:       menuItems(),
+		SubscribeHeader: "Stay in touch",
 	}
 
 	err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
@@ -130,11 +173,10 @@ func featuredPosts() []featuredPostData {
 		{
 			Title:        "The Road Ahead",
 			Subtitle:     "The road ahead might be paved - it might not be.",
-			Label:        false,
 			PostCategory: "Photography",
 			ImgModifier:  "featured-post__background_the-road-ahead",
 			Author:       "Mat Vogels",
-			AuthorImg:    "static/img/mat-vogels.jpg",
+			AuthorImg:    "static/img/mat_vogels.jpg",
 			PublishDate:  "September 25, 2015",
 		},
 		{
@@ -144,7 +186,7 @@ func featuredPosts() []featuredPostData {
 			PostCategory: "Adventure",
 			ImgModifier:  "featured-post__background_from-top-down",
 			Author:       "William Wong",
-			AuthorImg:    "static/img/william-wong.jpg",
+			AuthorImg:    "static/img/william_wong.jpg",
 			PublishDate:  "September 25, 2015",
 		},
 	}
@@ -153,52 +195,58 @@ func featuredPosts() []featuredPostData {
 func recentPosts() []recentPostData {
 	return []recentPostData{
 		{
-			Title:       "Still Standing Tall",
-			Subtitle:    "Life begins at the end of your comfort zone.",
-			ImgModifier: "recent-post__image_still-standing-tall",
-			Author:      "William Wong",
-			AuthorImg:   "static/img/william-wong.jpg",
-			PublishDate: "9/25/2015",
+			Title:         "Still Standing Tall",
+			Subtitle:      "Life begins at the end of your comfort zone.",
+			PostCategory:  "Nature",
+			PostThumbnail: "static/img/recent_post_thumbnail_still-standing-tall.jpg",
+			Author:        "William Wong",
+			AuthorImg:     "static/img/william_wong.jpg",
+			PublishDate:   "9/25/2015",
 		},
 		{
-			Title:       "Sunny Side Up",
-			Subtitle:    "No place is ever as bad as they tell you it's going to be.",
-			ImgModifier: "recent-post__image_sunny-side-up",
-			Author:      "Mat Vogels",
-			AuthorImg:   "static/img/mat-vogels.jpg",
-			PublishDate: "9/25/2015",
+			Title:         "Sunny Side Up",
+			Subtitle:      "No place is ever as bad as they tell you it's going to be.",
+			PostCategory:  "Photography",
+			PostThumbnail: "static/img/recent_post_thumbnail_sunny-side-up.jpg",
+			Author:        "Mat Vogels",
+			AuthorImg:     "static/img/mat_vogels.jpg",
+			PublishDate:   "9/25/2015",
 		},
 		{
-			Title:       "Water Falls",
-			Subtitle:    "We travel not to escape life, but for life not to escape us.",
-			ImgModifier: "recent-post__image_water_falls",
-			Author:      "Mat Vogels",
-			AuthorImg:   "static/img/mat-vogels.jpg",
-			PublishDate: "9/25/2015",
+			Title:         "Water Falls",
+			Subtitle:      "We travel not to escape life, but for life not to escape us.",
+			PostCategory:  "Relaxation",
+			PostThumbnail: "static/img/recent_post_thumbnail_water_falls.jpg",
+			Author:        "Mat Vogels",
+			AuthorImg:     "static/img/mat_vogels.jpg",
+			PublishDate:   "9/25/2015",
 		},
 		{
-			Title:       "Through the Mist",
-			Subtitle:    "Travel makes you see what a tiny place you occupy in the world.",
-			ImgModifier: "recent-post__image_through_the_mist",
-			Author:      "William Wong",
-			AuthorImg:   "static/img/william-wong.jpg",
-			PublishDate: "9/25/2015",
+			Title:         "Through the Mist",
+			Subtitle:      "Travel makes you see what a tiny place you occupy in the world.",
+			PostCategory:  "Vacation",
+			PostThumbnail: "static/img/recent_post_thumbnail_through_the_mist.jpg",
+			Author:        "William Wong",
+			AuthorImg:     "static/img/william_wong.jpg",
+			PublishDate:   "9/25/2015",
 		},
 		{
-			Title:       "Awaken Early",
-			Subtitle:    "Not all those who wander are lost.",
-			ImgModifier: "recent-post__image_awaken_early",
-			Author:      "Mat Vogels",
-			AuthorImg:   "static/img/mat-vogels.jpg",
-			PublishDate: "9/25/2015",
+			Title:         "Awaken Early",
+			Subtitle:      "Not all those who wander are lost.",
+			PostCategory:  "Vacation",
+			PostThumbnail: "static/img/recent_post_thumbnail_awaken_early.jpg",
+			Author:        "Mat Vogels",
+			AuthorImg:     "static/img/mat_vogels.jpg",
+			PublishDate:   "9/25/2015",
 		},
 		{
-			Title:       "Try it Always",
-			Subtitle:    "The world is a book, and those who do not travel read only one page.",
-			ImgModifier: "recent-post__image_try_it_always",
-			Author:      "Mat Vogels",
-			AuthorImg:   "static/img/mat-vogels.jpg",
-			PublishDate: "9/25/2015",
+			Title:         "Try it Always",
+			Subtitle:      "The world is a book, and those who do not travel read only one page.",
+			PostCategory:  "Travel",
+			PostThumbnail: "static/img/recent_post_thumbnail_try_it_always.jpg",
+			Author:        "Mat Vogels",
+			AuthorImg:     "static/img/mat_vogels.jpg",
+			PublishDate:   "9/25/2015",
 		},
 	}
 }
