@@ -10,16 +10,17 @@
   <link rel="stylesheet" href="static/css/index.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&family=Oxygen:wght@400&display=swap"
         rel="stylesheet"/>
-  <title>{{ .Title }}</title>
+  <title>Escape</title>
 </head>
 <body>
 <div class="intro">
   <header class="header">
     <span class="header__logo logo">Escape.</span>
     <nav class="nav">
-      {{ range .MenuItems }}
-      <a class="nav__link nav__link_head" href="{{ .Link }}"> {{ .MenuItem }}</a>
-      {{ end }}
+      <a class="nav__link nav__link_head" href="/home">Home</a>
+      <a class="nav__link nav__link_head" href="#">Categories</a>
+      <a class="nav__link nav__link_head" href="#">About</a>
+      <a class="nav__link nav__link_head" href="#">Contact</a>
     </nav>
   </header>
   <h1 class="intro__title title">Let's do it together.</h1>
@@ -30,9 +31,12 @@
 </div>
 <div class="main-page">
   <nav class="categories">
-    {{ range .PostCategories }}
-    <a class="categories__link" href="#">{{ .PostCategory }}</a>
-    {{ end }}
+    <a class="categories__link" href="#">Nature</a>
+    <a class="categories__link" href="#">Photography</a>
+    <a class="categories__link" href="#">Relaxation</a>
+    <a class="categories__link" href="#">Vacation</a>
+    <a class="categories__link" href="#">Travel</a>
+    <a class="categories__link" href="#">Adventure</a>
   </nav>
   <div class="main-page__content">
     <section class="main-page__section">
@@ -40,7 +44,7 @@
       <div class="section__content">
         {{ range .FeaturedPosts }}
         <div class="featured-post {{ .ImgModifier }}">
-          <span class="featured-post__category {{ if not .Label }} disabled {{ end }}">{{ .PostCategory }}</span>
+          {{ if .PostCategory }} <span class="featured-post__category">{{ .PostCategory }}</span> {{ end }}
           <h2 class="featured-post__title title">{{ .Title }}</h2>
           <p class="featured-post__descr">
             {{ .Subtitle }}
@@ -60,7 +64,7 @@
         {{ range .RecentPosts }}
         <div class="recent-post">
           <img src="{{ .PostThumbnail }}" alt="Air Baloons" class="recent-post__image"/>
-          <span class="recent-post__category {{ if not .Label }} disabled {{ end }}">{{ .PostCategory }}</span>
+          {{ if .PostCategory }}<span class="recent-post__category">{{ .PostCategory }}</span>{{ end }}
           <h2 class="recent-post__title title">
             {{ .Title }}
           </h2>
@@ -90,9 +94,10 @@
     <div class="footer__block">
       <span class="footer__logo logo">Escape.</span>
       <nav class="nav">
-        {{ range .MenuItems }}
-        <a class="nav__link nav__link_foot" href="{{ .Link }}"> {{ .MenuItem }}</a>
-        {{ end }}
+        <a class="nav__link nav__link_foot" href="/home">Home</a>
+        <a class="nav__link nav__link_foot" href="#">Categories</a>
+        <a class="nav__link nav__link_foot" href="#">About</a>
+        <a class="nav__link nav__link_foot" href="#">Contact</a>
       </nav>
     </div>
   </div>

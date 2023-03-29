@@ -3,11 +3,18 @@ package main
 import (
 	"log"
 	"net/http"
+	//_ "github.com/go-sql-driver/mysql" // Импортируем для возможности подключения к MySQL
+	//"github.com/jmoiron/sqlx"
 )
 
-const port = ":3000"
+const /*{*/ port = ":3000"
+
+//dbDriverName: = ""
+//}
 
 func main() {
+	//db, err := sql.Open(“mysql”, “root:1234@tcp(localhost:3306)/blog”)
+
 	mux := http.NewServeMux()
 	mux.HandleFunc("/home", index)
 	mux.HandleFunc("/post", post)

@@ -33,10 +33,6 @@ p {
     margin-inline-end: 0;
 }
 
-.disabled {
-    display: none;
-}
-
 body {
     margin: 0 auto;
     max-width: 1440px;
