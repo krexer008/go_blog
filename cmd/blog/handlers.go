@@ -8,7 +8,6 @@ import (
 
 type indexPage struct {
 	Title           string
-	Logo            string
 	IntroTitle      string
 	IntroSubtitle   string
 	MenuItems       []menuData
@@ -60,7 +59,6 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 	data := indexPage{
 		Title:           "Escape",
-		Logo:            "Escape",
 		IntroTitle:      "Let's do it together.",
 		IntroSubtitle:   "We travel the world in search of stories. Come along for the ride.",
 		MenuItems:       menuItems(),
@@ -82,7 +80,6 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 type postPage struct {
-	Logo            string
 	MenuItems       []menuData
 	Title           string
 	Subtitle        string
@@ -99,7 +96,6 @@ func post(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := postPage{
-		Logo:            "Escape",
 		PostImage:       "static/img/intro_image_the_road_ahead.jpg",
 		Title:           "The Road Ahead",
 		Subtitle:        "The road ahead might be paved - it might not be.",
