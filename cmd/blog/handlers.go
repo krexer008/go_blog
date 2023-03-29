@@ -7,14 +7,14 @@ import (
 )
 
 type indexPage struct {
-	Title           string
-	IntroTitle      string
-	IntroSubtitle   string
-	MenuItems       []menuData
-	PostCategories  []categoryData
-	FeaturedPosts   []featuredPostData
-	RecentPosts     []recentPostData
-	SubscribeHeader string
+	//IntroTitle      string
+	//IntroSubtitle   string
+	Title          string
+	MenuItems      []menuData
+	PostCategories []categoryData
+	FeaturedPosts  []featuredPostData
+	RecentPosts    []recentPostData
+	//SubscribeHeader string
 }
 
 type featuredPostData struct {
@@ -58,14 +58,14 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := indexPage{
-		Title:           "Escape",
-		IntroTitle:      "Let's do it together.",
-		IntroSubtitle:   "We travel the world in search of stories. Come along for the ride.",
-		MenuItems:       menuItems(),
-		PostCategories:  postCategories(),
-		FeaturedPosts:   featuredPosts(),
-		RecentPosts:     recentPosts(),
-		SubscribeHeader: "Stay in touch",
+		//IntroTitle:      "Let's do it together.",
+		//IntroSubtitle:   "We travel the world in search of stories. Come along for the ride.",
+		Title:          "Escape",
+		MenuItems:      menuItems(),
+		PostCategories: postCategories(),
+		FeaturedPosts:  featuredPosts(),
+		RecentPosts:    recentPosts(),
+		//SubscribeHeader: "Stay in touch",
 	}
 
 	err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
@@ -80,11 +80,11 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 type postPage struct {
-	MenuItems       []menuData
-	Title           string
-	Subtitle        string
-	PostImage       string
-	SubscribeHeader string
+	MenuItems []menuData
+	Title     string
+	Subtitle  string
+	PostImage string
+	//SubscribeHeader string
 }
 
 func post(w http.ResponseWriter, r *http.Request) {
@@ -96,11 +96,11 @@ func post(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := postPage{
-		PostImage:       "static/img/intro_image_the_road_ahead.jpg",
-		Title:           "The Road Ahead",
-		Subtitle:        "The road ahead might be paved - it might not be.",
-		MenuItems:       menuItems(),
-		SubscribeHeader: "Stay in touch",
+		PostImage: "static/img/intro_image_the_road_ahead.jpg",
+		Title:     "The Road Ahead",
+		Subtitle:  "The road ahead might be paved - it might not be.",
+		MenuItems: menuItems(),
+		//SubscribeHeader: "Stay in touch",
 	}
 
 	err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
