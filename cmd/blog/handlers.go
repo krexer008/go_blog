@@ -31,6 +31,13 @@ type recentPostData struct {
 	PublishDate   string
 }
 
+type postPage struct {
+	Title          string
+	Subtitle       string
+	PostImage      string
+	PostParagraphs []string
+}
+
 func index(w http.ResponseWriter, r *http.Request) {
 	ts, err := template.ParseFiles("pages/index.html") // Главная страница блога
 	if err != nil {
@@ -53,13 +60,6 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Request completed succesfully")
 
-}
-
-type postPage struct {
-	Title          string
-	Subtitle       string
-	PostImage      string
-	PostParagraphs []string
 }
 
 func post(w http.ResponseWriter, r *http.Request) {
