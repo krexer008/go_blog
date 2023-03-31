@@ -1,15 +1,12 @@
-INSERT INTO
-    post (
-          title,
-          subtitle,
-          category,
-          author,
-          author_url,
-          publish_date,
-          image_modifier,
-          image_url,
-          featured
-          )
+INSERT INTO post (title,
+                  subtitle,
+                  category,
+                  author,
+                  author_url,
+                  publish_date,
+                  image_modifier,
+                  image_url,
+                  featured)
 VALUES ('The Road Ahead',
         'The road ahead might be paved - it might not be.',
         NULL,
