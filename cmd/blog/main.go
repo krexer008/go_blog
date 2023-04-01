@@ -1,10 +1,12 @@
 package main
 
 import (
+	"database/sql"
+	_ "github.com/go-sql-driver/mysql" // Импортируем для возможности подключения к MySQL
+	"github.com/jmoiron/sqlx"
+
 	"log"
 	"net/http"
-	//_ "github.com/go-sql-driver/mysql" // Импортируем для возможности подключения к MySQL
-	//"github.com/jmoiron/sqlx"
 )
 
 const /*{*/ port = ":3000"
@@ -13,7 +15,8 @@ const /*{*/ port = ":3000"
 //}
 
 func main() {
-	//db, err := sql.Open(“mysql”, “root:1234@tcp(localhost:3306)/blog”)
+	// Получаем клиента к БД и ошибку в случае, если не удалось подключиться
+	db, err := sql.Open(“mysql”, “root:1234@tcp(localhost:3306)/blog”)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/home", index)

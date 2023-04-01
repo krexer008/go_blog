@@ -97,3 +97,5 @@ VALUES (
         NULL,
         0
     );
+
+SELECT * FROM post;
