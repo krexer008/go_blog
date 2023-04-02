@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+
 	_ "github.com/go-sql-driver/mysql" // Импортируем для возможности подключения к MySQL
 	"github.com/jmoiron/sqlx"
 
@@ -9,17 +10,27 @@ import (
 	"net/http"
 )
 
-const /*{*/ port = ":3000"
-
-//dbDriverName: = ""
-//}
+const (
+	port         = ":3000"
+	dbDriverName = "mysql"
+)
 
 func main() {
 	// Получаем клиента к БД и ошибку в случае, если не удалось подключиться
-	db, err := sql.Open(“mysql”, “root:1234@tcp(localhost:3306)/blog”)
+	db, err := openDB() // Открываем соединение к базе данных в самом начале
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	dbx := sqlx.NewDb(db, dbDriverName) // Расширяем стандартный клиент к базе
+	//client := sqlx.NewDb(db, dbDriverName)
+	//_ = sqlx.NewDb(db, dbDriverName)
+	//client.Select()
+
+	//db.Query()
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/home", index)
+	mux.HandleFunc("/home", index(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
 	mux.HandleFunc("/post", post)
 
 	// Реализуем отдачу статики
@@ -28,8 +39,13 @@ func main() {
 	mux.Handle("/static/", http.StripPrefix("/static/", fileSrever))
 
 	log.Println("Start server" + port)
-	err := http.ListenAndServe(port, mux)
+	err = http.ListenAndServe(port, mux)
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func openDB() (*sql.DB, error) {
+	// Здесь прописываем соединение к базе данных
+	return sql.Open(dbDriverName, "root:1234@tcp(localhost:3306)/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
 }
