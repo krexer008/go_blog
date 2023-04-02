@@ -13,8 +13,10 @@ import (
 const (
 	port         = ":3000"
 	dbDriverName = "mysql"
-	userName     = "root"
-	password     = "root"
+	USER         = "root"
+	PASS         = "root"
+	HOST         = "localhost"
+	PORT         = "3306"
 )
 
 func main() {
@@ -30,7 +32,7 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/home", index(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
-	mux.HandleFunc("/post", post)
+	mux.HandleFunc("/post", post(dbx))
 
 	// Реализуем отдачу статики
 	fileSrever := http.FileServer(http.Dir("./static"))
@@ -46,5 +48,5 @@ func main() {
 
 func openDB() (*sql.DB, error) {
 	// Здесь прописываем соединение к базе данных
-	return sql.Open(dbDriverName, userName+":"+password+"@tcp(localhost:3306)/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
+	return sql.Open(dbDriverName, USER+":"+PASS+"@tcp("+HOST+":"+PORT+")/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
 }
