@@ -13,6 +13,8 @@ import (
 const (
 	port         = ":3000"
 	dbDriverName = "mysql"
+	userName     = "root"
+	password     = "root"
 )
 
 func main() {
@@ -23,9 +25,6 @@ func main() {
 	}
 
 	dbx := sqlx.NewDb(db, dbDriverName) // Расширяем стандартный клиент к базе
-	//client := sqlx.NewDb(db, dbDriverName)
-	//_ = sqlx.NewDb(db, dbDriverName)
-	//client.Select()
 
 	//db.Query()
 
@@ -47,5 +46,5 @@ func main() {
 
 func openDB() (*sql.DB, error) {
 	// Здесь прописываем соединение к базе данных
-	return sql.Open(dbDriverName, "root:1234@tcp(localhost:3306)/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
+	return sql.Open(dbDriverName, userName+":"+password+"@tcp(localhost:3306)/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
 }

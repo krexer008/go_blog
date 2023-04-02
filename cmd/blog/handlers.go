@@ -13,24 +13,24 @@ type indexPageData struct {
 	RecentPosts   []recentPostData
 }
 
-type featuredPostData struct {
+type featuredPostData struct { //featuredPostData
 	Title        string `db:"title"`
 	Subtitle     string `db:"subtitle"`
 	PostCategory string `db:"category"`
-	ImgModifier  string `db:"image_modifier`
-	Author       string `db:"author`
-	AuthorImg    string `db:"author_url`
-	PublishDate  string `db:"publish_date`
+	ImgModifier  string `db:"image_modifier"`
+	Author       string `db:"author"`
+	AuthorImg    string `db:"author_url"`
+	PublishDate  string `db:"publish_date"`
 }
 
 type recentPostData struct {
 	Title         string `db:"title"`
 	Subtitle      string `db:"subtitle"`
 	PostCategory  string `db:"category"`
-	PostThumbnail string `db:"image_url`
-	Author        string `db:"author`
-	AuthorImg     string `db:"author_url`
-	PublishDate   string `db:"publish_date`
+	PostThumbnail string `db:"image_url"`
+	Author        string `db:"author"`
+	AuthorImg     string `db:"author_url"`
+	PublishDate   string `db:"publish_date"`
 }
 
 type postPage struct {
@@ -42,13 +42,6 @@ type postPage struct {
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		posts, err := featuredPosts(db)
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
-			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
-			return                                      // Завершение функции
-		}
-
 		ts, err := template.ParseFiles("pages/index.html") // Главная страница блога
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
@@ -56,9 +49,23 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		featuredPosts, err := featuredPosts(db)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
+			return                                      // Завершение функции
+		}
+
+		recentPosts, err := recentPosts(db)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
+			return                                      // Завершение функции
+		}
+
 		data := indexPageData{
-			FeaturedPosts: posts,
-			RecentPosts:   posts,
+			FeaturedPosts: featuredPosts,
+			RecentPosts:   recentPosts,
 		}
 
 		err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
@@ -100,22 +107,45 @@ func post(w http.ResponseWriter, r *http.Request) {
 }
 
 func featuredPosts(db *sqlx.DB) ([]featuredPostData, error) {
+	// Составляем SQL-запрос для получения записей для секции featured-posts
+	const query = `
+	SELECT
+        title,
+        subtitle,
+        author,
+        author_url,
+        publish_date,
+        image_modifier
+	FROM
+	    post
+    WHERE featured = 1
+    `
+
+	var posts []featuredPostData    // Заранее объявляем массив с результирующей информацией
+	err := db.Select(&posts, query) // Делаем запрос в базу данных // Select позволяет прочитать несколько строк
+	if err != nil {                 // Проверяем, что запрос в базу данных не завершился с ошибкой
+		return nil, err
+	}
+
+	return posts, nil
+}
+
+func recentPosts(db *sqlx.DB) ([]recentPostData, error) {
+	// Составляем SQL-запрос для получения записей для секции featured-posts
 	const query = `
     SELECT
         title,
         subtitle,
-        category,
         author,
         author_url,
         publish_date,
-        image_modifier,
-        featured
+		image_url
 	FROM
 	    post
-    WHERE featured = 1
-    ` // Составляем SQL-запрос для получения записей для секции featured-posts
+    WHERE featured = 0
+    `
 
-	var posts []featuredPostData    // Заранее объявляем массив с результирующей информацией
+	var posts []recentPostData      //recentPostData      // Заранее объявляем массив с результирующей информацией
 	err := db.Select(&posts, query) // Делаем запрос в базу данных
 	if err != nil {                 // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err

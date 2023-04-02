@@ -16,8 +16,8 @@ VALUES (
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         'September 25, 2015',
-        NULL,
         'featured-post__background_the-road-ahead',
+        NULL,
         1
     ),
     (
@@ -27,8 +27,8 @@ VALUES (
         'William Wong',
         'static/img/william_wong.jpg',
         'September 25, 2015',
-        NULL,
         'featured-post__background_from-top-down',
+        NULL,
         1
     ),
     (
@@ -38,8 +38,8 @@ VALUES (
         'William Wong',
         'static/img/william_wong.jpg',
         '9/25/2015',
-        'static/img/recent_post_thumbnail_still-standing-tall.jpg',
         NULL,
+        'static/img/recent_post_thumbnail_still-standing-tall.jpg',
         0
     ),
     (
@@ -49,8 +49,8 @@ VALUES (
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',
-        'static/img/recent_post_thumbnail_sunny-side-up.jpg',
         NULL,
+        'static/img/recent_post_thumbnail_sunny-side-up.jpg',
         0
     ),
     (
@@ -60,8 +60,8 @@ VALUES (
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',
-        'static/img/recent_post_thumbnail_water_falls.jpg',
         NULL,
+        'static/img/recent_post_thumbnail_water_falls.jpg',
         0
     ),
     (
@@ -71,8 +71,8 @@ VALUES (
         'William Wong',
         'static/img/william_wong.jpg',
         '9/25/2015',
-        'static/img/recent_post_thumbnail_through_the_mist.jpg',
         NULL,
+        'static/img/recent_post_thumbnail_through_the_mist.jpg',
         0
     ),
     (
@@ -82,8 +82,8 @@ VALUES (
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',
-        'static/img/recent_post_thumbnail_awaken_early.jpg',
         NULL,
+        'static/img/recent_post_thumbnail_awaken_early.jpg',
         0
     ),
     (
@@ -93,7 +93,7 @@ VALUES (
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',
-        'static/img/recent_post_thumbnail_awaken_early.jpg',
         NULL,
+        'static/img/recent_post_thumbnail_awaken_early.jpg',
         0
     );
