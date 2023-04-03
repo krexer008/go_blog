@@ -32,7 +32,7 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/home", index(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
-	mux.HandleFunc("/post", post(dbx))
+	mux.HandleFunc("/post", post(dbx, post_id))
 
 	// Реализуем отдачу статики
 	fileSrever := http.FileServer(http.Dir("./static"))
