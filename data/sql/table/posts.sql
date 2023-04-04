@@ -12,7 +12,7 @@ CREATE TABLE post (
     `publish_date` VARCHAR (255),
     `image_modifier` VARCHAR (255),
     `image_url` VARCHAR (255),
-    `text` TEXT,
+    `text` TEXT DEFAULT '',
     `post_image_url` VARCHAR (255),
     `featured` TINYINT(1) DEFAULT 0
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE utf8mb4_unicode_ci;
