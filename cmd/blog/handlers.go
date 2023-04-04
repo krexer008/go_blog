@@ -16,7 +16,7 @@ type indexPageData struct {
 type postPageData struct {
     Title          string `db:"title"`
     Subtitle       string `db:"subtitle"`
-    PostImage      string `db:"post_thumbnail"`
+    PostImage      string `db:"post_image_url"`
     Text           string `db:"text"`
     PostParagraphs []string
 }
@@ -35,7 +35,7 @@ type recentPostData struct {
     Title         string `db:"title"`
     Subtitle      string `db:"subtitle"`
     PostCategory  string `db:"category"`
-    PostThumbnail string `db:"image_url"`
+    PostThumbnail string `db:"post_thumbnail_url"`
     Author        string `db:"author"`
     AuthorImg     string `db:"author_url"`
     PublishDate   string `db:"publish_date"`
@@ -97,11 +97,8 @@ func post(db *sqlx.DB, post_id) func(w http.ResponseWriter, r *http.Request) {
             return
         }
 
-    data := postPageData{
-        PostPage: postPage
-    }
 
-        err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
+        err = ts.Execute(w, postPage) // Заставляем шаблонизатор вывести шаблон в тело ответа
         if err != nil {
             http.Error(w, "Internal Server Error", 500)
             log.Println(err.Error())
@@ -168,7 +165,7 @@ func getPostPage(db *sqlx.DB, post_id int) (postPageData, error) {
     SELECT
         title,
         subtitle,
-        image_url,
+        post_image_url,
         text
     FROM
         post

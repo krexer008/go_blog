@@ -17,6 +17,7 @@ const (
 	PASS         = "root"
 	HOST         = "localhost"
 	PORT         = "3306"
+	post_id      = 1
 )
 
 func main() {
