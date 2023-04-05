@@ -10,36 +10,26 @@ import (
 )
 
 type indexPageData struct {
-	FeaturedPosts []featuredPostData
-	RecentPosts   []recentPostData
+	FeaturedPosts []indexPagePostData
+	RecentPosts   []indexPagePostData
 }
 
 type postPageData struct {
 	Title          string `db:"title"`
 	Subtitle       string `db:"subtitle"`
-	PostImage      string `db:"post_image_url"`
+	PostImage      string `db:"image_url"`
 	Text           string `db:"text"`
 	PostParagraphs []string
 }
 
-type featuredPostData struct { //featuredPostData
+type indexPagePostData struct { //indexPagePostData
 	Title        string `db:"title"`
 	Subtitle     string `db:"subtitle"`
 	PostCategory string `db:"category"`
-	ImgModifier  string `db:"image_modifier"`
+	PostImage    string `db:"image_url"`
 	Author       string `db:"author"`
 	AuthorImg    string `db:"author_url"`
 	PublishDate  string `db:"publish_date"`
-}
-
-type recentPostData struct {
-	Title         string `db:"title"`
-	Subtitle      string `db:"subtitle"`
-	PostCategory  string `db:"category"`
-	PostThumbnail string `db:"post_thumbnail_url"`
-	Author        string `db:"author"`
-	AuthorImg     string `db:"author_url"`
-	PublishDate   string `db:"publish_date"`
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -78,7 +68,6 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 		}
 
 		log.Println("Request completed succesfully")
-
 	}
 }
 
@@ -109,23 +98,24 @@ func post(db *sqlx.DB, post_id int) func(w http.ResponseWriter, r *http.Request)
 	}
 }
 
-func getFeaturedPosts(db *sqlx.DB) ([]featuredPostData, error) {
+func getFeaturedPosts(db *sqlx.DB) ([]indexPagePostData, error) {
 	// Составляем SQL-запрос для получения записей для секции featured-posts
 	const query = `
     SELECT
         title,
         subtitle,
         category,
+		image_url
         author,
         author_url,
-        publish_date,
-        image_modifier
+        publish_date
     FROM
         post
-    WHERE featured = 1
+    WHERE
+	    featured = 1
     `
 
-	var featuredPostsData []featuredPostData    // Заранее объявляем массив с результирующей информацией
+	var featuredPostsData []indexPagePostData   // Заранее объявляем массив с результирующей информацией
 	err := db.Select(&featuredPostsData, query) // Делаем запрос в базу данных // Select позволяет прочитать несколько строк
 	if err != nil {                             // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err
@@ -134,23 +124,23 @@ func getFeaturedPosts(db *sqlx.DB) ([]featuredPostData, error) {
 	return featuredPostsData, nil
 }
 
-func getRecentPosts(db *sqlx.DB) ([]recentPostData, error) {
+func getRecentPosts(db *sqlx.DB) ([]indexPagePostData, error) {
 	// Составляем SQL-запрос для получения записей для секции featured-posts
 	const query = `
     SELECT
-        title,
-        subtitle,
-        category,
-        author,
-        author_url,
-        publish_date,
-        post_thumbnail_url
+	    title,
+	    subtitle,
+	    category,
+	    image_url
+	    author,
+	    author_url,
+	    publish_date
     FROM
         post
     WHERE featured = 0
     `
 
-	var recentPostsData []recentPostData      //recentPostData      // Заранее объявляем массив с результирующей информацией
+	var recentPostsData []indexPagePostData   //indexPagePostData      // Заранее объявляем массив с результирующей информацией
 	err := db.Select(&recentPostsData, query) // Делаем запрос в базу данных
 	if err != nil {                           // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err
@@ -165,7 +155,7 @@ func getPostPage(db *sqlx.DB, post_id int) (postPageData, error) {
     SELECT
         title,
         subtitle,
-        post_image_url,
+        image_url,
         text
     FROM
         post
