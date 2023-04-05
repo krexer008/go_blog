@@ -32,7 +32,7 @@ VALUES (
         'From Top Dow',
         'Once a year, go someplace you never been before.',
         'Adventure',
-        'static/img/from-top-down.jpg',
+        'static/img/from_top_down.jpg',
         'William Wong',
         'static/img/william_wong.jpg',
         'September 25, 2015',
@@ -50,7 +50,7 @@ INSERT INTO post (
 VALUES (
         'Still Standing Tall',
         'Life begins at the end of your comfort zone.',
-        'static/img/still-standing-tall.jpg',
+        'static/img/still_standing_tall.jpg',
         'William Wong',
         'static/img/william_wong.jpg',
         '9/25/2015',
@@ -68,7 +68,7 @@ INSERT INTO post (
 VALUES (
         'Sunny Side Up',
         'No place is ever as bad as they tell you it''s going to be.',
-        'static/img/sunny-side-up.jpg',
+        'static/img/sunny_side_up.jpg',
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',

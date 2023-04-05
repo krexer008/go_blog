@@ -44,7 +44,7 @@
         <h2 class="section__header">Featured posts</h2>
         <div class="section__content">
           {{ range .FeaturedPosts }}
-          <div class="featured-post" style="background: #000 url(`{{ .PostImage }}`) no-repeat;">
+          <div class="featured-post" style= "background-image: image( {{ .PostImage }});">
             {{ if .PostCategory }} <span class="featured-post__category">{{ .PostCategory }}</span> {{ end }}
             <h2 class="featured-post__title title">{{ .Title }}</h2>
             <p class="featured-post__descr">
