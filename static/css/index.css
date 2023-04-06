@@ -35,7 +35,6 @@ p {
 
 body {
     margin: 0 auto;
-    max-width: 1440px;
     width: 100%;
     height: auto;
     font-family: "Oxygen", sans-serif;
@@ -208,15 +207,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-/*
-.featured-post__background_the-road-ahead {
-    background: #000 url("/static/img/featured_post_background_the-road-ahead.jpg") no-repeat;
-}
 
-.featured-post__background_from-top-down {
-    background: #000 url("/static/img/featured_post_background_from-top-down.jpg") no-repeat;
-}
-*/
 .featured-post__category {    
     position: absolute;
     top: 20px;
