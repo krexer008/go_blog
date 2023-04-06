@@ -9,6 +9,11 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+const (
+	featured = 1
+	recent   = 0
+)
+
 type indexPageData struct {
 	FeaturedPosts []indexPagePostData
 	RecentPosts   []indexPagePostData
@@ -34,14 +39,14 @@ type indexPagePostData struct { //indexPagePostData
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		featuredPosts, err := getFeaturedPosts(db)
+		featuredPosts, err := getIndexPagePosts(db, featured)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
 			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
 			return                                      // Завершение функции
 		}
 
-		recentPosts, err := getRecentPosts(db)
+		recentPosts, err := getIndexPagePosts(db, recent)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
 			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
@@ -71,9 +76,9 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func post(db *sqlx.DB, post_id int) func(w http.ResponseWriter, r *http.Request) {
+func post(db *sqlx.DB, postId int) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		postPage, err := getPostPage(db, post_id)
+		postPage, err := getPostPage(db, postId)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
 			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
@@ -93,63 +98,37 @@ func post(db *sqlx.DB, post_id int) func(w http.ResponseWriter, r *http.Request)
 			log.Println(err.Error())
 			return
 		}
-
 		log.Println("Request completed succesfully")
 	}
 }
 
-func getFeaturedPosts(db *sqlx.DB) ([]indexPagePostData, error) {
+func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
 	// Составляем SQL-запрос для получения записей для секции featured-posts
 	const query = `
     SELECT
         title,
         subtitle,
         category,
-		image_url
+		image_url,
         author,
         author_url,
         publish_date
     FROM
         post
     WHERE
-	    featured = 1
+	    featured = ?
     `
 
-	var featuredPostsData []indexPagePostData   // Заранее объявляем массив с результирующей информацией
-	err := db.Select(&featuredPostsData, query) // Делаем запрос в базу данных // Select позволяет прочитать несколько строк
-	if err != nil {                             // Проверяем, что запрос в базу данных не завершился с ошибкой
+	var indexPagePostsData []indexPagePostData             // Заранее объявляем массив с результирующей информацией
+	err := db.Select(&indexPagePostsData, query, featured) // Делаем запрос в базу данных // Select позволяет прочитать несколько строк
+	if err != nil {                                        // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err
 	}
 
-	return featuredPostsData, nil
+	return indexPagePostsData, nil
 }
 
-func getRecentPosts(db *sqlx.DB) ([]indexPagePostData, error) {
-	// Составляем SQL-запрос для получения записей для секции featured-posts
-	const query = `
-    SELECT
-	    title,
-	    subtitle,
-	    category,
-	    image_url
-	    author,
-	    author_url,
-	    publish_date
-    FROM
-        post
-    WHERE featured = 0
-    `
-
-	var recentPostsData []indexPagePostData   //indexPagePostData      // Заранее объявляем массив с результирующей информацией
-	err := db.Select(&recentPostsData, query) // Делаем запрос в базу данных
-	if err != nil {                           // Проверяем, что запрос в базу данных не завершился с ошибкой
-		return nil, err
-	}
-
-	return recentPostsData, nil
-}
-
-func getPostPage(db *sqlx.DB, post_id int) (postPageData, error) {
+func getPostPage(db *sqlx.DB, postId int) (postPageData, error) {
 	// Составляем SQL-запрос для получения записей для секции featured-posts
 	const query = `
     SELECT
@@ -165,8 +144,8 @@ func getPostPage(db *sqlx.DB, post_id int) (postPageData, error) {
 
 	var pageData postPageData
 
-	err := db.Get(&pageData, query, post_id) // Делаем запрос в базу данных
-	if err != nil {                          // Проверяем, что запрос в базу данных не завершился с ошибкой
+	err := db.Get(&pageData, query, postId) // Делаем запрос в базу данных
+	if err != nil {                         // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return pageData, err
 	}
 

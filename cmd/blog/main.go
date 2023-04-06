@@ -17,7 +17,7 @@ const (
 	PASS         = "root"
 	HOST         = "localhost"
 	PORT         = "3306"
-	post_id      = 1
+	postId       = 1
 )
 
 func main() {
@@ -33,7 +33,7 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/home", index(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
-	mux.HandleFunc("/post", post(dbx, post_id))
+	mux.HandleFunc("/post", post(dbx, postId))
 
 	// Реализуем отдачу статики
 	fileSrever := http.FileServer(http.Dir("./static"))

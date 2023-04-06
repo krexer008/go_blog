@@ -44,7 +44,7 @@
         <h2 class="section__header">Featured posts</h2>
         <div class="section__content">
           {{ range .FeaturedPosts }}
-          <div class="featured-post" style= "background-image: image( {{ .PostImage }});">
+          <div class="featured-post" style= "background: url({{ .PostImage }}) no-repeat; background-size: cover">
             {{ if .PostCategory }} <span class="featured-post__category">{{ .PostCategory }}</span> {{ end }}
             <h2 class="featured-post__title title">{{ .Title }}</h2>
             <p class="featured-post__descr">
@@ -64,7 +64,7 @@
         <div class="section__content">
           {{ range .RecentPosts }}
           <div class="recent-post">
-            <img src="{{ .PostImage }}" alt="Air Baloons" class="recent-post__image" />
+            <img class="recent-post__image" src="{{ .PostImage }}" alt="{{ .Title }}"/>
             {{ if .PostCategory }}<span class="recent-post__category">{{ .PostCategory }}</span>{{ end }}
             <h2 class="recent-post__title title">
               {{ .Title }}

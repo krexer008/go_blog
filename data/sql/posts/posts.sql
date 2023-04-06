@@ -140,7 +140,7 @@ INSERT INTO post (
 VALUES (
         'Try it Always',
         'The world is a book, and those who do not travel read only one page.',
-        'static/img/awaken_early.jpg',
+        'static/img/try_it_always.jpg',
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',
