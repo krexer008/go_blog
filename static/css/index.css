@@ -208,6 +208,10 @@ body {
     flex-direction: column;
 }
 
+.linkblock {
+    cursor:pointer;
+}
+
 .featured-post__category {    
     position: absolute;
     top: 20px;

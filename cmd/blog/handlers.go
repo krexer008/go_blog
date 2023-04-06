@@ -35,6 +35,7 @@ type indexPagePostData struct { //indexPagePostData
 	Author       string `db:"author"`
 	AuthorImg    string `db:"author_url"`
 	PublishDate  string `db:"publish_date"`
+	PostLink     string
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -71,7 +72,7 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			log.Println(err.Error())
 			return
 		}
-
+		log.Println(recentPosts[0].PostLink)
 		log.Println("Request completed succesfully")
 	}
 }
@@ -123,6 +124,10 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
 	err := db.Select(&indexPagePostsData, query, featured) // Делаем запрос в базу данных // Select позволяет прочитать несколько строк
 	if err != nil {                                        // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err
+	}
+
+	for i := range indexPagePostsData {
+		indexPagePostsData[i].PostLink = strings.Replace(indexPagePostsData[i].Title, " ", "_", -1)
 	}
 
 	return indexPagePostsData, nil
