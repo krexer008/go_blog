@@ -17,7 +17,6 @@ const (
 	PASS         = "root"
 	HOST         = "localhost"
 	PORT         = "3306"
-	postId       = 1
 )
 
 func main() {
@@ -30,10 +29,9 @@ func main() {
 	dbx := sqlx.NewDb(db, dbDriverName) // Расширяем стандартный клиент к базе
 
 	//db.Query()
-	postLink := "/post"
 	mux := http.NewServeMux()
 	mux.HandleFunc("/home", index(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
-	mux.HandleFunc(postLink, post(dbx, postId))
+	mux.HandleFunc("/post", post(dbx))
 
 	// Реализуем отдачу статики
 	fileSrever := http.FileServer(http.Dir("./static"))

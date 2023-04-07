@@ -4,6 +4,7 @@ import (
 	"html/template" // Модуль отвечает за шаблонизацию html страниц
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"github.com/jmoiron/sqlx"
@@ -28,6 +29,7 @@ type postPageData struct {
 }
 
 type indexPagePostData struct { //indexPagePostData
+	PostId       int    `db:"post_id"`
 	Title        string `db:"title"`
 	Subtitle     string `db:"subtitle"`
 	PostCategory string `db:"category"`
@@ -77,8 +79,9 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func post(db *sqlx.DB, postId int) func(w http.ResponseWriter, r *http.Request) {
+func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+		postId := 1
 		postPage, err := getPostPage(db, postId)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
@@ -107,6 +110,7 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
 	// Составляем SQL-запрос для получения записей для секции featured-posts
 	const query = `
     SELECT
+        post_id,
         title,
         subtitle,
         category,
@@ -127,7 +131,7 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
 	}
 
 	for i := range indexPagePostsData {
-		indexPagePostsData[i].PostLink = strings.Replace(indexPagePostsData[i].Title, " ", "_", -1)
+		indexPagePostsData[i].PostLink = "/post?" + strconv.Itoa(indexPagePostsData[i].PostId)
 	}
 
 	return indexPagePostsData, nil
