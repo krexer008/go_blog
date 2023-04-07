@@ -37,7 +37,7 @@ type indexPagePostData struct { //indexPagePostData
 	Author       string `db:"author"`
 	AuthorImg    string `db:"author_url"`
 	PublishDate  string `db:"publish_date"`
-	PostLink     string
+	/*PostLink     string*/
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
