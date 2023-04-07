@@ -74,14 +74,19 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			log.Println(err.Error())
 			return
 		}
-		log.Println(recentPosts[0].PostLink)
 		log.Println("Request completed succesfully")
 	}
 }
 
 func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		postId := 1
+		postId, err := strconv.Atoi(r.URL.Query().Get("post_id"))
+		if err != nil || postId < 1 {
+			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
+			return                                      // Завершение функции
+		}
+
 		postPage, err := getPostPage(db, postId)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
@@ -129,11 +134,11 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
 	if err != nil {                                        // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err
 	}
-
-	for i := range indexPagePostsData {
-		indexPagePostsData[i].PostLink = "/post?" + strconv.Itoa(indexPagePostsData[i].PostId)
-	}
-
+	/*
+		for i := range indexPagePostsData {
+			indexPagePostsData[i].PostLink = "/post?" + strconv.Itoa(indexPagePostsData[i].PostId)
+		}
+	*/
 	return indexPagePostsData, nil
 }
 
