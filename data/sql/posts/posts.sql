@@ -26,6 +26,7 @@ INSERT INTO post (
         author,
         author_url,
         publish_date,
+        text,
         featured
     )
 VALUES (
@@ -36,6 +37,7 @@ VALUES (
         'William Wong',
         'static/img/william_wong.jpg',
         'September 25, 2015',
+        '',
         1
     );
 INSERT INTO post (
@@ -45,6 +47,7 @@ INSERT INTO post (
         author,
         author_url,
         publish_date,
+        text,
         featured
     )
 VALUES (
@@ -54,6 +57,7 @@ VALUES (
         'William Wong',
         'static/img/william_wong.jpg',
         '9/25/2015',
+        '',
         0
     );
 INSERT INTO post (
@@ -63,6 +67,7 @@ INSERT INTO post (
         author,
         author_url,
         publish_date,
+        text,
         featured
     )
 VALUES (
@@ -72,6 +77,7 @@ VALUES (
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',
+        '',
         0
     );
 INSERT INTO post (
@@ -81,6 +87,7 @@ INSERT INTO post (
         author,
         author_url,
         publish_date,
+        text,
         featured
     )
 VALUES (
@@ -90,6 +97,7 @@ VALUES (
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',
+        '',
         0
     );
 INSERT INTO post (
@@ -99,6 +107,7 @@ INSERT INTO post (
         author,
         author_url,
         publish_date,
+        text,
         featured
     )
 VALUES (
@@ -108,6 +117,7 @@ VALUES (
         'William Wong',
         'static/img/william_wong.jpg',
         '9/25/2015',
+        '',
         0
     );
 INSERT INTO post (
@@ -117,6 +127,7 @@ INSERT INTO post (
         author,
         author_url,
         publish_date,
+        text,
         featured
     )
 VALUES (
@@ -126,6 +137,7 @@ VALUES (
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',
+        '',
         0
     );
 INSERT INTO post (
@@ -135,6 +147,7 @@ INSERT INTO post (
         author,
         author_url,
         publish_date,
+        text,
         featured
     )
 VALUES (
@@ -144,5 +157,6 @@ VALUES (
         'Mat Vogels',
         'static/img/mat_vogels.jpg',
         '9/25/2015',
+        '',
         0
     );
