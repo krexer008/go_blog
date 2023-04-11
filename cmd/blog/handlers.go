@@ -34,8 +34,8 @@ type indexPagePostData struct { //indexPagePostData
 	Subtitle     string `db:"subtitle"`
 	PostCategory string `db:"category"`
 	PostImage    string `db:"image_url"`
-	Author       string `db:"author"`
-	AuthorImg    string `db:"author_url"`
+	Author       string `db:"author_name"`
+	AuthorImg    string `db:"author_image"`
 	PublishDate  string `db:"publish_date"`
 	/*PostLink     string*/
 }
@@ -120,11 +120,11 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
         subtitle,
         category,
 		image_url,
-        author,
-        author_url,
+        author_name,
+        author_image,
         publish_date
     FROM
-        post
+        post JOIN authors ON post.author_id = authors.author_id
     WHERE
 	    featured = ?
     `
