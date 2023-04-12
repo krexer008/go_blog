@@ -206,10 +206,7 @@ body {
     height: 280px;
     display: flex;
     flex-direction: column;
-}
-
-.linkblock {
-    cursor:pointer;
+    text-decoration: none;
 }
 
 .featured-post__category {    
@@ -280,7 +277,8 @@ body {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.09);
     border-radius: 3px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
+    text-decoration: none;
 }
 
 .recent-post__image {
@@ -432,8 +430,6 @@ body {
     font-weight: 400;
     line-height: 26px;
     letter-spacing: 1px;
-    text-decoration: none;
-    text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
 }
 

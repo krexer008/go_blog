@@ -125,6 +125,8 @@ body {
 .intro__image {
     margin-top: 113px;
     width: 100%;
+    max-height: 534px;
+    height: 100%;
     border-radius: 3px;
 }
 
@@ -173,7 +175,6 @@ body {
     font-size: 25px;
     font-weight: 400;
     line-height: 30px;
-
     text-align: center;
     text-transform: capitalize;
     color: #efefef;
@@ -252,8 +253,6 @@ body {
     font-weight: 400;
     line-height: 26px;
     letter-spacing: 1px;
-    text-decoration: none;
-    text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
 }
 
