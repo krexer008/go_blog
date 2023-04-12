@@ -80,7 +80,7 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		postId, err := strconv.Atoi(r.URL.Query().Get("post_id"))
+		postId, err := strconv.Atoi(r.URL.Query().Get("id"))
 		if err != nil || postId < 1 {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
 			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
