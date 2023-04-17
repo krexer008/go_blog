@@ -4,7 +4,7 @@ INSERT INTO post (title,
                   image_url,
                   author_id,
                   publish_date,
-                  text,
+                  content,
                   featured)
 VALUES ('The Road Ahead',
         'The road ahead might be paved - it might not be.',

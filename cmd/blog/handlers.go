@@ -24,7 +24,7 @@ type postPageData struct {
 	Title          string `db:"title"`
 	Subtitle       string `db:"subtitle"`
 	PostImage      string `db:"image_url"`
-	Text           string `db:"text"`
+	Text           string `db:"content"`
 	PostParagraphs []string
 }
 
@@ -149,7 +149,7 @@ func getPostPage(db *sqlx.DB, postId int) (postPageData, error) {
         title,
         subtitle,
         image_url,
-        text
+        content
     FROM
         post
     WHERE
