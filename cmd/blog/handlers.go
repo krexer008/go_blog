@@ -86,16 +86,16 @@ func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 		postID, err := strconv.Atoi(postIDStr) // Конвертируем строку postID в число
 		if err != nil || postID < 1 {
-			http.Error(w, "Invalid post id", 403) // В случае ошибки парсинга - возвращаем 500
-			log.Println(err.Error())              // Используем стандартный логгер для вывода ошбики в консоль
-			return                                // Завершение функции
+			http.Error(w, "Invalid post id", 403)
+			log.Println(err)
+			return // Завершение функции
 		}
 
 		postPage, err := getPostPageByID(db, postID)
 		if err != nil {
-			// sql.ErrNoRows возвращается, когда в запросе к базе не было ничего найдено
-			// В таком случае мы возвращем 404 (not found) и пишем в тело, что пост не найден
 			if err == sql.ErrNoRows {
+				// sql.ErrNoRows возвращается, когда в запросе к базе не было ничего найдено
+				// В таком случае мы возвращем 404 (not found) и пишем в тело, что пост не найден
 				http.Error(w, "Post not found", 404)
 				log.Println(err.Error())
 				return
@@ -146,15 +146,15 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
 	if err != nil {                                        // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err
 	}
-
-	for i := range indexPagePostsData {
-		indexPagePostsData[i].PostURL = "/post/" + strconv.Itoa(indexPagePostsData[i].PostID)
-	}
 	/*
-		for _, post := range indexPagePostsData {
-			post.PostURL = "/post/" + strconv.Itoa(post.PostID)
-		}
-	*/
+		for i := range indexPagePostsData {
+			indexPagePostsData[i].PostURL = "/post/" + strconv.Itoa(indexPagePostsData[i].PostID)
+		}*/
+
+	for _, post := range indexPagePostsData {
+		post.PostURL = "/post/" + strconv.Itoa(post.PostID)
+	}
+
 	return indexPagePostsData, nil
 }
 
