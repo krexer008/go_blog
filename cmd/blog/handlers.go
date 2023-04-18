@@ -29,7 +29,7 @@ type postPageData struct {
 }
 
 type indexPagePostData struct { //indexPagePostData
-	PostId       int    `db:"post_id"`
+	PostID       int    `db:"post_id"`
 	Title        string `db:"title"`
 	Subtitle     string `db:"subtitle"`
 	PostCategory string `db:"category"`
@@ -37,7 +37,7 @@ type indexPagePostData struct { //indexPagePostData
 	Author       string `db:"author_name"`
 	AuthorImg    string `db:"author_image"`
 	PublishDate  string `db:"publish_date"`
-	/*PostLink     string*/
+	PostURL      string
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -136,7 +136,7 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
 	}
 	/*
 		for i := range indexPagePostsData {
-			indexPagePostsData[i].PostLink = "/post?" + strconv.Itoa(indexPagePostsData[i].PostId)
+			indexPagePostsData[i].PostLink = "/post?" + strconv.Itoa(indexPagePostsData[i].PostID)
 		}
 	*/
 	return indexPagePostsData, nil

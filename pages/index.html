@@ -44,7 +44,7 @@
         <h2 class="section__header">Featured posts</h2>
         <div class="section__content">
           {{ range .FeaturedPosts }}
-          <a href="/post?id={{ .PostId }}" class="featured-post" style= "background: url('{{ .PostImage }}') no-repeat; background-size: cover">
+          <a href="{{ .PostURL }}" class="featured-post" style= "background: url('{{ .PostImage }}') no-repeat; background-size: cover">
             {{ if .PostCategory }} <span class="featured-post__category">{{ .PostCategory }}</span> {{ end }}
             <h2 class="featured-post__title title">{{ .Title }}</h2>
             <p class="featured-post__descr">
@@ -63,7 +63,7 @@
         <h2 class="section__header">Most recent</h2>
         <div class="section__content">
           {{ range .RecentPosts }}
-          <a href="/post?id={{ .PostId }}" class="recent-post">
+          <a href="{{ .PostURL }}" class="recent-post">
             <img class="recent-post__image" src="{{ .PostImage }}" alt="{{ .Title }}"/>
             {{ if .PostCategory }}<span class="recent-post__category">{{ .PostCategory }}</span>{{ end }}
             <h2 class="recent-post__title title">
