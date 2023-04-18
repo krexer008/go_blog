@@ -1,12 +1,14 @@
 package main
 
 import (
+	"database/sql"
 	"html/template" // Модуль отвечает за шаблонизацию html страниц
 	"log"
 	"net/http"
 	"strconv"
 	"strings"
 
+	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -37,7 +39,7 @@ type indexPagePostData struct { //indexPagePostData
 	Author       string `db:"author_name"`
 	AuthorImg    string `db:"author_image"`
 	PublishDate  string `db:"publish_date"`
-	PostURL      string
+	PostURL      string // URL ордера, на который мы будем переходить для конкретного поста
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -80,15 +82,25 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		postId, err := strconv.Atoi(r.URL.Query().Get("id"))
-		if err != nil || postId < 1 {
-			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
-			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
-			return                                      // Завершение функции
+		postIDStr := mux.Vars(r)["postID"] // Получаем postID в виде строки из параметров урла
+
+		postID, err := strconv.Atoi(postIDStr) // Конвертируем строку postID в число
+		if err != nil || postID < 1 {
+			http.Error(w, "Invalid post id", 403) // В случае ошибки парсинга - возвращаем 500
+			log.Println(err.Error())              // Используем стандартный логгер для вывода ошбики в консоль
+			return                                // Завершение функции
 		}
 
-		postPage, err := getPostPage(db, postId)
+		postPage, err := getPostPageByID(db, postID)
 		if err != nil {
+			// sql.ErrNoRows возвращается, когда в запросе к базе не было ничего найдено
+			// В таком случае мы возвращем 404 (not found) и пишем в тело, что пост не найден
+			if err == sql.ErrNoRows {
+				http.Error(w, "Post not found", 404)
+				log.Println(err.Error())
+				return
+			}
+
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
 			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
 			return                                      // Завершение функции
@@ -134,15 +146,19 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
 	if err != nil {                                        // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err
 	}
+
+	for i := range indexPagePostsData {
+		indexPagePostsData[i].PostURL = "/post/" + strconv.Itoa(indexPagePostsData[i].PostID)
+	}
 	/*
-		for i := range indexPagePostsData {
-			indexPagePostsData[i].PostLink = "/post?" + strconv.Itoa(indexPagePostsData[i].PostID)
+		for _, post := range indexPagePostsData {
+			post.PostURL = "/post/" + strconv.Itoa(post.PostID)
 		}
 	*/
 	return indexPagePostsData, nil
 }
 
-func getPostPage(db *sqlx.DB, postId int) (postPageData, error) {
+func getPostPageByID(db *sqlx.DB, postID int) (postPageData, error) {
 	// Составляем SQL-запрос для получения записей для секции featured-posts
 	const query = `
     SELECT
@@ -155,12 +171,14 @@ func getPostPage(db *sqlx.DB, postId int) (postPageData, error) {
     WHERE
         post_id = ?
     `
+	// В SQL-запросе добавились параметры, как в шаблоне. ? означает параметр, который мы передаем в запрос ниже
 
 	var pageData postPageData
 
-	err := db.Get(&pageData, query, postId) // Делаем запрос в базу данных
-	if err != nil {                         // Проверяем, что запрос в базу данных не завершился с ошибкой
-		return pageData, err
+	// Обязательно нужно передать в параметрах orderID
+	err := db.Get(&pageData, query, postID)
+	if err != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
+		return postPageData{}, err
 	}
 
 	pageData.PostParagraphs = strings.Split(pageData.Text, "\n")
