@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="static/css/index.css" />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&family=Oxygen:wght@400&display=swap"
     rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/index.css" />
   <title>Escape</title>
 </head>
 
@@ -44,14 +44,15 @@
         <h2 class="section__header">Featured posts</h2>
         <div class="section__content">
           {{ range .FeaturedPosts }}
-          <a href="{{ .PostURL }}" class="featured-post" style= "background: url('{{ .PostImage }}') no-repeat; background-size: cover">
+          <a href="{{ .PostURL }}" class="featured-post"
+            style="background: url('{{ .PostImage }}') no-repeat; background-size: cover">
             {{ if .PostCategory }} <span class="featured-post__category">{{ .PostCategory }}</span> {{ end }}
             <h2 class="featured-post__title title">{{ .Title }}</h2>
             <p class="featured-post__descr">
               {{ .Subtitle }}
             </p>
             <div class="featured-post__info post-info">
-              <img class="post-info__author-avatar" src="{{ .AuthorImg }}" alt="Mat Vogels"/>
+              <img class="post-info__author-avatar" src="{{ .AuthorImg }}" alt="Mat Vogels" />
               <span class="post-info__author">{{ .Author }}</span>
               <time class="post-info__time" datetime="{{ .PublishDate }}">{{ .PublishDate }}</time>
             </div>
@@ -64,7 +65,7 @@
         <div class="section__content">
           {{ range .RecentPosts }}
           <a href="{{ .PostURL }}" class="recent-post">
-            <img class="recent-post__image" src="{{ .PostImage }}" alt="{{ .Title }}"/>
+            <img class="recent-post__image" src="{{ .PostImage }}" alt="{{ .Title }}" />
             {{ if .PostCategory }}<span class="recent-post__category">{{ .PostCategory }}</span>{{ end }}
             <h2 class="recent-post__title title">
               {{ .Title }}
@@ -73,7 +74,7 @@
               {{ .Subtitle }}
             </p>
             <div class="recent-post__info post-info">
-              <img class="post-info__author-avatar" src="{{ .AuthorImg }}" alt="William Wong"/>
+              <img class="post-info__author-avatar" src="{{ .AuthorImg }}" alt="William Wong" />
               <span class="post-info__author">{{ .Author }}</span>
               <time class="post-info__time" datetime="{{ .PublishDate }}">{{ .PublishDate }}</time>
             </div>
@@ -103,7 +104,7 @@
       </div>
     </div>
   </footer>
-  
+
 </body>
 
 </html>

@@ -5,55 +5,55 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/css/post.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&family=Oxygen:wght@400&display=swap"
-        rel="stylesheet">
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/post.css">
   <title>{{ .Title }}</title>
 </head>
 
 <body>
-<div class="intro">
-  <header class="header">
-    <span class="logo logo_black">Escape.</span>
-    <nav class="header__nav nav">
-      <a class="nav__link nav__link_head nav__link_head_black" href="/home">Home</a>
-      <a class="nav__link nav__link_head nav__link_head_black" href="#">Categories</a>
-      <a class="nav__link nav__link_head nav__link_head_black" href="#">About</a>
-      <a class="nav__link nav__link_head nav__link_head_black" href="#">Contact</a>
-    </nav>
-  </header>
-  <h1 class="intro__title title">{{ .Title }}</h1>
-  <p class="intro__descr">{{ .Subtitle }}</p>
-  <img class="intro__image" src="{{ .PostImage }}" alt="{{ .Title }}">
-</div>
-
-<div class="main">
-  {{ range .PostParagraphs }}
-  <p class="main__item">{{ . }}</p>
-  {{ end }}
-</div>
-<footer class="footer">
-  <form class="subscribe">
-    <h2 class="subscribe__header">Stay in touch</h2>
-    <div class="subscribe__input">
-      <input placeholder="Enter your email address" type="email" name="email" class="input-email input">
-      <input type="Submit" value="Submit" class="input-button input">
-    </div>
-  </form>
-  <div class="footer__container">
-    <div class="footer__block">
-      <span class="footer__logo logo">Escape.</span>
-      <nav class="nav">
-        <a class="nav__link nav__link_foot" href="/home">Home</a>
-        <a class="nav__link nav__link_foot" href="#">Categories</a>
-        <a class="nav__link nav__link_foot" href="#">About</a>
-        <a class="nav__link nav__link_foot" href="#">Contact</a>
+  <div class="intro">
+    <header class="header">
+      <span class="logo logo_black">Escape.</span>
+      <nav class="header__nav nav">
+        <a class="nav__link nav__link_head nav__link_head_black" href="/home">Home</a>
+        <a class="nav__link nav__link_head nav__link_head_black" href="#">Categories</a>
+        <a class="nav__link nav__link_head nav__link_head_black" href="#">About</a>
+        <a class="nav__link nav__link_head nav__link_head_black" href="#">Contact</a>
       </nav>
-    </div>
+    </header>
+    <h1 class="intro__title title">{{ .Title }}</h1>
+    <p class="intro__descr">{{ .Subtitle }}</p>
+    <img class="intro__image" src="{{ .PostImage }}" alt="{{ .Title }}">
   </div>
-</footer>
+
+  <div class="main">
+    {{ range .PostParagraphs }}
+    <p class="main__item">{{ . }}</p>
+    {{ end }}
+  </div>
+  <footer class="footer">
+    <form class="subscribe">
+      <h2 class="subscribe__header">Stay in touch</h2>
+      <div class="subscribe__input">
+        <input placeholder="Enter your email address" type="email" name="email" class="input-email input">
+        <input type="Submit" value="Submit" class="input-button input">
+      </div>
+    </form>
+    <div class="footer__container">
+      <div class="footer__block">
+        <span class="footer__logo logo">Escape.</span>
+        <nav class="nav">
+          <a class="nav__link nav__link_foot" href="/home">Home</a>
+          <a class="nav__link nav__link_foot" href="#">Categories</a>
+          <a class="nav__link nav__link_foot" href="#">About</a>
+          <a class="nav__link nav__link_foot" href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

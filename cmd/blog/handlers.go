@@ -18,8 +18,8 @@ const (
 )
 
 type indexPageData struct {
-	FeaturedPosts []indexPagePostData
-	RecentPosts   []indexPagePostData
+	FeaturedPosts []*indexPagePostData
+	RecentPosts   []*indexPagePostData
 }
 
 type postPageData struct {
@@ -123,7 +123,8 @@ func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
+// Возвращаем не просто []indexPagePostData, а []*indexPagePostData - так у нас получится подставить PostURL в структуре
+func getIndexPagePosts(db *sqlx.DB, featured int) ([]*indexPagePostData, error) {
 	// Составляем SQL-запрос для получения записей для секции featured-posts
 	const query = `
     SELECT
@@ -141,7 +142,8 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]indexPagePostData, error) {
 	    featured = ?
     `
 
-	var indexPagePostsData []indexPagePostData             // Заранее объявляем массив с результирующей информацией
+	var indexPagePostsData []*indexPagePostData // Заранее объявляем массив с результирующей информацией
+
 	err := db.Select(&indexPagePostsData, query, featured) // Делаем запрос в базу данных // Select позволяет прочитать несколько строк
 	if err != nil {                                        // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err
@@ -175,12 +177,11 @@ func getPostPageByID(db *sqlx.DB, postID int) (postPageData, error) {
 
 	var pageData postPageData
 
-	// Обязательно нужно передать в параметрах orderID
+	// Обязательно нужно передать в параметрах postID
 	err := db.Get(&pageData, query, postID)
 	if err != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return postPageData{}, err
 	}
-
 	pageData.PostParagraphs = strings.Split(pageData.Text, "\n")
 
 	return pageData, nil
