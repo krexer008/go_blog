@@ -80,6 +80,36 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		featuredPosts, err := getIndexPagePosts(db, featured)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
+			return                                      // Завершение функции
+		}
+
+		ts, err := template.ParseFiles("pages/admin.html") // Страница блога
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
+			return
+		}
+
+		data := indexPageData{
+			FeaturedPosts: featuredPosts,
+		}
+
+		err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+		log.Println("Request completed succesfully")
+	}
+}
+
 func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		postIDStr := mux.Vars(r)["postID"] // Получаем postID в виде строки из параметров урла

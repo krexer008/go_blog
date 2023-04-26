@@ -33,6 +33,10 @@ func main() {
 	mux := mux.NewRouter()
 	mux.HandleFunc("/home", index(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
 
+	// Обязательно подключить github.com/gorilla/mux в импортах
+
+	mux.HandleFunc("/admin", admin(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
+
 	// Указывем postID поста в URL для перехода на конкретный пост
 	mux.HandleFunc("/post/{postID}", post(dbx))
 
