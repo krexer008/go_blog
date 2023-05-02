@@ -652,21 +652,12 @@ p {
     max-width: 940px;
     width: 100%;
     height: 160px;
-
-    display: flex;
-
-
-    /* Background/Default */
-
     background: #FFFFFF;
-    /* Border/Default */
-
     border: 1px solid #EAEAEA;
     border-radius: 5px;
 }
 
 .input__field-content::placeholder {
-
     color: #999999;
 }
 
