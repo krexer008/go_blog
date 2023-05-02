@@ -12,16 +12,149 @@
 </head>
 
 <body>
+
   <header class="header">
-    <span class="header__logo logo">Escape.</span>
-    <nav class="nav">
-      <a class="nav__link nav__link_head" href="/home">Home</a>
-      <a class="nav__link nav__link_head" href="#">Categories</a>
-      <a class="nav__link nav__link_head" href="#">About</a>
-      <a class="nav__link nav__link_head" href="#">Contact</a>
-    </nav>
+    <div class="header-container">
+      <div class="header_logo">
+        <span class="logo">Escape.</span>
+        <span class="header-title">author</span>
+      </div>
+      <div class="header_menu">
+        <a href="" class="header_menu__item avatar avatar_default">N</a>
+        <a href="" class="header_menu__item logout">
+          <img class="logout_icon" src="/static/img/logout_invers.png" alt="logout">
+        </a>
+      </div>
+    </div>
   </header>
-  
+  <div class="main">
+    <div class="post_header">
+      <div class="post_description">
+        <h1 class="post_title">New Post</h1>
+        <span class="post_subtittle">Fill out the form bellow and publish your
+          article</span>
+      </div>
+      <button class="publish-button">Publish</button>
+    </div>
+    <div class="post">
+      <div class="post__status status_critical">
+        <img class="status__icon" src="/static/img/alert-circle.png" alt="alert">
+        <div class="status__description description_small">Whoops! Some fields need your attention :o</div>
+      </div>
+      <div class="post__content">
+        <h2 class="content__title">Main Information</h2>
+        <div class="content_wrap">
+          <form class="post__info" action="input">
+            <div class="input">
+              <span class="input__description">Title</span>
+              <input class="input__field" type="text" placeholder="New Post">
+            </div>
+
+            <div class="input">
+              <span class="input__description">Short description</span>
+              <input class="input__field" type="text" placeholder="Please, enter any description">
+            </div>
+
+            <div class="input">
+              <span class="input__description">Author name</span>
+              <input class="input__field_author" type="text">
+            </div>
+
+            <div class="input">
+              <span class="input__description">Author Photo</span>
+              <div class="input__avatar">
+                <img class="input__avatar-image" src="/static/img/photo=false, type=placeholder, size=large.png" alt="">
+                <span class="input__avatar-button">Upload</span>
+              </div>
+            </div>
+
+            <div class="input">
+              <span class="input__description">Publish Date</span>
+              <input class="input__field" type="text">
+            </div>
+
+            <div class="input">
+              <span class="input__description">Hero Image</span>
+              <div class="input__field-post-image">
+                <img class="input__post-image-icon" src="/static/img/camera.png" alt="">
+                <span class="input__post-image-text">Upload</span>
+              </div>
+              <span class="field-description">Size up to 10mb. Format: png, jpeg, gif.</span>
+            </div>
+
+            <div class="input">
+              <span class="input__description">Hero Image</span>
+              <div class="input__field-post-card">
+                <img class="input__post-image-icon" src="/static/img/camera.png" alt="">
+                <span class="input__post-image-text">Upload</span>
+              </div>
+              <span class="field-description">Size up to 10mb. Format: png, jpeg, gif.</span>
+            </div>
+
+          </form>
+          <div class="preview">
+            <div class="preview__section">
+              Article preview
+              <div class="preview__page-wrap">
+                <div class="preview__page-with-frame">
+                  <div class="preview__page-frame">
+                    <div class="ellipse"></div>
+                    <div class="ellipse"></div>
+                    <div class="ellipse"></div>
+                  </div>
+                  <div class="preview__page-article">
+                    <span class="preview__page-title">
+                      New Post
+                    </span>
+                    <span class="preview__page-subtitle">
+                      Please, enter any description
+                    </span>
+                    <img class="preview__page-image" src="">
+                  </div>
+                </div>
+              </div>
+              <div class="preview__gradient-horizontal"></div>
+              <div class="preview__gradient-vertical"></div>
+            </div>
+            <div class="preview__section">
+              Post card preview
+              <div class="preview__post-card-wrap">
+                <div class="preview__post-card">
+                  <img class="preview__post-card-image" src=""/>
+                  <span class="preview__post-card-title">
+                    New Post
+                  </span>
+                  <span class="preview__post-card-subtitle">
+                    Please, enter any description
+                  </span>
+                  <div class="preview__post-card-info">
+                    <img class="preview__post-card-author-avatar" src="/static/img/author_img_26.png"/>
+                    <span class="preview__post-card-author">Enter author name</span>
+                    <time class="preview__post-card-time" datetime="4.09.2023">4/19/2023</time>
+                  </div>
+                </div>
+              </div>
+              <div class="preview__gradient-horizontal"></div>
+              <div class="preview__gradient-vertical"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post__content">
+        <h2 class="content__title">Content</h2>
+        <div class="post__content-form">
+          <div class="input">
+            <span class="input__description">Post content (plain text)</span>
+            <input class="input__field-content" type="text" placeholder="Type anything you want ...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
 </body>
 
 </html>
