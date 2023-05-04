@@ -46,49 +46,49 @@
         <div class="content_wrap">
           <form class="post__info" action="input">
             <div class="input">
-              <span class="input__description">Title</span>
+              <label class="input__description">Title</label>
               <input class="input__field" type="text" placeholder="New Post">
             </div>
 
             <div class="input">
-              <span class="input__description">Short description</span>
+              <label class="input__description">Short description</label>
               <input class="input__field" type="text" placeholder="Please, enter any description">
             </div>
 
             <div class="input">
-              <span class="input__description">Author name</span>
-              <input class="input__field_author" type="text">
+              <label class="input__description">Author name</label>
+              <input class="input__field input__field_author" type="text">
             </div>
 
             <div class="input">
-              <span class="input__description">Author Photo</span>
+              <label class="input__description">Author Photo</label>
               <div class="input__avatar">
                 <img class="input__avatar-image" src="/static/img/photo=false, type=placeholder, size=large.png" alt="">
-                <span class="input__avatar-button">Upload</span>
+                <label class="input__avatar-button">Upload</label>
               </div>
             </div>
 
             <div class="input">
-              <span class="input__description">Publish Date</span>
-              <input class="input__field" type="text">
+              <label class="input__description">Publish Date</label>
+              <input class="input__field input__field_publish-date" type="date" value="2023-05-03">
             </div>
 
             <div class="input">
-              <span class="input__description">Hero Image</span>
+              <label class="input__description">Hero Image</label>
               <div class="input__field-post-image">
                 <img class="input__post-image-icon" src="/static/img/camera.png" alt="">
                 <span class="input__post-image-text">Upload</span>
               </div>
-              <span class="field-description">Size up to 10mb. Format: png, jpeg, gif.</span>
+              <label class="field-description">Size up to 10mb. Format: png, jpeg, gif.</label>
             </div>
 
             <div class="input">
-              <span class="input__description">Hero Image</span>
+              <label class="input__description">Hero Image</label>
               <div class="input__field-post-card">
                 <img class="input__post-image-icon" src="/static/img/camera.png" alt="">
                 <span class="input__post-image-text">Upload</span>
               </div>
-              <span class="field-description">Size up to 10mb. Format: png, jpeg, gif.</span>
+              <label class="field-description">Size up to 10mb. Format: png, jpeg, gif.</label>
             </div>
 
           </form>
@@ -109,7 +109,9 @@
                     <span class="preview__page-subtitle">
                       Please, enter any description
                     </span>
-                    <img class="preview__page-image" src="">
+                    <div class="preview__page-image">
+                      <img src="">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -120,7 +122,9 @@
               Post card preview
               <div class="preview__post-card-wrap">
                 <div class="preview__post-card">
-                  <img class="preview__post-card-image" src=""/>
+                  <div class="preview__post-card-image">
+                    <img src="" />
+                  </div>
                   <span class="preview__post-card-title">
                     New Post
                   </span>
@@ -128,8 +132,8 @@
                     Please, enter any description
                   </span>
                   <div class="preview__post-card-info">
-                    <img class="preview__post-card-author-avatar" src="/static/img/author_img_26.png"/>
-                    <span class="preview__post-card-author">Enter author name</span>
+                    <img class="preview__post-card-author-avatar" src="/static/img/author_img_26.png" />
+                    <label class="preview__post-card-author">Enter author name</label>
                     <time class="preview__post-card-time" datetime="4.09.2023">4/19/2023</time>
                   </div>
                 </div>
@@ -144,8 +148,9 @@
         <h2 class="content__title">Content</h2>
         <div class="post__content-form">
           <div class="input">
-            <span class="input__description">Post content (plain text)</span>
-            <input class="input__field-content" type="text" placeholder="Type anything you want ...">
+            <p class="input__description">Post content (plain text)</p>
+
+            <textarea class="input__field-content" type="text" placeholder="Type anything you want ..."></textarea>
           </div>
         </div>
       </div>

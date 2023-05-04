@@ -19,6 +19,13 @@ body {
 
 }
 
+input[type="text"] {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+}
+
 h1 {
     display: block;
     font-size: 0;
@@ -359,18 +366,19 @@ p {
     margin-top: 5px;
     width: 100%;
     height: 40px;
+    padding: 8px 4px;    
     background: #F7F7F7;
     border-bottom: 1px solid #2E2E2E;
     border-radius: 5px 5px 0px 0px;
 }
 
 .input__field_author {
-    margin-top: 5px;
-    width: 100%;
-    height: 40px;
     background: #FFFFFF;
-    border-bottom: 1px solid #2E2E2E;
-    border-radius: 5px 5px 0px 0px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.input__field_publish-date {
+    padding: 8px 48px 8px 4px;
 }
 
 .input__avatar {
@@ -651,9 +659,14 @@ p {
     margin-bottom: 56px;
     max-width: 940px;
     width: 100%;
-    height: 160px;
+    max-height: 160px;
+    height: 100%;
+    padding: 8px;
 
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 
 
     /* Background/Default */
@@ -665,8 +678,7 @@ p {
     border-radius: 5px;
 }
 
-.input__field-content::placeholder {
-
+.input__field-content:placeholder {
     color: #999999;
 }
 
