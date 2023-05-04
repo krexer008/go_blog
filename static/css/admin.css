@@ -659,26 +659,20 @@ p {
     margin-bottom: 56px;
     max-width: 940px;
     width: 100%;
-    max-height: 160px;
-    height: 100%;
-    padding: 8px;
+    height: 160px;
 
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
 
 
     /* Background/Default */
 
     background: #FFFFFF;
-    /* Border/Default */
-
     border: 1px solid #EAEAEA;
     border-radius: 5px;
 }
 
-.input__field-content:placeholder {
+.input__field-content::placeholder {
+
     color: #999999;
 }
 
