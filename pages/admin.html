@@ -37,61 +37,97 @@
       <button class="publish-button">Publish</button>
     </div>
     <div class="post">
-      <div class="post__status status_critical">
-        <img class="status__icon" src="/static/img/alert-circle.png" alt="alert">
-        <div class="status__description description_small">Whoops! Some fields need your attention :o</div>
+      <div class="post__status status__error status__error_hide">
+        Whoops! Some fields need your attention :o
       </div>
-      <div class="post__content">
+      <div class="post__status status__success status__success_hide">
+        Publish complete
+      </div>
+      <div class="content">
         <h2 class="content__title">Main Information</h2>
-        <div class="content_wrap">
-          <form class="post__info" action="input">
-            <div class="input">
-              <label class="input__description">Title</label>
-              <input class="input__field" type="text" placeholder="New Post">
+        <div class="content__wrap">
+          <div class="form" action="input">
+            <div class="form__item" for="title">
+              <label class="form__description" for="title">Title</label>
+              <input class="form__field form__field_critical" id="title" name="title" type="text" tabindex="1" placeholder="New Post">
+              <span class="form__required form__required_critical form__required_hide" id="title_required">
+                Title is required.
+              </span>
             </div>
 
-            <div class="input">
-              <label class="input__description">Short description</label>
-              <input class="input__field" type="text" placeholder="Please, enter any description">
+            <div class="form__item">
+              <label class="form__description" for="subtitle">Short description</label>
+              <input class="form__field form__field_critical" id="subtitle" name="subtitle" type="text" tabindex="2"
+                placeholder="Please, enter any description">
+              <span class="form__required form__required_critical form__required_hide" id="subtitle_required">
+                Subitle is required.
+              </span>
             </div>
 
-            <div class="input">
-              <label class="input__description">Author name</label>
-              <input class="input__field input__field_author" type="text">
+            <div class="form__item">
+              <label class="form__description" for="name">Author name</label>
+              <input class="form__field form__field_author  form__field_critical" id="name" name="name" type="text" tabindex="3">
+              <span class="form__required form__required_critical form__required_hide" id="name_required">
+                Author name is required.
+              </span>
             </div>
 
-            <div class="input">
-              <span class="input__description">Author Photo</span>
-              <div class="input__avatar">
-                <img class="input__avatar-image" src="/static/img/photo=false, type=placeholder, size=large.png" alt="">
-                <label class="input__avatar-button">Upload</label>
+            <div class="form__item">
+              <label class="form__description" for="author-photo">Author Photo</label>
+              <div class="author-image">
+                <div class="author-image__preview">
+                  <img class="author-image__preview-icon" src="">
+                </div>
+
+                <input class="upload__author-image" type="file" name="author-image" id="upload_author-image"
+                  accept=".jpg, .png, .gif" value="" tabindex="4">
+
+                <label for="upload_author-image" class="form__image-upload">
+                  <span class="upload__image-button-text">Upload</span>
+                </label>
+
+                <div class="form__menu form__men u_hide">
+                  <label for="upload_author-image" class="form__image-upload-new">
+                    <span class="upload__image-button-text ">Upload New</span>
+                  </label>
+                  <div class="form__image-remove">
+                    <span class="remove__image-button-text">Remove</span>
+                  </div>                  
+                </div>
+
               </div>
+              <span class="field__description field__description_hide">
+                Size up to 10mb. Format: png, jpeg, gif.
+              </span>
             </div>
 
-            <div class="input">
-              <label class="input__description">Publish Date</label>
-              <input class="input__field input__field_publish-date" type="date" value="2023-05-03">
+            <div class="form__item">
+              <label class="form__description">Publish Date</label>
+              <input class="form__field form__field_publish-date" type="date" value="2023-05-03">
+              <span class="form__required form__required_critical form__required_hide" id="date_required">
+                Publish Date is required.
+              </span>
             </div>
 
-            <div class="input">
-              <label class="input__description">Hero Image</label>
-              <div class="input__field-post-image">
+            <div class="form__item">
+              <label class="form__description">Hero Image</label>
+              <div class="form__field-post-image">
                 <img class="input__post-image-icon" src="/static/img/camera.png" alt="">
                 <span class="input__post-image-text">Upload</span>
               </div>
-              <label class="field-description">Size up to 10mb. Format: png, jpeg, gif.</label>
+              <label class="field__description field__description_hide">Size up to 10mb. Format: png, jpeg, gif.</label>
             </div>
 
-            <div class="input">
-              <label class="input__description">Hero Image</label>
-              <div class="input__field-post-card">
+            <div class="form__item">
+              <label class="form__description">Hero Image</label>
+              <div class="form__field-post-card">
                 <img class="input__post-image-icon" src="/static/img/camera.png" alt="">
                 <span class="input__post-image-text">Upload</span>
               </div>
-              <label class="field-description">Size up to 10mb. Format: png, jpeg, gif.</label>
+              <label class="field__description field__description_hide">Size up to 10mb. Format: png, jpeg, gif.</label>
             </div>
 
-          </form>
+          </div>
           <div class="preview">
             <div class="preview__section">
               Article preview
@@ -144,13 +180,13 @@
           </div>
         </div>
       </div>
-      <div class="post__content">
+      <div class="content">
         <h2 class="content__title">Content</h2>
         <div class="post__content-form">
-          <div class="input">
-            <p class="input__description">Post content (plain text)</p>
+          <div class="form__item">
+            <p class="form__description">Post content (plain text)</p>
 
-            <textarea class="input__field-content" type="text" placeholder="Type anything you want ..."></textarea>
+            <textarea class="form__field_content" type="text" placeholder="Type anything you want ..."></textarea>
           </div>
         </div>
       </div>
