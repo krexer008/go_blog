@@ -46,10 +46,11 @@
       <div class="content">
         <h2 class="content__title">Main Information</h2>
         <div class="content__wrap">
-          <div class="form" action="input">
+          <form class="form" action="input">
             <div class="form__item" for="title">
               <label class="form__description" for="title">Title</label>
-              <input class="form__field form__field_critical" id="title" name="title" type="text" tabindex="1" placeholder="New Post">
+              <input class="form__field form__field_critical" id="title" name="title" type="text" tabindex="1"
+                placeholder="New Post">
               <span class="form__required form__required_critical form__required_hide" id="title_required">
                 Title is required.
               </span>
@@ -66,7 +67,8 @@
 
             <div class="form__item">
               <label class="form__description" for="name">Author name</label>
-              <input class="form__field form__field_author  form__field_critical" id="name" name="name" type="text" tabindex="3">
+              <input class="form__field form__field_author  form__field_critical" id="name" name="name" type="text"
+                tabindex="3">
               <span class="form__required form__required_critical form__required_hide" id="name_required">
                 Author name is required.
               </span>
@@ -78,21 +80,22 @@
                 <div class="author-image__preview">
                   <img class="author-image__preview-icon" src="">
                 </div>
+                <div class="form__menu_hide">
+                  <input class="upload__image" type="file" name="author-image" id="upload_author-image"
+                    accept=".jpg, .png, .gif" value="" tabindex="4">
 
-                <input class="upload__author-image" type="file" name="author-image" id="upload_author-image"
-                  accept=".jpg, .png, .gif" value="" tabindex="4">
 
-                <label for="upload_author-image" class="form__image-upload">
-                  <span class="upload__image-button-text">Upload</span>
-                </label>
-
+                  <label for="upload_author-image" class="form__image-upload">
+                    <span class="upload__image-button-text">Upload</span>
+                  </label>
+                </div>
                 <div class="form__menu form__men u_hide">
                   <label for="upload_author-image" class="form__image-upload-new">
                     <span class="upload__image-button-text ">Upload New</span>
                   </label>
                   <div class="form__image-remove">
                     <span class="remove__image-button-text">Remove</span>
-                  </div>                  
+                  </div>
                 </div>
 
               </div>
@@ -108,26 +111,55 @@
                 Publish Date is required.
               </span>
             </div>
-
+            <!-- HERO 1  !!!!!!!!!!!! -->
             <div class="form__item">
               <label class="form__description">Hero Image</label>
-              <div class="form__field-post-image">
-                <img class="input__post-image-icon" src="/static/img/camera.png" alt="">
-                <span class="input__post-image-text">Upload</span>
+              <div class="form__field-post-image form__field-image-empty form__field-image-with-image"
+                style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
+                <input class="upload__image" type="file" name="author-image" id="upload_large-image"
+                  accept=".jpg, .png, .gif" value="" tabindex="5">
+                <div class="form__menu_hide">
+                  <label for="upload_large-image" class="form__image-upload-new">
+                    <span class="upload__image-button-text">Upload</span>
+                  </label>
+                </div>
               </div>
-              <label class="field__description field__description_hide">Size up to 10mb. Format: png, jpeg, gif.</label>
-            </div>
 
+              <label class="field__description field__description_hide">Size up to 10mb. Format: png, jpeg, gif.</label>
+              <div class="form__menu form__men u_hide after-field">
+                <label for="upload_large-image" class="form__image-upload-new">
+                  <span class="upload__image-button-text">Upload New</span>
+                </label>
+                <div class="form__image-remove">
+                  <span class="remove__image-button-text">Remove</span>
+                </div>
+              </div>
+            </div>
+            <!-- HERO 2  !!!!!!!!!!!! -->
             <div class="form__item">
               <label class="form__description">Hero Image</label>
-              <div class="form__field-post-card">
-                <img class="input__post-image-icon" src="/static/img/camera.png" alt="">
-                <span class="input__post-image-text">Upload</span>
+              <div class="form__field-post-card form__field-image-empty form__field-image-with-image"
+              style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
+                <input class="upload__image" type="file" name="author-image" id="upload_short-image"
+                  accept=".jpg, .png, .gif" value="" tabindex="6">
+                <div class="form__menu_hide">
+                  <label for="upload_short-image" class="form__image-upload-new">
+                    <span class="upload__image-button-text">Upload</span>
+                  </label>
+                </div>
               </div>
               <label class="field__description field__description_hide">Size up to 10mb. Format: png, jpeg, gif.</label>
+              <div class="form__menu form__men u_hide after-field">
+                <label for="upload_large-image" class="form__image-upload-new">
+                  <span class="upload__image-button-text">Upload New</span>
+                </label>
+                <div class="form__image-remove">
+                  <span class="remove__image-button-text">Remove</span>
+                </div>
+              </div>
             </div>
 
-          </div>
+          </form>
           <div class="preview">
             <div class="preview__section">
               Article preview
@@ -182,13 +214,13 @@
       </div>
       <div class="content">
         <h2 class="content__title">Content</h2>
-        <div class="post__content-form">
+        <form class="form__content" action="input">
           <div class="form__item">
             <p class="form__description">Post content (plain text)</p>
 
             <textarea class="form__field_content" type="text" placeholder="Type anything you want ..."></textarea>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

@@ -433,7 +433,6 @@ p {
 
 
 
-
 .form__field {
     margin-top: 5px;
     width: 100%;
@@ -466,6 +465,7 @@ p {
 }
 
 .author-image__preview {
+    margin-right: 16px;
     width: 48px;
     height: 48px;
     background: url("/static/img/camera.png") #F7F7F7 no-repeat center;
@@ -479,12 +479,12 @@ p {
     border-radius: 50%;
 }
 
-.upload__author-image {
+.upload__image {
     display: none;
 }
 
 .form__image-upload {
-    margin-left: 16px;
+    margin-right: 16px;
     display: flex;
     cursor: pointer;
 }
@@ -521,13 +521,12 @@ p {
 }
 
 .form__image-upload-new {
-    margin-left: 16px;
+    margin-right: 16px;
     display: flex;
     cursor: pointer;
 }
 
 .form__image-remove {
-    margin-left: 16px;
     display: flex;
     cursor: pointer;
 }
@@ -550,30 +549,37 @@ p {
     background-size: cover;
 }
 
-.input__field-post-image {
+.form__field-post-image {
+    position: relative;
     width: 100%;
     height: 160px;
     background: #F7F7F7;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.form__field-post-image-empty {
     border: 1px dashed #D3D3D3;
     border-radius: 6px;
 }
 
-.input__post-image-icon {
-    width: 24px;
-    height: 24px;
+.form__field-image-empty {
+    border: 1px dashed #D3D3D3;
+    border-radius: 6px;
 }
 
-.input__post-image-text {
-    margin-left: 9px;
-    color: #2E2E2E;
+.form__field-image-with-image {
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+}
+
+.after-field {
+    margin-top: 12px;
 }
 
 
-
-.input__field-post-card {
+.form__field-post-card {
     max-width: 296px;
     width: 100%;
     height: 150px;
@@ -581,8 +587,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px dashed #D3D3D3;
-    border-radius: 6px;
+    
 }
 
 /* Preview */
@@ -650,10 +655,10 @@ p {
 .preview__page-article {
     max-width: 408px;
     margin-top: 36px;
+    margin-bottom: 58px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .preview__page-title {
@@ -667,6 +672,7 @@ p {
 
 .preview__page-subtitle {
     margin-top: 4px;
+    margin-bottom: 36px;
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 400;
@@ -677,8 +683,6 @@ p {
 }
 
 .preview__page-image {
-    margin-top: 36px;
-    margin-bottom: 58px;
     width: 100%;
     height: 160px;
     background: #F7F7F7 no-repeat center / cover;
@@ -794,17 +798,18 @@ p {
 
 /*Content*/
 
-.post__content-form {
-    margin-top: 40px;
+.form__content {
+    max-width: 940px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .form__field_content {
     margin-top: 5px;
-    margin-bottom: 56px;
     max-width: 940px;
     width: 100%;
     height: 160px;
-
     display: flex;
 
 
@@ -815,11 +820,10 @@ p {
     border-radius: 5px;
 }
 
-.input__field-content::placeholder {
-
+.form__field_content::placeholder {
     color: #999999;
 }
 
-.input__field-content::content {
+.form__field_content::content {
     color: #2E2E2E;
 }
