@@ -413,7 +413,7 @@ p {
     color: #E86961
 }
 
-.form__required_hi de {
+.form__required_hide {
     display: none;
 }
 
@@ -427,7 +427,7 @@ p {
     color: #999999
 }
 
-.field__description_hi de {
+.field__description_hide {
     display: none;
 }
 
@@ -599,6 +599,7 @@ p {
 }
 
 .preview__section {
+    width: 100%;
     position: relative;
     margin-top: 20px;
     display: flex;
