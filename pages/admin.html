@@ -46,6 +46,7 @@
       <div class="content">
         <h2 class="content__title">Main Information</h2>
         <div class="content__wrap">
+
           <form class="form" action="input">
             <div class="form__item" for="title">
               <label class="form__description" for="title">Title</label>
@@ -110,7 +111,7 @@
                 Publish Date is required.
               </span>
             </div>
-            <!-- HERO 1  !!!!!!!!!!!! -->
+
             <div class="form__item">
               <label class="form__description">Hero Image</label>
               <div class="form__field-post-image form__field-image-empty form__field-image-with-image"
@@ -134,11 +135,11 @@
                 </div>
               </div>
             </div>
-            <!-- HERO 2  !!!!!!!!!!!! -->
+
             <div class="form__item">
               <label class="form__description">Hero Image</label>
               <div class="form__field-post-card form__field-image-empty form__field-image-with-image"
-              style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
+                style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
                 <input class="upload__image" type="file" name="author-image" id="upload_short-image"
                   accept=".jpg, .png, .gif" value="" tabindex="6">
                 <div class="form__menu_hide">
@@ -157,50 +158,53 @@
                 </div>
               </div>
             </div>
-
           </form>
+
+          <!--  PREVIEW page -->
+
           <div class="preview">
             <div class="preview__section">
-              <label class="preview__title">Article preview</label>
-              <div class="preview__window preview__window_page">
+              <div class="preview__title">Article preview</div>
+              <div class="preview__wrap preview__wrap_page">
                 <div class="preview__page">
                   <div class="preview__page-menu">
                     <div class="ellipse"></div>
                     <div class="ellipse"></div>
                     <div class="ellipse"></div>
                   </div>
-                  <div class="preview__page-article">
-                    <span class="preview__page-title">
-                      New Post
-                    </span>
-                    <span class="preview__page-subtitle">
-                      Please, enter any description
-                    </span>
-                    <div class="preview__page-image">
-                      <img class="preview_image preview_image_hide" src="">
-                    </div>
+                  <div class="preview__page-title">
+                    New Post
+                  </div>
+                  <div class="preview__page-subtitle">
+                    Please, enter any description
+                  </div>
+                  <div class="preview__page-image">
+                    <img class="preview_image preview_image_hide" src="">
                   </div>
                 </div>
               </div>
               <div class="preview__gradient-horizontal"></div>
               <div class="preview__gradient-vertical"></div>
             </div>
+
+            <!--  PREVIEW postcard -->
+
             <div class="preview__section">
-              <label class="preview__title">Post card preview</label>
-              <div class="preview__window preview__window_post-card">
+              <div class="preview__title">Post card preview</div>
+              <div class="preview__wrap preview__wrap_post-card">
                 <div class="preview__post-card">
                   <div class="preview__post-card-image">
-                    <img src="" />
+                    <img class="preview_image preview_image_hide" src="">
                   </div>
-                  <span class="preview__post-card-title">
+                  <div class="preview__post-card-title">
                     New Post
-                  </span>
-                  <span class="preview__post-card-subtitle">
+                  </div>
+                  <div class="preview__post-card-subtitle">
                     Please, enter any description
-                  </span>
+                  </div>
                   <div class="preview__post-card-info">
                     <img class="preview__post-card-author-avatar" src="/static/img/author_img_26.png" />
-                    <label class="preview__post-card-author">Enter author name</label>
+                    <span class="preview__post-card-author">Enter author name</span>
                     <time class="preview__post-card-time" datetime="4.09.2023">4/19/2023</time>
                   </div>
                 </div>
@@ -216,8 +220,12 @@
         <form class="form_content" action="input">
           <div class="form__item">
             <label class="form__description">Post content (plain text)</label>
-            <textarea class="form__field_content" type="text" placeholder="Type anything you want ..."></textarea>
+            <textarea class="form__field_content" name="content" id="content" type="text" placeholder="Type anything you want ..."></textarea>
+            <span class="form__required form__required_critical form__required_hide" id="conten_required">
+              Post content is required.
+            </span>
           </div>
+
         </form>
       </div>
     </div>
