@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&family=Oxygen:wght@400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/login.css">
+    <title>Login</title>
+</head>
+
+<body class="body">
+    <div class="row">
+        <div class="header">
+            <div class="header__logo">
+                <span class="logo">Escape.</span>
+                <span class="logo__title">author</span>
+            </div>
+            <span class="header__subtitle">Log in to start creating</span>
+        </div>
+    </div>
+    <div class="login">
+        <span class="form__title">
+            Log In
+        </span>
+        <div class="post__status status__error status__error_hide">
+            Email or password is incorrect.
+        </div>
+        <form class="fom" action="input">
+            <div class="form__item" for="email">
+                <label class="form__description" for="title">Title</label>
+                <input class="form__field form__field_critical" id="title" name="title" type="text" tabindex="1"
+                    placeholder="New Post">
+                <span class="form__required form__required_critical form__required_hide" id="title_required">
+                    Title is required.
+                </span>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+.body{
+    max-width: 1440px;
+    width: 100%;
+    max-height: 800px;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(66, 70, 73, 0.4), rgba(66, 70, 73, 0.4)), url('/static/img/background_login.jpg') no-repeat;
+    background-size: cover;
+}
