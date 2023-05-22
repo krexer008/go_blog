@@ -453,7 +453,7 @@ p {
 }
 
 .form__field_publish-date {
-    padding: 8px 48px 8px 4px;
+    padding: 8px 8px 8px 4px;
 }
 
 .author-image {
@@ -810,9 +810,9 @@ p {
 
 /*Content*/
 
-.form__content {
-    max-width: 940px;
-    width: 100%;
+.form_content {
+    /*max-width: 940px;
+    width: 100%;*/
     display: flex;
     flex-direction: column;
 }
