@@ -26,7 +26,8 @@ input[type="text"] {
     margin: 0;
 }
 
-h1, h2 {
+h1,
+h2 {
     display: block;
     font-size: 0;
     margin-block-start: 0;
@@ -116,7 +117,7 @@ h1, h2 {
     background: #F7F7F7;
 }
 
-.post__title{
+.post__title {
     font-family: 'Lora';
     font-style: normal;
     font-weight: 400;
@@ -148,12 +149,22 @@ h1, h2 {
     width: 100px;
     height: 48px;
     padding: 12px 24px;
+
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
     text-transform: capitalize;
-    color: #ffffff;
     background: #DD783F;
     border: none;
     border-radius: 3px;
     align-self: center;
+    
+    /* Text/Oncolor Default */
+    color: #FFFFFF;
 }
 
 .post {
@@ -316,12 +327,15 @@ h1, h2 {
     width: 100%;
     height: 40px;
     padding: 8px 4px;
-    background: #F7F7F7;
-    border-bottom: 1px solid #2E2E2E;
     border-radius: 5px 5px 0px 0px;
 }
 
-.form__field_author {
+.form__field_full {
+    background: #F7F7F7;
+    border-bottom: 1px solid #2E2E2E;
+}
+
+.form__field_empty {
     background: #FFFFFF;
     border-bottom: 1px solid #EAEAEA;
 }
