@@ -12,14 +12,12 @@
 </head>
 
 <body class="body">
-    <div class="row">
-        <div class="header">
-            <div class="header__logo">
-                <span class="logo">Escape.</span>
-                <span class="logo__title">author</span>
-            </div>
-            <span class="header__subtitle">Log in to start creating</span>
+    <div class="header">
+        <div class="header__logo logo">
+            <span class="logo__title">Escape.</span>
+            <span class="logo__subtitle">author</span>
         </div>
+        <span class="header__subtitle">Log in to start creating</span>
     </div>
     <div class="login">
         <span class="form__title">
@@ -28,15 +26,41 @@
         <div class="post__status status__error status__error_hide">
             Email or password is incorrect.
         </div>
+        <div class="post__status status__error status__error_hide">
+            A-Ah! Check all fields,
+        </div>
         <form class="fom" action="input">
-            <div class="form__item" for="email">
-                <label class="form__description" for="title">Title</label>
-                <input class="form__field form__field_critical" id="title" name="title" type="text" tabindex="1"
-                    placeholder="New Post">
+            <div class="form__item">
+                <label class="form__description" for="email">Email</label>
+                <input class="form__field form__field_critical" id="email" name="email" type="text" tabindex="1">
                 <span class="form__required form__required_critical form__required_hide" id="title_required">
-                    Title is required.
+                    Email is required.
+                </span>
+                <span class="form__required form__required_critical form__required_hide" id="title_required">
+                    Correct format is “*****@***.**”
+                </span>
+
+
+                <span class="form__required form__required_critical form__required_hide" id="title_required">
+                    Incorrect email format. Correct format is ****@**.***
+                </span>
+                <span class="form__required form__required_critical form__required_hide" id="title_required">
+                    Email is not valid. Please, enter correct one.
                 </span>
             </div>
+
+            <div class="form__item">
+                <span class="">Log In</span>
+            </div>
+
+            <div class="form__item">
+                <label class="form__description" for="login">Log In</label>
+                <input class="form__field form__field_critical" id="title" name="title" type="password" tabindex="1">
+                <span class="form__required form__required_critical form__required_hide" id="title_required">
+                    Password is required.
+                </span>
+            </div>
+
 
         </form>
     </div>
