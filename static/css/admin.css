@@ -162,9 +162,10 @@ h2 {
     border: none;
     border-radius: 3px;
     align-self: center;
-    
+
     /* Text/Oncolor Default */
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .post {
@@ -329,7 +330,15 @@ h2 {
     height: 40px;
     padding: 8px 4px;
     border-radius: 5px 5px 0px 0px;
+
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #2E2E2E;
 }
+
 
 .form__field_full {
     background: #F7F7F7;
@@ -725,12 +734,24 @@ h2 {
     background: #FFFFFF;
     border: 1px solid #EAEAEA;
     border-radius: 5px;
+
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    color: #2E2E2E;
 }
 
 .form__field_content::placeholder {
-    color: #999999;
-}
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
 
-.form__field_content::content {
-    color: #2E2E2E;
+    text-align: justify;
+    color: #999999;
 }

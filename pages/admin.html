@@ -47,11 +47,11 @@
         <h2 class="content__title">Main Information</h2>
         <div class="content__wrap">
 
-          <form class="form" action="input">
+          <form class="form"">
             <div class="form__item" for="title">
               <label class="form__description" for="title">Title</label>
               <input class="form__field form__field_full form__field_empty form__field_critical" id="title" name="title"
-                type="text" tabindex="1" placeholder="New Post">
+                type="text" value="" tabindex="1" autofocus>
               <span class="form__required form__required_critical form__required_hide" id="title_required">
                 Title is required.
               </span>
@@ -60,7 +60,7 @@
             <div class="form__item">
               <label class="form__description" for="subtitle">Short description</label>
               <input class="form__field form__field_full form__field_empty form__field_critical" id="subtitle"
-                name="subtitle" type="text" tabindex="2" placeholder="Please, enter any description">
+                name="subtitle" type="text" value="" tabindex="2">
               <span class="form__required form__required_critical form__required_hide" id="subtitle_required">
                 Subitle is required.
               </span>
@@ -69,7 +69,7 @@
             <div class="form__item">
               <label class="form__description" for="name">Author name</label>
               <input class="form__field form__field_full form__field_empty  form__field_critical" id="name" name="name"
-                type="text" tabindex="3">
+                type="text" value="" tabindex="3">
               <span class="form__required form__required_critical form__required_hide" id="name_required">
                 Author name is required.
               </span>
@@ -107,7 +107,7 @@
             <div class="form__item">
               <label class="form__description">Publish Date</label>
               <input class="form__field form__field_full form__field_empty form__field_publish-date" type="date"
-                value="">
+                value="" tabindex="5">
               <span class="form__required form__required_critical form__required_hide" id="date_required">
                 This date will be in card
               </span>
@@ -118,7 +118,7 @@
               <div class="form__field-post-image form__field-image-empty form__field-image-with-image"
                 style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
                 <input class="upload__image" type="file" name="author-image" id="upload_large-image"
-                  accept=".jpg, .png, .gif" value="" tabindex="5">
+                  accept=".jpg, .png, .gif" value="" tabindex="6">
                 <div class="form__menu_hide">
                   <label for="upload_large-image" class="form__image-upload-new">
                     <span class="upload__image-button-text">Upload</span>
@@ -142,7 +142,7 @@
               <div class="form__field-post-card form__field-image-empty form__field-image-with-image"
                 style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
                 <input class="upload__image" type="file" name="author-image" id="upload_short-image"
-                  accept=".jpg, .png, .gif" value="" tabindex="6">
+                  accept=".jpg, .png, .gif" value="" tabindex="7">
                 <div class="form__menu_hide">
                   <label for="upload_short-image" class="form__image-upload-new">
                     <span class="upload__image-button-text">Upload</span>
@@ -222,7 +222,7 @@
           <div class="form__item">
             <label class="form__description">Post content (plain text)</label>
             <textarea class="form__field_content" name="content" id="content" type="text"
-              placeholder="Type anything you want ..."></textarea>
+              placeholder="Type anything you want ..." tabindex="8"></textarea>
             <span class="form__required form__required_critical form__required_hide" id="conten_required">
               Post content is required.
             </span>
