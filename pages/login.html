@@ -11,61 +11,60 @@
     <title>Login</title>
 </head>
 
-<body>
-    <div class="main">
-        <div class="header">
-            <div class="header__logo logo">
-                <span class="logo__title">Escape.</span>
-                <span class="logo__subtitle">author</span>
-            </div>
-            <span class="header__subtitle">Log in to start creating</span>
+<body class="body">
+    <div class="header">
+        <div class="header__logo logo">
+            <span class="logo__title">Escape.</span>
+            <span class="logo__subtitle">author</span>
         </div>
-        <div class="block">
-            <h1 class="block__title">
-                Log In
-            </h1>
-            <div class="form__status status__error status__error_hide">
-                Email or password is incorrect.
-            </div>
-            <div class="form__status status__error status__error_hide">
-                A-Ah! Check all fields,
-            </div>
-            <form class="form" action="input">
-                <div class="form__item">
-                    <label class="form__description" for="email">Email</label>
-                    <input class="form__field form__field_full form__field_empty form__field_critical" id="email"
-                        name="email" type="email" tabindex="1">
-                    <span class="form__required form__required_critical form__required_hide" id="email_required">
-                        Email is required.
-                    </span>
-                    <span class="form__required form__required_critical form__required_hide"
-                        id="correct_email_format_required">
-                        Correct format is “*****@***.**”
-                    </span>
-                    <span class="form__required form__required_critical form__required_hide"
-                        id="incorrect_email_required">
-                        Incorrect email format. Correct format is ****@**.***
-                    </span>
-                    <span class="form__required form__required_critical form__required_hide" id="invaid_email_required">
-                        Email is not valid. Please, enter correct one.
-                    </span>
-                </div>
-                <div class="form__item">
-                    <label class="form__description" for="password">Password</label>
-
-                    <input class="form__field-pass form__field_full form__field_empty form__field_critical" id="password"
-                        name="password" type="password"  value="" autofocus="" autocapitalize="off" autocorrect="off" tabindex="2">
-
-                    
-                    <img class="form__togle" id="togle" src="/static/img/admin/eye.png">
-                    <span class="form__required form__required_critical form__required_hide" id="password_required">
-                        Password is required.
-                    </span>
-                </div>
-                <button type="submit" class="form__item button">Log In</button>
-            </form>
-        </div>
+        <span class="header__subtitle">Log in to start creating</span>
     </div>
+
+
+    <form class="form" id="form" name="main">
+        <h1 class="form__title">
+            Log In
+        </h1>
+        <div class="form__status status__error status__error_hide" id="field-incorect">
+            Email or password is incorrect.
+        </div>
+        <div class="form__status status__error status__error_hide" id="check-fields">
+            A-Ah! Check all fields,
+        </div>
+        <div class="form__item">
+            <label class="form__description" for="email">Email</label>
+            <input class="form__field form__field_full form__field_empty form__field_critical" id="email" name="email"
+                type="email" tabindex="1">
+            <span class="form__required form__required_critical form__required_hide" id="email_required">
+                Email is required.
+            </span>
+            <span class="form__required form__required_critical form__required_hide" id="correct_email_format_required">
+                Correct format is “*****@***.**”
+            </span>
+            <span class="form__required form__required_critical form__required_hide" id="incorrect_email_required">
+                Incorrect email format. Correct format is ****@**.***
+            </span>
+            <span class="form__required form__required_critical form__required_hide" id="invaid_email_required">
+                Email is not valid. Please, enter correct one.
+            </span>
+        </div>
+        <div class="form__item">
+            <label class="form__description" for="password">Password</label>
+
+            <input class="form__field form__field_full form__field_empty form__field_critical" id="password"
+                name="password" type="password" value="" autofocus="" autocapitalize="off" autocorrect="off"
+                tabindex="2">
+
+
+            <img class="form__togle" id="togle" src="/static/img/admin/eye.png">
+            <span class="form__required form__required_critical form__required_hide" id="password_required">
+                Password is required.
+            </span>
+        </div>
+        <button class="form__item form__button" tabindex="3">Log In</button>
+    </form>
+
+
 </body>
 
 </html>

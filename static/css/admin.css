@@ -198,7 +198,7 @@ h2 {
 .status__error::before {
     margin-right: 10px;
     content: '';
-    background-image: url("/static/img/alert-circle.png");
+    background-image: url("/static/img/admin/alert-circle.png");
     background-size: cover;
     height: 24px;
     width: 24px;
@@ -219,7 +219,7 @@ h2 {
 .status__success::before {
     margin-right: 10px;
     content: '';
-    background-image: url("/static/img/check-circle.png");
+    background-image: url("/static/img/admin/check-circle.svg");
     background-size: cover;
     height: 24px;
     width: 24px;
@@ -323,6 +323,7 @@ h2 {
 
 
 .form__field {
+    outline: none;
     margin-top: 5px;
     width: 100%;
     height: 40px;
@@ -360,7 +361,7 @@ h2 {
     margin-right: 16px;
     width: 48px;
     height: 48px;
-    background: url("/static/img/camera.png") #F7F7F7 no-repeat center;
+    background: url("/static/img/admin/camera.png") #F7F7F7 no-repeat center;
     border-radius: 50%;
     border: 1px dashed #D3D3D3;
 }
@@ -428,7 +429,7 @@ h2 {
     margin-right: 8px;
     width: 24px;
     height: 24px;
-    background-image: url("/static/img/camera.png");
+    background-image: url("/static/img/admin/camera.png");
     background-size: cover;
 }
 
@@ -437,7 +438,7 @@ h2 {
     margin-right: 8px;
     width: 24px;
     height: 24px;
-    background-image: url("/static/img/trash-2.png");
+    background-image: url("/static/img/admin/trash-2.png");
     background-size: cover;
 }
 
