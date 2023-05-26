@@ -21,48 +21,45 @@
     </div>
 
 
-    <form class="form" id="form" name="login_form">
+    <form class="form" id="form" name="main">
         <h1 class="form__title">
             Log In
         </h1>
-        <div class="form__status status__error status__error_hide" id="field-incorect">
+        <div class="form__status status__error hide_element" id="status-incorect">
             Email or password is incorrect.
         </div>
-        <div class="form__status status__error status__error_hide" id="check-fields">
+        <div class="form__status status__error hide_element" id="status-need_check">
             A-Ah! Check all fields,
         </div>
         <div class="form__item">
-            <label class="form__description" for="email">Email</label>
-            <input class="form__field form__field_full form__field_empty form__field_critical" id="email" name="email"
-                type="email" tabindex="1">
-            <span class="form__required form__required_critical form__required_hide" id="email_required">
+            <label class="form__description" for="input_email">Email</label>
+            <input class="form__field form__field_crit ical" id="input_email" name="user_email" type="email" value="" autofocus="" tabindex="1">
+            <span class="form__required form__required_critical hide_element" id="email_required">
                 Email is required.
             </span>
-            <span class="form__required form__required_critical form__required_hide" id="correct_email_format_required">
+            <span class="form__required form__required_critical hide_element" id="correct_email_format_required">
                 Correct format is “*****@***.**”
             </span>
-            <span class="form__required form__required_critical form__required_hide" id="incorrect_email_required">
+            <span class="form__required form__required_critical hide_element" id="incorrect_email_required">
                 Incorrect email format. Correct format is ****@**.***
             </span>
-            <span class="form__required form__required_critical form__required_hide" id="invaid_email_required">
+            <span class="form__required form__required_critical hide_element" id="invaid_email_required">
                 Email is not valid. Please, enter correct one.
             </span>
         </div>
         <div class="form__item">
-            <label class="form__description" for="password">Password</label>
+            <label class="form__description" for="input_password">Password</label>
 
-            <input class="form__field form__field_full form__field_empty form__field_critical" id="password"
-                name="password" type="password" value="" autofocus="" autocapitalize="off" autocorrect="off"
+            <input class="form__field form__field_critical" id="input_password" name="user_password" type="password" value="" autocapitalize="off" autocorrect="off"
                 tabindex="2" >
-
-
-            <img class="form__togle" id="togle" src="/static/img/admin/eye.png">
-            <img class="form__togle form__togle_off" id="togle" src="/static/img/admin/eye-off.png">
-            <span class="form__required form__required_critical form__required_hide" id="password_required">
+            <img class="form__toggle" id="toggle" src="/static/img/admin/eye.png">
+            
+            <span class="form__required form__required_critical hide_element" id="password_required">
                 Password is required.
             </span>
         </div>
-        <button class="form__item form__button" name="submit_button" tabindex="3">Log In</button>
+        <button class="form__item form__button" id="submitButton" name="submit_button" tabindex="3">Log In</button>
+
     </form>
     <script src="/static/scripts/login.js"></script>
 </body>
