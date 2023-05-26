@@ -2,7 +2,7 @@
 
 window.addEventListener('DOMContentLoaded', function () {
 
-    const form = this.document.forms.main;
+    const form = this.document.querySelector('#form');
     const elemToggle = this.document.querySelector('#toggle');
     const elemEmail = this.document.getElementById('input_email');
     const elemPasword = this.document.querySelector('#input_password');
@@ -12,8 +12,10 @@ window.addEventListener('DOMContentLoaded', function () {
     fieldViewdHandler(elemEmail);
     fieldViewdHandler(elemPasword);
 
-    fieldKeyUpHandler(elemEmail);
+    fieldKeyUpHandler(elemEmail);+
     fieldKeyUpHandler(elemPasword);
+
+    form.addEventListener("submit", alert('Hi send'));
 
 
     function fieldKeyUpHandler(e) {
