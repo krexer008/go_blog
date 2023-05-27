@@ -3,10 +3,28 @@
 window.addEventListener('DOMContentLoaded', function () {
 
     const form = this.document.querySelector('#form');
-    const titleField = this.document.querySelector('#title');
-    const subtitleField = this.document.querySelector('#subtitle');
-    const nameField = this.document.querySelector('#name');
-    const dateField = this.document.querySelector('#date');
+
+    const keyTitle = "Title";
+    const keySubtitle = "Subtitle";
+    const keyAuthorName = "AuthorName";
+    const keyAuthorImage = "AuthorImage";
+    const keyPublishDate = "PublishDate";
+    const keyLargeImage = "LargeImage";
+    const keyShortImage = "ShortImage";
+    const keyContent = "Content";
+
+
+
+    const titleField = this.document.getElementById(keyTitle);
+    const subtitleField = this.document.getElementById(keySubtitle);
+    const authorNameField = this.document.getElementById(keyAuthorName);
+    const authorImageField = this.document.getElementById(keyAuthorImage);
+    const dateField = this.document.getElementById(keyPublishDate);
+    const largeImageField = this.document.getElementById(keyLargeImage);
+    const shortImageField = this.document.getElementById(keyShortImage);
+    const contentField = this.document.getElementById(keyContent);
+
+    var validValid = true;
 
     fieldViewHandler(titleField);
     fieldViewHandler(subtitleField);
@@ -18,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function () {
     fieldKeyUpHandler(nameField);
     fieldKeyUpHandler(nameField);
 
-    
+
     function fieldKeyUpHandler(e) {
         e.addEventListener('keyup', fieldKeyUp);
     }
@@ -48,6 +66,7 @@ window.addEventListener('DOMContentLoaded', function () {
         e.target.classList.remove('form__field_focused');
         if (e.target.value == "") {
             e.target.classList.remove('form__field_full');
+            e.target.classList.
         } else {
             e.target.classList.add('form__field_full');
         }

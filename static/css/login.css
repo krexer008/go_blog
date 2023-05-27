@@ -9,17 +9,6 @@ html {
     border: 0;
     margin: 0;
 }
-/*
-h1,
-h2 {
-    display: block;
-    font-size: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-}
-*/
 .body {
     width: 100%;
     height: 100%;
@@ -101,10 +90,14 @@ h2 {
     padding-left: 14px;
     align-items: center;
     height: 44px;
-    /* Background/Critical */
-    color: #2E2E2E;
+
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
     font-size: 14px;
     line-height: 20px;
+    /* identical to box height, or 143% */    
+    color: #2E2E2E;
 }
 
 /* Status/Critical */
@@ -139,13 +132,19 @@ h2 {
     font-size: 12px;
     line-height: 16px;
     /* identical to box height, or 133% */
-
     color: #7A7A7A;
 }
 
 .form__field {
     outline: none;
     margin-top: 5px;
+    width: 100%;
+    height: 40px;
+    padding: 8px 4px;
+    border-radius: 5px 5px 0px 0px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #EAEAEA;
+
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 400;
@@ -153,13 +152,6 @@ h2 {
     line-height: 24px;
     /* identical to box height, or 150% */
     color: #2E2E2E;
-
-    width: 100%;
-    height: 40px;
-    padding: 8px 4px;
-    border-radius: 5px 5px 0px 0px;
-    background: #FFFFFF;
-    border-bottom: 1px solid #EAEAEA;
 }
 
 .form__field_focused {
@@ -171,8 +163,7 @@ h2 {
     border-bottom: 1px solid #2E2E2E;
 }
 
-
-.form__field_critical {
+.form__field_cr itical {
     border-bottom: 1px solid #E86961;
 }
 
@@ -185,7 +176,7 @@ h2 {
     cursor: pointer;
 }
 
-
+/*Required*/
 
 .form__required {
     margin-top: 5px;

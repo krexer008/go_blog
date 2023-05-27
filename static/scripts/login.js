@@ -9,8 +9,8 @@ window.addEventListener('DOMContentLoaded', function () {
     const elemButton = this.document.querySelector('#submitButton');
 
     elemToggle.addEventListener('click', toggleClick);
-    fieldViewdHandler(elemEmail);
-    fieldViewdHandler(elemPasword);
+    fieldViewHandler(elemEmail);
+    fieldViewHandler(elemPasword);
 
     fieldKeyUpHandler(elemEmail);+
     fieldKeyUpHandler(elemPasword);
@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    function fieldViewdHandler(input) {
+    function fieldViewHandler(input) {
         input.addEventListener('focus', fieldFocused);
         input.addEventListener('blur', fieldBlured);
     }
