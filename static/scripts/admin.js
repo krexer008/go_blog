@@ -1,7 +1,6 @@
 "use strict";
 
 window.addEventListener('DOMContentLoaded', function () {
-
     const form = this.document.querySelector('#form');
 
     const keyTitle = "Title";
@@ -30,32 +29,34 @@ window.addEventListener('DOMContentLoaded', function () {
     const titleField = this.document.getElementById(keyTitle);
     const subtitleField = this.document.getElementById(keySubtitle);
     const authorNameField = this.document.getElementById(keyAuthorName);
-
-
+/*
+    const dateField = this.document.getElementById(keyPublishDate);
+*/  
+    const contentField = this.document.getElementById(keyContent);
     /*
     const authorImageField = this.document.getElementById(keyAuthorImage);
-    const dateField = this.document.getElementById(keyPublishDate);
+    
     const largeImageField = this.document.getElementById(keyLargeImage);
     const shortImageField = this.document.getElementById(keyShortImage);
-    const contentField = this.document.getElementById(keyContent);
+    
     */
 
     var validFieldsValid = true;
 
     fieldViewHandler(titleField);
-    /*fieldViewHandler(subtitleField);
+    fieldViewHandler(subtitleField);
     fieldViewHandler(authorNameField);
-*/
+    areaViewHandler(contentField);
 
     /*
-    fieldViewHandler(dateField);
-    
-/*
-    fieldKeyUpHandler(titleField);
-    fieldKeyUpHandler(subtitleField);
-    fieldKeyUpHandler(nameField);
-    fieldKeyUpHandler(nameField);
-*/
+        fieldViewHandler(dateField);
+        
+    /*
+        fieldKeyUpHandler(titleField);
+        fieldKeyUpHandler(subtitleField);
+        fieldKeyUpHandler(nameField);
+        fieldKeyUpHandler(nameField);
+    */
 
 
     function fieldViewHandler(input) {
@@ -63,11 +64,23 @@ window.addEventListener('DOMContentLoaded', function () {
         input.addEventListener('blur', fieldBlured);
     }
 
+    function areaViewHandler(input) {
+        input.addEventListener('focus', areaFocused);
+        input.addEventListener('blur', areaBlured);
+    }
+
     function fieldFocused(e) {
         e.target.classList.remove('form__field_full');
         e.target.classList.remove('form__field_critical');
         e.target.classList.add('form__field_focused');
     }
+
+    function areaFocused(e) {
+        e.target.classList.remove('form__area_critical');
+        e.target.classList.add('form__area_focus');
+    }
+
+
 
     function fieldBlured(e) {
         e.target.classList.remove('form__field_focused');
@@ -78,44 +91,60 @@ window.addEventListener('DOMContentLoaded', function () {
             formData.set(e.target.id, e.target.value);
             updatePreview();
         };
+    }
+
+
+    function areaBlured(e) {
+        e.target.classList.remove('form__area_focus');
+        if (e.target.value == "") {
+            e.target.classList.remove('form__field_full');
+        } else {
+            formData.set(e.target.id, e.target.value);
+            updatePreview();
+        };
+    }
+
+    function updatePreview(e) {
+        if (formData.get(keyTitle) != "") {
+            console.log("Title Update");
+            document.getElementById("previewPageTitle").textContent = formData.get(keyTitle);
+            document.getElementById("previewPostCardTitle").textContent = formData.get(keyTitle);
+        };
+
+        if (formData.get(keySubtitle) != "") {
+            console.log("Subtitle Update");
+            document.getElementById("previewPageSubtitle").textContent = formData.get(keySubtitle);
+            document.getElementById("previewPostCardSubtitle").textContent = formData.get(keySubtitle);
+        };
+        if (formData.get(keyAuthorName) != "") {
+            console.log("AuthorName Update");
+            document.getElementById("previewAuthorName").textContent = formData.get(keyAuthorName);
+        };
+        /*
+        if (formData.get(keyPublishDate) != "") {
+            console.log("Subtitle Update");
+            document.getElementById("previewPublishDate").textContent = formData.get(keyPublishDate);
+        };
+        */
+        if (formData.get(keyContent) != "") {
+            console.log("Subtitle Update");
+            document.getElementById("previewPublishDate").textContent = formData.get(keyContent);
+        };
 
     }
-    
-        function updatePreview() {
-            if (formData.get(keyTitle) != "") {
-                console.log(formData.get(keyTitle));
-                console.log(document.querySelector('#'+previewPageTitle).textContent);/* = formData.get(keyTitle);
-                /*document.getElementById(previewPostCardTitle).textContent = formData.get(keyTitle);*/
-            };
-            /*
-            if (formData.get(keySubtitle) != "") {
-                document.getElementById(previewPageSubitle).textContent = formData.get(keySubtitle);
-                document.getElementById(previewPostCardSubtitle).textContent = formData.get(keySubtitle);
-            };
-            if (formData.get(keyAuthorName) != "") {
-                document.getElementById(previewAuthorName).textContent = formData.get(keyAuthorName);
-            };
-            if (formData.get(keyPublishDate) != "") {
-                document.getElementById(previewPublishDate).textContent = formData.get(keyPublishDate);
-            };
-            if (formData.get(keyContent) != "") {
-                document.getElementById(previewPublishDate).textContent = formData.get(keyContent);
-            };
-    */
+    /*
+        function fieldKeyUpHandler(e) {
+            e.addEventListener('keyup', fieldKeyUp);
         }
-        /*
-            function fieldKeyUpHandler(e) {
-                e.addEventListener('keyup', fieldKeyUp);
-            }
-        
-            function fieldKeyUp(e) {
-                const incorrectField = document.querySelector('#status-incorect');
-                const needcheckField = document.querySelector('#status-need_check');
-                incorrectField.target.classList.add('hide_element');
-                needcheckField.target.classList.add('hide_element');
-        
-        
-            }
-        */
+    
+        function fieldKeyUp(e) {
+            const incorrectField = document.querySelector('#status-incorect');
+            const needcheckField = document.querySelector('#status-need_check');
+            incorrectField.target.classList.add('hide_element');
+            needcheckField.target.classList.add('hide_element');
+    
+    
+        }
+    */
 
 });
