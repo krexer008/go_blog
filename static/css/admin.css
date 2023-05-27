@@ -296,7 +296,7 @@ body {
     border-bottom: 1px solid #2E2E2E;
 }
 
-.form__field_cr itical {
+.form__field_critical {
     border-bottom: 1px solid #E86961;
 }
 
@@ -537,8 +537,8 @@ body {
 }
 
 .preview__page-title {
-    max-width: 100%;
     margin-top: 37px;
+    height: 24px;
     font-family: 'Lora';
     font-style: normal;
     font-weight: 400;
@@ -550,6 +550,7 @@ body {
 
 .preview__page-subtitle {
     margin-top: 4px;
+    height: 12px;
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 400;
@@ -617,6 +618,7 @@ body {
 .preview__post-card-title {
     margin-top: 14px;
     padding: 0 13px 0;
+    height: 21px;
     font-family: 'Lora';
     font-style: normal;
     font-weight: 400;
@@ -630,6 +632,7 @@ body {
 .preview__post-card-subtitle {
     margin-top: 7px;
     padding: 0 13px;
+    height: 19px;
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 400;

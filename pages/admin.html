@@ -49,16 +49,16 @@
 
           <form class="form">
             <div class="form__item" for="Title">
-              <label class="form__description" for="title">Title</label>
-              <input class="form__field form__field_critical" id="Title" type="text" value="" tabindex="1" autofocus>
+              <label class="form__description" for="Title">Title</label>
+              <input class="form__field" id="Title" type="text" value="" tabindex="1" autofocus>
               <span class="form__required form__required_critical hide_element" id="title_required">
                 Title is required.
               </span>
             </div>
 
             <div class="form__item">
-              <label class="form__description" for="subtitle">Short description</label>
-              <input class="form__field form__field_critical" id="subtitle"
+              <label class="form__description" for="Subtitle">Short description</label>
+              <input class="form__field" id="Subtitle"
                 name="subtitle" type="text" value="" autofocus tabindex="2">
               <span class="form__required form__required_critical hide_element" id="subtitle_required">
                 Subitle is required.
@@ -66,29 +66,29 @@
             </div>
 
             <div class="form__item">
-              <label class="form__description" for="name">Author name</label>
-              <input class="form__field form__field_critical" id="name" name="name" type="text" value="" tabindex="3">
+              <label class="form__description" for="AuthorName">Author name</label>
+              <input class="form__field" id="AuthorName" name="name" type="text" value="" tabindex="3">
               <span class="form__required form__required_critical hide_element" id="name_required">
                 Author name is required.
               </span>
             </div>
 
             <div class="form__item">
-              <label class="form__description" for="author-photo">Author Photo</label>
+              <label class="form__description">Author Photo</label>
               <div class="author-image">
                 <div class="author-image__preview">
                   <img class="author-image__preview-icon" src="">
                 </div>
                 <div class="form__menu_h ide">
-                  <input class="upload__image" type="file" name="author-image" id="upload_author-image"
+                  <input class="upload__image" type="file" name="author-image" id="AuthorImage"
                     accept=".jpg, .png, .gif" value="" tabindex="4">
 
-                  <label for="upload_author-image" class="form__image-upload">
+                  <label for="AuthorImage" class="form__image-upload">
                     <span class="upload__image-button-text">Upload</span>
                   </label>
                 </div>
                 <div class="form__menu hide_element">
-                  <label for="upload_author-image" class="form__image-upload-new">
+                  <label for="AuthorImage" class="form__image-upload-new">
                     <span class="upload__image-button-text ">Upload New</span>
                   </label>
                   <div class="form__image-remove">
@@ -104,7 +104,7 @@
 
             <div class="form__item">
               <label class="form__description">Publish Date</label>
-              <input class="form__field form__field_critical form__field_publish-date" type="date"
+              <input class="form__field form__field_publish-date" type="date"
                 value="" tabindex="5">
               <span class="form__required form__required_critical hide_element" id="date_required">
                 This date will be in card
@@ -115,47 +115,48 @@
               <label class="form__description">Hero Image</label>
               <div class="form__field-post-image form__field-image-empty form__field-image-with-image"
                 style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
-                <input class="upload__image" type="file" name="author-image" id="upload_large-image"
+
+                <input class="upload__image" type="file" name="author-image" id="LargeImage"
                   accept=".jpg, .png, .gif" value="" tabindex="6">
                 <div class="form__menu hide_element" id="upload-button">
-                  <label for="upload_large-image" class="form__image-upload-new">
+                  <label for="LargeImage" class="form__image-upload-new">
                     <span class="upload__image-button-text">Upload</span>
                   </label>
                 </div>
               </div>
-
-              <label class="field__description hide_element">Size up to 10mb. Format: png, jpeg, gif.</label>
               <div class="form__menu hide_element after-field">
-                <label for="upload_large-image" class="form__image-upload-new">
+                <label for="LargeImage" class="form__image-upload-new">
                   <span class="upload__image-button-text">Upload New</span>
                 </label>
                 <div class="form__image-remove">
                   <span class="remove__image-button-text">Remove</span>
                 </div>
               </div>
+              <label class="field__description hide_element">Size up to 10mb. Format: png, jpeg, gif.</label>
+              
             </div>
 
             <div class="form__item">
               <label class="form__description">Hero Image</label>
               <div class="form__field-post-card form__field-image-empty form__field-image-with-image"
                 style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
-                <input class="upload__image" type="file" name="author-image" id="upload_short-image"
+                <input class="upload__image" type="file" name="author-image" id="ShortImage"
                   accept=".jpg, .png, .gif" value="" tabindex="7">
                 <div class="form__menu hide_element">
-                  <label for="upload_short-image" class="form__image-upload-new">
+                  <label for="ShortImage" class="form__image-upload-new">
                     <span class="upload__image-button-text">Upload</span>
                   </label>
                 </div>
               </div>
-              <label class="field__description hide_element">Size up to 10mb. Format: png, jpeg, gif.</label>
               <div class="form__menu hide_element after-field">
-                <label for="upload_large-image" class="form__image-upload-new">
+                <label for="ShortImage" class="form__image-upload-new">
                   <span class="upload__image-button-text">Upload New</span>
                 </label>
                 <div class="form__image-remove">
                   <span class="remove__image-button-text">Remove</span>
                 </div>
               </div>
+              <label class="field__description hide_element">Size up to 10mb. Format: png, jpeg, gif.</label>              
             </div>
           </form>
 
@@ -171,10 +172,10 @@
                     <div class="ellipse"></div>
                     <div class="ellipse"></div>
                   </div>
-                  <div class="preview__page-title">
+                  <div class="preview__page-title" id="previewPageTitle">
                     New Post
                   </div>
-                  <div class="preview__page-subtitle">
+                  <div class="preview__page-subtitle" id="previewPageSubtitle">
                     Please, enter any description
                   </div>
                   <div class="preview__page-image">
@@ -195,16 +196,16 @@
                   <div class="preview__post-card-image">
                     <img class="preview_image hide_element" src="">
                   </div>
-                  <div class="preview__post-card-title">
+                  <div class="preview__post-card-title" id="previewPostCardTitle">
                     New Post
                   </div>
-                  <div class="preview__post-card-subtitle">
+                  <div class="preview__post-card-subtitle"  id="previewPostCardSubtitle">
                     Please, enter any description
                   </div>
                   <div class="preview__post-card-info">
                     <img class="preview__post-card-author-avatar" src="/static/img/admin/author_img_26.png" />
-                    <span class="preview__post-card-author">Enter author name</span>
-                    <time class="preview__post-card-time" datetime="4.09.2023">4/19/2023</time>
+                    <span class="preview__post-card-author" id="previewAuthorName">Enter author name</span>
+                    <time class="preview__post-card-time" datetime="4.09.2023" id="previewPublishDate">4/19/2023</time>
                   </div>
                 </div>
               </div>
