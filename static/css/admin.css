@@ -268,7 +268,7 @@ body {
 
 .form__field {
     outline: none;
-    margin-top: 5px;
+    margin: 5px 0;
     width: 100%;
     height: 40px;
     padding: 8px 4px;
@@ -302,16 +302,6 @@ body {
     padding: 8px 8px 8px 4px;
 }
 
-.field__description {
-    margin-top: 12px;
-    font-family: "Oxygen", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
-    color: #999999
-}
-
 /*Required*/
 
 .form__required {
@@ -323,6 +313,16 @@ body {
     line-height: 16px;
     color: #999999;
     /* identical to box height, or 133% */
+}
+
+.field__description {
+    margin-top: 12px;
+    font-family: "Oxygen", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #999999
 }
 
 .form__required_critical {
@@ -586,12 +586,10 @@ body {
     height: 100%;
     right: 0;
     top: 0;
-
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 84.72%);
 }
 
 /*Preview post-card*/
-
 .preview__wrap_post-card {
     padding: 30px 15px 37px;
     border-radius: 10px 0px 0px 0px;
@@ -637,7 +635,6 @@ body {
     font-size: 13px;
     line-height: 19px;
     color: #7A7A7A;
-
 }
 
 .preview__post-card-info {

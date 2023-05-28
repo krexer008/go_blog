@@ -51,16 +51,15 @@
             <div class="form__item" for="Title">
               <label class="form__description" for="Title">Title</label>
               <input class="form__field" id="Title" type="text" value="" tabindex="1" autofocus>
-              <span class="form__required form__required_critical hide_element" id="title_required">
+              <span class="form__required form__required_critical" id="title_required">
                 Title is required.
               </span>
             </div>
 
             <div class="form__item">
               <label class="form__description" for="Subtitle">Short description</label>
-              <input class="form__field" id="Subtitle"
-                name="subtitle" type="text" value="" autofocus tabindex="2">
-              <span class="form__required form__required_critical hide_element" id="subtitle_required">
+              <input class="form__field" id="Subtitle" name="subtitle" type="text" value="" autofocus tabindex="2">
+              <span class="form__required form__required_critical" id="subtitle_required">
                 Subitle is required.
               </span>
             </div>
@@ -68,7 +67,7 @@
             <div class="form__item">
               <label class="form__description" for="AuthorName">Author name</label>
               <input class="form__field" id="AuthorName" name="name" type="text" value="" tabindex="3">
-              <span class="form__required form__required_critical hide_element" id="name_required">
+              <span class="form__required form__required_critical" id="name_required">
                 Author name is required.
               </span>
             </div>
@@ -104,9 +103,8 @@
 
             <div class="form__item">
               <label class="form__description">Publish Date</label>
-              <input class="form__field form__field_publish-date" type="date"
-                value="" tabindex="5">
-              <span class="form__required form__required_critical hide_element" id="date_required">
+              <input class="form__field form__field_publish-date" type="date" value="" tabindex="5">
+              <span class="form__required form__required_critical" id="date_required">
                 This date will be in card
               </span>
             </div>
@@ -116,8 +114,8 @@
               <div class="form__field-post-image form__field-image-empty form__field-image-with-image"
                 style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
 
-                <input class="upload__image" type="file" name="author-image" id="LargeImage"
-                  accept=".jpg, .png, .gif" value="" tabindex="6">
+                <input class="upload__image" type="file" name="author-image" id="LargeImage" accept=".jpg, .png, .gif"
+                  value="" tabindex="6">
                 <div class="form__menu hide_element" id="upload-button">
                   <label for="LargeImage" class="form__image-upload-new">
                     <span class="upload__image-button-text">Upload</span>
@@ -132,16 +130,17 @@
                   <span class="remove__image-button-text">Remove</span>
                 </div>
               </div>
-              <label class="field__description hide_element">Size up to 10mb. Format: png, jpeg, gif.</label>
-              
+              <span class="form__required hide_element" id="LargeImage_required">Size up to 10mb. Format: png, jpeg,
+                gif.</span>
+
             </div>
 
             <div class="form__item">
               <label class="form__description">Hero Image</label>
               <div class="form__field-post-card form__field-image-empty form__field-image-with-image"
-                style="background:url('/static/img/for_upload/large-image.jpg') no-repeat center; background-size: cover;">
-                <input class="upload__image" type="file" name="author-image" id="ShortImage"
-                  accept=".jpg, .png, .gif" value="" tabindex="7">
+                style="background:url('') no-repeat center; background-size: cover;">
+                <input class="upload__image" type="file" name="author-image" id="ShortImage" accept=".jpg, .png, .gif"
+                  value="" tabindex="7">
                 <div class="form__menu hide_element">
                   <label for="ShortImage" class="form__image-upload-new">
                     <span class="upload__image-button-text">Upload</span>
@@ -156,7 +155,7 @@
                   <span class="remove__image-button-text">Remove</span>
                 </div>
               </div>
-              <label class="field__description hide_element">Size up to 10mb. Format: png, jpeg, gif.</label>              
+              <span class="form__required hide_element">Size up to 10mb. Format: png, jpeg, gif.</span>
             </div>
           </form>
 
@@ -199,7 +198,7 @@
                   <div class="preview__post-card-title" id="previewPostCardTitle">
                     New Post
                   </div>
-                  <div class="preview__post-card-subtitle"  id="previewPostCardSubtitle">
+                  <div class="preview__post-card-subtitle" id="previewPostCardSubtitle">
                     Please, enter any description
                   </div>
                   <div class="preview__post-card-info">
@@ -222,7 +221,7 @@
             <label class="form__description">Post content (plain text)</label>
             <textarea class="form__area" name="content" id="Content" type="text"
               placeholder="Type anything you want ..." tabindex="8"></textarea>
-            <span class="form__required form__required_critical hide_element" id="content_required">
+            <span class="form__required form__required_critical" id="Content_required">
               Post content is required.
             </span>
           </div>

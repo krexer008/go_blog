@@ -90,11 +90,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
     function areaBlurred(e) {
         e.target.classList.remove('form__area_focus');
-        if (e.target.value !== "") {
-            e.target.classList.remove('form__area_critical');
-            formData.set(e.target.id, e.target.value);
-        }
-        console.log()
+        e.target.classList.remove('form__area_critical');
+        formData.set(e.target.id, e.target.value);
+        updatePreview(e);
     }
 
     function updatePreview(e) {
