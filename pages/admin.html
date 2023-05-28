@@ -31,8 +31,9 @@
     <div class="post_header">
       <div class="post_description">
         <h1 class="post__title">New Post</h1>
-        <span class="post_subtittle">Fill out the form bellow and publish your
-          article</span>
+        <span class="post_subtittle">
+          Fill out the form bellow and publish your article
+        </span>
       </div>
       <button class="publish-button">Publish</button>
     </div>
@@ -51,7 +52,7 @@
             <div class="form__item" for="Title">
               <label class="form__description" for="Title">Title</label>
               <input class="form__field" id="Title" type="text" value="" tabindex="1" autofocus>
-              <span class="form__required form__required_critical" id="title_required">
+              <span class="form__required form__required_critical" id="TitleRequired">
                 Title is required.
               </span>
             </div>
@@ -59,7 +60,7 @@
             <div class="form__item">
               <label class="form__description" for="Subtitle">Short description</label>
               <input class="form__field" id="Subtitle" name="subtitle" type="text" value="" autofocus tabindex="2">
-              <span class="form__required form__required_critical" id="subtitle_required">
+              <span class="form__required form__required_critical" id="SubtitleRequired">
                 Subitle is required.
               </span>
             </div>
@@ -67,7 +68,7 @@
             <div class="form__item">
               <label class="form__description" for="AuthorName">Author name</label>
               <input class="form__field" id="AuthorName" name="name" type="text" value="" tabindex="3">
-              <span class="form__required form__required_critical" id="name_required">
+              <span class="form__required form__required_critical" id="AuthorNameRequired">
                 Author name is required.
               </span>
             </div>
@@ -78,14 +79,12 @@
                 <div class="author-image__preview">
                   <img class="author-image__preview-icon" src="">
                 </div>
-                <div class="form__menu_h ide">
-                  <input class="upload__image" type="file" name="author-image" id="AuthorImage"
-                    accept=".jpg, .png, .gif" value="" tabindex="4">
+                <input class="upload__author-image hide_element" type="file" name="inputAuthorImage" id="AuthorImage"
+                  accept=".jpg, .png, .gif" value="" tabindex="4">
 
-                  <label for="AuthorImage" class="form__image-upload">
-                    <span class="upload__image-button-text">Upload</span>
-                  </label>
-                </div>
+                <label for="AuthorImage" class="form__image-upload hide_ele ment">
+                  <span class="upload__image-button-text">Upload</span>
+                </label>
                 <div class="form__menu hide_element">
                   <label for="AuthorImage" class="form__image-upload-new">
                     <span class="upload__image-button-text ">Upload New</span>
@@ -96,17 +95,17 @@
                 </div>
 
               </div>
-              <span class="form__required after-upload">
+              <span class="form__required after-upload" id="AuthorImageRequired">
                 Size up to 10mb. Format: png, jpeg, gif.
               </span>
             </div>
 
             <div class="form__item">
               <label class="form__description">Publish Date</label>
-              <input class="form__field form__field_publish-date" type="date" value="" tabindex="5">
-              <span class="form__required form__required_critical" id="date_required">
-                This date will be in card
-              </span>
+              <input class="form__field form__field_publish-date" type="date" value="" tabindex="5" id="PublishDate"
+                min="2023-05-01" max="2100-12-31">
+              <span class="form__required form__required_critical" id="PublishDateRequired">
+                This date will be in card</span>
             </div>
 
             <div class="form__item">
@@ -130,9 +129,9 @@
                   <span class="remove__image-button-text">Remove</span>
                 </div>
               </div>
-              <span class="form__required after-upload" id="LargeImage_required">Size up to 10mb. Format: png, jpeg,
-                gif.</span>
-
+              <span class="form__required after-upload" id="LargeImageRequired">
+                Size up to 10mb. Format: png, jpeg, gif.
+              </span>
             </div>
 
             <div class="form__item">
@@ -155,7 +154,9 @@
                   <span class="remove__image-button-text">Remove</span>
                 </div>
               </div>
-              <span class="form__required after-upload">Size up to 10mb. Format: png, jpeg, gif.</span>
+              <span class="form__required after-upload" id="ShortImageRequired">
+                Size up to 10mb. Format: png, jpeg, gif.
+              </span>
             </div>
           </form>
 
@@ -219,7 +220,7 @@
         <form class="content__form">
           <div class="form__item">
             <label class="form__description">Post content (plain text)</label>
-            <textarea class="form__area" name="content" id="Content" type="text"
+            <textarea class="form__area form__area_critical" name="content" id="Content" type="text"
               placeholder="Type anything you want ..." tabindex="8"></textarea>
             <span class="form__required form__required_critical" id="Content_required">
               Post content is required.

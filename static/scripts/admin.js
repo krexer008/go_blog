@@ -1,54 +1,60 @@
 "use strict";
 
-window.addEventListener('DOMContentLoaded', function () {
-    const form = this.document.querySelector('#form');
+const keyTitle = "Title";
+const keySubtitle = "Subtitle";
+const keyAuthorName = "AuthorName";
+const keyAuthorImage = "AuthorImage";
+const keyPublishDate = "PublishDate";
+const keyLargeImage = "LargeImage";
+const keyShortImage = "ShortImage";
+const keyContent = "Content";
 
-    const keyTitle = "Title";
-    const keySubtitle = "Subtitle";
-    const keyAuthorName = "AuthorName";
-    const keyAuthorImage = "AuthorImage";
-    const keyPublishDate = "PublishDate";
-    const keyLargeImage = "LargeImage";
-    const keyShortImage = "ShortImage";
-    const keyContent = "Content";
+const formData = new Map([
+    [keyTitle, ""],
+    [keySubtitle, ""],
+    [keyAuthorName, ""],
+    [keyAuthorImage, ""],
+    [keyPublishDate, ""],
+    [keyLargeImage, ""],
+    [keyShortImage, ""],
+    [keyContent, ""],
+])
 
+const required = true;
+const urequired = false;
 
-    const formData = new Map([
-        [keyTitle, ""],
-        [keySubtitle, ""],
-        [keyAuthorName, ""],
-        [keyAuthorImage, ""],
-        [keyPublishDate, ""],
-        [keyLargeImage, ""],
-        [keyShortImage, ""],
-        [keyContent, ""],
-    ])
+const requiredField = new Map([
+    [keyTitle, required],
+    [keySubtitle, required],
+    [keyAuthorName, required],
+    [keyAuthorImage, required],
+    [keyPublishDate, required],
+    [keyLargeImage, required],
+    [keyShortImage, required],
+    [keyContent, required],
+])
+
+window.addEventListener('load', function () {
 
     const titleField = this.document.getElementById(keyTitle);
     const subtitleField = this.document.getElementById(keySubtitle);
     const authorNameField = this.document.getElementById(keyAuthorName);
-    /*
-        const dateField = this.document.getElementById(keyPublishDate);
-    */
-    const contentField = this.document.getElementById(keyContent);
-    /*
     const authorImageField = this.document.getElementById(keyAuthorImage);
-    
+    const dateField = this.document.getElementById(keyPublishDate);
     const largeImageField = this.document.getElementById(keyLargeImage);
     const shortImageField = this.document.getElementById(keyShortImage);
+    const contentField = this.document.getElementById(keyContent);
     
-    */
 
     let validFieldsValid = true;
 
-    fieldViewHandler(titleField);
-    fieldViewHandler(subtitleField);
-    fieldViewHandler(authorNameField);
+    fieldHandlerText(titleField);
+    fieldHandlerText(subtitleField);
+    fieldHandlerText(authorNameField);
+    fieldHandlerText(dateField);
     areaViewHandler(contentField);
 
-    /*
-        fieldViewHandler(dateField);
-        
+
     /*
         fieldKeyUpHandler(titleField);
         fieldKeyUpHandler(subtitleField);
@@ -57,7 +63,7 @@ window.addEventListener('DOMContentLoaded', function () {
     */
 
 
-    function fieldViewHandler(input) {
+    function fieldHandlerText(input) {
         input.addEventListener('focus', fieldFocused);
         input.addEventListener('blur', fieldBlurred);
     }
@@ -90,7 +96,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
     function areaBlurred(e) {
         e.target.classList.remove('form__area_focus');
-        e.target.classList.remove('form__area_critical');
+        if (e.target.value !== "") {
+            e.target.classList.remove('form__area_critical');
+        }
         formData.set(e.target.id, e.target.value);
         updatePreview(e);
     }

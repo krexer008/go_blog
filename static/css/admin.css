@@ -208,10 +208,6 @@ body {
     width: 24px;
 }
 
-.hide_element {
-    display: none;
-}
-
 .content {
     margin-top: 16px;
     width: 100%;
@@ -720,4 +716,8 @@ body {
 
     text-align: justify;
     color: #999999;
+}
+
+.hide_element {
+    display: none;
 }
