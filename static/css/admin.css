@@ -324,15 +324,21 @@ body {
     margin-right: 16px;
     width: 48px;
     height: 48px;
-    background: url("/static/img/admin/camera.png") #F7F7F7 no-repeat center;
+    background:  #F7F7F7;
     border-radius: 50%;
     border: 1px dashed #D3D3D3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.author-image__preview-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+.author-image__icon {
+    width: 24px;
+    height: 24px;
+}
+
+.author-image__preview_button{
+    cursor: pointer;
 }
 
 .upload__image {
@@ -372,17 +378,13 @@ body {
     display: flex;
 }
 
-
 .form__image-upload-new {
     margin-right: 16px;
     display: flex;
     cursor: pointer;
 }
 
-.form__image-remove {
-    display: flex;
-    cursor: pointer;
-}
+.form__image-upload-new
 
 .form__image-upload-new::before {
     content: '';
@@ -391,6 +393,11 @@ body {
     height: 24px;
     background-image: url("/static/img/admin/camera.png");
     background-size: cover;
+}
+
+.form__image-remove {
+    display: flex;
+    cursor: pointer;
 }
 
 .form__image-remove::before {
@@ -412,9 +419,9 @@ body {
     align-items: center;
 }
 
-.form__field-post-image-empty {
-    border: 1px dashed #D3D3D3;
-    border-radius: 6px;
+.post-image__preview{
+    width: 560px;
+    height: 160px;
 }
 
 .form__field-image-empty {
