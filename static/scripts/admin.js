@@ -24,14 +24,12 @@ window.addEventListener('DOMContentLoaded', function () {
         [keyContent, ""],
     ])
 
-
-
     const titleField = this.document.getElementById(keyTitle);
     const subtitleField = this.document.getElementById(keySubtitle);
     const authorNameField = this.document.getElementById(keyAuthorName);
-/*
-    const dateField = this.document.getElementById(keyPublishDate);
-*/  
+    /*
+        const dateField = this.document.getElementById(keyPublishDate);
+    */
     const contentField = this.document.getElementById(keyContent);
     /*
     const authorImageField = this.document.getElementById(keyAuthorImage);
@@ -41,7 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
     
     */
 
-    var validFieldsValid = true;
+    let validFieldsValid = true;
 
     fieldViewHandler(titleField);
     fieldViewHandler(subtitleField);
@@ -61,12 +59,12 @@ window.addEventListener('DOMContentLoaded', function () {
 
     function fieldViewHandler(input) {
         input.addEventListener('focus', fieldFocused);
-        input.addEventListener('blur', fieldBlured);
+        input.addEventListener('blur', fieldBlurred);
     }
 
     function areaViewHandler(input) {
         input.addEventListener('focus', areaFocused);
-        input.addEventListener('blur', areaBlured);
+        input.addEventListener('blur', areaBlurred);
     }
 
     function fieldFocused(e) {
@@ -78,59 +76,53 @@ window.addEventListener('DOMContentLoaded', function () {
         e.target.classList.add('form__area_focus');
     }
 
-
-
-    function fieldBlured(e) {
+    function fieldBlurred(e) {
         e.target.classList.remove('form__field_focused');
-        if (e.target.value == "") {
+        if (e.target.value === "") {
             e.target.classList.remove('form__field_full');
         } else {
             e.target.classList.remove('form__field_critical');
             e.target.classList.add('form__field_full');
             formData.set(e.target.id, e.target.value);
-            updatePreview();
-        };
+            updatePreview(e);
+        }
     }
 
-    function areaBlured(e) {
+    function areaBlurred(e) {
         e.target.classList.remove('form__area_focus');
-        if (e.target.value == "") {
-            e.target.classList.remove('form__field_full');
-        } else {
+        if (e.target.value !== "") {
             e.target.classList.remove('form__area_critical');
             formData.set(e.target.id, e.target.value);
-            updatePreview(e);
-        };
+        }
+        console.log()
     }
 
     function updatePreview(e) {
-        if (formData.get(keyTitle) != "") {
-            console.log("Title Update");
-            document.getElementById("previewPageTitle").textContent = formData.get(keyTitle);
-            document.getElementById("previewPostCardTitle").textContent = formData.get(keyTitle);
-        };
-
-        if (formData.get(keySubtitle) != "") {
-            console.log("Subtitle Update");
-            document.getElementById("previewPageSubtitle").textContent = formData.get(keySubtitle);
-            document.getElementById("previewPostCardSubtitle").textContent = formData.get(keySubtitle);
-        };
-        if (formData.get(keyAuthorName) != "") {
-            console.log("AuthorName Update");
-            document.getElementById("previewAuthorName").textContent = formData.get(keyAuthorName);
-        };
-        /*
-        if (formData.get(keyPublishDate) != "") {
-            console.log("Subtitle Update");
-            document.getElementById("previewPublishDate").textContent = formData.get(keyPublishDate);
-        };
-        */
-        if (formData.get(keyContent) != "") {
-            console.log("Subtitle Update");
-            document.getElementById("previewPublishDate").textContent = formData.get(keyContent);
-        };
-
+        switch (e.target.id) {
+            case keyTitle:
+                console.log("Title Update");
+                document.getElementById("previewPageTitle").textContent = formData.get(keyTitle);
+                document.getElementById("previewPostCardTitle").textContent = formData.get(keyTitle);
+                break;
+            case keySubtitle:
+                console.log("Subtitle Update");
+                document.getElementById("previewPageSubtitle").textContent = formData.get(keySubtitle);
+                document.getElementById("previewPostCardSubtitle").textContent = formData.get(keySubtitle);
+                break;
+            case keyAuthorName:
+                console.log("AuthorName Update");
+                document.getElementById("previewAuthorName").textContent = formData.get(keyAuthorName);
+                break;
+            case keyPublishDate:
+                console.log("Date Update");
+                document.getElementById("previewPublishDate").textContent = formData.get(keyPublishDate);
+                break;
+            case keyContent:
+                console.log("Content Update");
+                break;
+        }
     }
+
     /*
         function fieldKeyUpHandler(e) {
             e.addEventListener('keyup', fieldKeyUp);
