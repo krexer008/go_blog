@@ -71,12 +71,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
     function fieldFocused(e) {
         e.target.classList.remove('form__field_full');
-        e.target.classList.remove('form__field_critical');
         e.target.classList.add('form__field_focused');
     }
 
     function areaFocused(e) {
-        e.target.classList.remove('form__area_critical');
         e.target.classList.add('form__area_focus');
     }
 
@@ -87,20 +85,21 @@ window.addEventListener('DOMContentLoaded', function () {
         if (e.target.value == "") {
             e.target.classList.remove('form__field_full');
         } else {
+            e.target.classList.remove('form__field_critical');
             e.target.classList.add('form__field_full');
             formData.set(e.target.id, e.target.value);
             updatePreview();
         };
     }
 
-
     function areaBlured(e) {
         e.target.classList.remove('form__area_focus');
         if (e.target.value == "") {
             e.target.classList.remove('form__field_full');
         } else {
+            e.target.classList.remove('form__area_critical');
             formData.set(e.target.id, e.target.value);
-            updatePreview();
+            updatePreview(e);
         };
     }
 
