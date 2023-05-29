@@ -80,7 +80,7 @@
                   accept=".jpg, .png, .gif" value="" tabindex="4">
 
                 <label class="author-image__preview author-image__preview_button" for="AuthorImage">
-                  <img class="author-image__icon author-avatar" src="/static/img/admin/camera.png">
+                  <img class="image__preview image__preview_icon author-avatar hide_element" src="">
                 </label>
 
                 <label for="AuthorImage" class="form__image-upload hide_ele ment">
@@ -112,11 +112,11 @@
 
             <div class="form__item">
               <label class="form__description">Hero Image</label>
-              <div class="form__field-post-image form__field-image-empty form__field-image-with-image">
+              <div class="form__field-post-image form__field-image-empty">
                 <img class="post-image__preview large-image" src="/static/img/for_upload/large-image.jpg" alt="">
                 <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
                   value="" tabindex="6">
-                <div class="form__menu hide_el ement " id="upload-button">
+                <div class="form__menu form__menu_center hide_el ement " id="upload-button">
                   <label for="LargeImage" class="form__image-upload">
                     <span class="upload__image-button-text">Upload</span>
                   </label>
@@ -204,7 +204,9 @@
                     Please, enter any description
                   </div>
                   <div class="preview__post-card-info">
-                    <img class="preview__post-card-author-avatar" src="/static/img/admin/author_img_26.png" />
+                    <div class="preview__post-card-author-avatar">
+                      <img class="image__preview image__preview_icon author-avatar hide_element" src="" />
+                    </div>
                     <span class="preview__post-card-author" id="previewAuthorName">Enter author name</span>
                     <time class="preview__post-card-time" datetime="4.09.2023" id="previewPublishDate">4/19/2023</time>
                   </div>
