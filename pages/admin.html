@@ -47,7 +47,6 @@
       <div class="content">
         <h2 class="content__title">Main Information</h2>
         <div class="content__wrap">
-
           <form class="form">
             <div class="form__item" for="Title">
               <label class="form__description" for="Title">Title</label>
@@ -94,7 +93,6 @@
                     <span class="remove__image-button-text">Remove</span>
                   </div>
                 </div>
-
               </div>
               <span class="form__required after-upload" id="AuthorImageRequired">
                 Size up to 10mb. Format: png, jpeg, gif.
@@ -112,15 +110,14 @@
 
             <div class="form__item">
               <label class="form__description">Hero Image</label>
-              <div class="form__field-post-image form__field-image-empty">
-                <img class="post-image__preview large-image" src="/static/img/for_upload/large-image.jpg" alt="">
+              <div class="form__post-image-field image-field_empty">
+                <img class="post-image__preview post-image" src="/static/img/for_upload/large-image.jpg">
                 <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
                   value="" tabindex="6">
-                <div class="form__menu form__menu_center hide_el ement " id="upload-button">
-                  <label for="LargeImage" class="form__image-upload">
-                    <span class="upload__image-button-text">Upload</span>
-                  </label>
-                </div>
+
+                <label for="LargeImage" class="form__image-upload_center " id="upload-button">
+                  <span class="upload__image-button-text">Upload</span>
+                </label>
               </div>
               <div class="form__menu hide_el ement after-upload">
                 <label for="LargeImage" class="form__image-upload-new">
@@ -137,15 +134,13 @@
 
             <div class="form__item">
               <label class="form__description">Hero Image</label>
-              <div class="form__field-post-card form__field-image-empty form__field-image-with-image"
-                style="background:url('') no-repeat center; background-size: cover;">
+              <div class="form__card-image-field image-field_empty">
+                <img class="card-image__preview card-image" src="/static/img/for_upload/short-image.jpg">
                 <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
                   value="" tabindex="7">
-                <div class="form__menu hide_element">
-                  <label for="ShortImage" class="form__image-upload-new">
-                    <span class="upload__image-button-text">Upload</span>
-                  </label>
-                </div>
+                <label for="ShortImage" class="form__image-upload_center">
+                  <span class="upload__image-button-text">Upload</span>
+                </label>
               </div>
               <div class="form__menu hide_element after-upload">
                 <label for="ShortImage" class="form__image-upload-new">
@@ -180,7 +175,7 @@
                     Please, enter any description
                   </div>
                   <div class="preview__page-image">
-                    <img class="preview_image hide_element" src="">
+                    <img class="preview_image post-image hide_element" src="">
                   </div>
                 </div>
               </div>
@@ -195,7 +190,7 @@
               <div class="preview__wrap preview__wrap_post-card">
                 <div class="preview__post-card">
                   <div class="preview__post-card-image">
-                    <img class="preview_image hide_element" src="">
+                    <img class="preview_image card-image hide_element" src="">
                   </div>
                   <div class="preview__post-card-title" id="previewPostCardTitle">
                     New Post
