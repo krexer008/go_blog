@@ -9,7 +9,7 @@ const keyLargeImage = "LargeImage";
 const keyShortImage = "ShortImage";
 const keyContent = "Content";
 
-const formData = new Map([
+const dataMap = new Map([
     [keyTitle, ""],
     [keySubtitle, ""],
     [keyAuthorName, ""],
@@ -21,14 +21,14 @@ const formData = new Map([
 ])
 
 const required = true;
-const urequired = false;
+const unRequired = false;
 
-const requiredField = new Map([
+const requiredsMap = new Map([
     [keyTitle, required],
     [keySubtitle, required],
-    [keyAuthorName, required],
-    [keyAuthorImage, required],
-    [keyPublishDate, required],
+    [keyAuthorName, unRequired],
+    [keyAuthorImage, unRequired],
+    [keyPublishDate, unRequired],
     [keyLargeImage, required],
     [keyShortImage, required],
     [keyContent, required],
@@ -47,54 +47,69 @@ const contentField = this.document.getElementById(keyContent);
 
 function pageLoaded(e) {
 
-    let validFieldsValid = true;
+    const previewTitle = document.getElementsByClassName('preview__title');
+    fieldTextHandler(titleField, previewTitle, keyTitle);
 
-    fieldTextHandler(titleField);
+
     fieldTextHandler(subtitleField);
     fieldTextHandler(authorNameField);
     fieldTextHandler(dateField);
     fieldTextHandler(contentField);
 
-
-    /*
-        fieldKeyUpHandler(titleField);
-        fieldKeyUpHandler(subtitleField);
-        fieldKeyUpHandler(nameField);
-        fieldKeyUpHandler(nameField);
-    */
-    
-
+    fieldFileHandler(authorImageField);
+    fieldFileHandler(largeImageField);
+    fieldFileHandler(shortImageField);
 };
 
-function fieldTextHandler(input) {
-    input.addEventListener('focus', fieldFocused);
-    input.addEventListener('blur', fieldBlurred);
+function fieldTextHandler(field, previews, key) {
+    let required = requiredsMap.get(key);
+
+    field.addEventListener('focus', () => {
+        e.target.classList.remove('form__field_full');
+        e.target.classList.add('form__field_focused');
+    });
+
+    field.addEventListener('blur', () => {
+        e.target.classList.remove('form__field_focused');
+        if (e.target.value === "") {
+            e.target.classList.remove('form__field_full');
+        } else {
+            e.target.classList.add('form__field_full');
+        }
+    });
+
+    field.addEventListener('keyup', () => {
+        if (field.value === "") {
+            dataMap.set(key, field.value);
+            if (required) {
+                indicateFieldTextEmpty(field);
+            }
+            
+        }
+    });
 }
+
+
+function indicateFieldTextEmpty(field){
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.remove("hide_element");
+    field.classList.remove("form__field_full");
+    field.classList.remove("form__field_focused");
+
+}
+
+
+
+
 
 function areaViewHandler(input) {
     input.addEventListener('focus', areaFocused);
     input.addEventListener('blur', areaBlurred);
 }
 
-function fieldFocused(e) {
-    e.target.classList.remove('form__field_full');
-    e.target.classList.add('form__field_focused');
-}
 
 function areaFocused(e) {
     e.target.classList.add('form__area_focus');
-}
-
-function fieldBlurred(e) {
-    e.target.classList.remove('form__field_focused');
-    if (e.target.value === "") {
-        e.target.classList.remove('form__field_full');
-    } else {
-        e.target.classList.remove('form__field_critical');
-        e.target.classList.add('form__field_full');
-        formData.set(e.target.id, e.target.value);
-        updatePreview(e);
-    }
 }
 
 function areaBlurred(e) {

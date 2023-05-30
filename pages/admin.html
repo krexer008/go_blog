@@ -20,7 +20,9 @@
         <span class="header-title">author</span>
       </div>
       <div class="header_menu">
-        <a href="" class="header_menu__item avatar avatar_default">N</a>
+        <div class="header_menu__item avatar avatar_default">
+          <img src="" />
+        </div>
         <a href="" class="header_menu__item logout">
           <img class="logout_icon" src="/static/img/admin/logout_invers.png" alt="logout">
         </a>
@@ -74,14 +76,12 @@
 
             <div class="form__item">
               <label class="form__description">Author Photo</label>
+              <input class="upload__author-image hide_element" type="file" name="inputAuthorImage" id="AuthorImage"
+                accept=".jpg, .png, .gif" value="" tabindex="4">
               <div class="author-image">
-                <input class="upload__author-image hide_element" type="file" name="inputAuthorImage" id="AuthorImage"
-                  accept=".jpg, .png, .gif" value="" tabindex="4">
-
                 <label class="author-image__preview author-image__preview_button" for="AuthorImage">
                   <img class="image__preview image__preview_icon author-avatar hide_element" src="">
                 </label>
-
                 <label for="AuthorImage" class="form__image-upload hide_ele ment">
                   <span class="upload__image-button-text">Upload</span>
                 </label>
@@ -160,7 +160,7 @@
 
           <div class="preview">
             <div class="preview__section">
-              <div class="preview__title">Article preview</div>
+              <div class="section__title">Article preview</div>
               <div class="preview__wrap preview__wrap_page">
                 <div class="preview__page">
                   <div class="preview__page-menu">
@@ -168,7 +168,7 @@
                     <div class="ellipse"></div>
                     <div class="ellipse"></div>
                   </div>
-                  <div class="preview__page-title" id="previewPageTitle" value="cas">
+                  <div class="preview__page-title preview__title" id="previewPageTitle" value="cas">
                     New Post
                   </div>
                   <div class="preview__page-subtitle" id="previewPageSubtitle">
@@ -186,13 +186,13 @@
             <!--  PREVIEW postcard -->
 
             <div class="preview__section">
-              <div class="preview__title">Post card preview</div>
+              <div class="section__title">Post card preview</div>
               <div class="preview__wrap preview__wrap_post-card">
                 <div class="preview__post-card">
                   <div class="preview__post-card-image">
                     <img class="preview_image card-image hide_element" src="">
                   </div>
-                  <div class="preview__post-card-title" id="previewPostCardTitle">
+                  <div class="preview__post-card-title preview__title" id="previewPostCardTitle">
                     New Post
                   </div>
                   <div class="preview__post-card-subtitle" id="previewPostCardSubtitle">
