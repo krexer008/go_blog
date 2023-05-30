@@ -62,8 +62,6 @@ function pageLoaded(e) {
         fieldKeyUpHandler(nameField);
         fieldKeyUpHandler(nameField);
     */
-
-
     
 
 };
