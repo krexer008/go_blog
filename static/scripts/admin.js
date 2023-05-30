@@ -9,7 +9,7 @@ const keyLargeImage = "LargeImage";
 const keyShortImage = "ShortImage";
 const keyContent = "Content";
 
-const formData = new Map([
+const dataMap = new Map([
     [keyTitle, ""],
     [keySubtitle, ""],
     [keyAuthorName, ""],
@@ -21,14 +21,14 @@ const formData = new Map([
 ])
 
 const required = true;
-const urequired = false;
+const unRequired = false;
 
-const requiredField = new Map([
+const requiredsMap = new Map([
     [keyTitle, required],
     [keySubtitle, required],
-    [keyAuthorName, required],
-    [keyAuthorImage, required],
-    [keyPublishDate, required],
+    [keyAuthorName, unRequired],
+    [keyAuthorImage, unRequired],
+    [keyPublishDate, unRequired],
     [keyLargeImage, required],
     [keyShortImage, required],
     [keyContent, required],
@@ -47,41 +47,52 @@ const contentField = this.document.getElementById(keyContent);
 
 function pageLoaded(e) {
 
-    let validFieldsValid = true;
 
-    fieldTextHandler(titleField);
+    const previewTitle = document.getElementsByClassName('preview__title');
+    fieldTextHandler(titleField, previewTitle, keyTitle);
+
+
+
     fieldTextHandler(subtitleField);
     fieldTextHandler(authorNameField);
     fieldTextHandler(dateField);
     fieldTextHandler(contentField);
 
-
-    /*
-        fieldKeyUpHandler(titleField);
-        fieldKeyUpHandler(subtitleField);
-        fieldKeyUpHandler(nameField);
-        fieldKeyUpHandler(nameField);
-    */
+    fieldFileHandler(authorImageField);
+    fieldFileHandler(largeImageField);
+    fieldFileHandler(shortImageField);
 
 
-    
+
+
 
 };
 
-function fieldTextHandler(input) {
-    input.addEventListener('focus', fieldFocused);
-    input.addEventListener('blur', fieldBlurred);
-}
+function fieldTextHandler(field, previews, key) {
+    let req = requiredsMap.get(key);
+    
+    field.addEventListener('focus', fieldFocused);
 
-function areaViewHandler(input) {
-    input.addEventListener('focus', areaFocused);
-    input.addEventListener('blur', areaBlurred);
+
+    
+    field.addEventListener('blur', fieldBlurred);
 }
 
 function fieldFocused(e) {
     e.target.classList.remove('form__field_full');
     e.target.classList.add('form__field_focused');
 }
+
+
+
+
+
+function areaViewHandler(input) {
+    input.addEventListener('focus', areaFocused);
+    input.addEventListener('blur', areaBlurred);
+}
+
+
 
 function areaFocused(e) {
     e.target.classList.add('form__area_focus');
