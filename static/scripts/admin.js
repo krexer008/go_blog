@@ -120,6 +120,9 @@ function updatePreview(previewElement, contentString) {
 }
 
 
+
+
+
 function areaViewHandler(input) {
     input.addEventListener('focus', areaFocused);
     input.addEventListener('blur', areaBlurred);
