@@ -61,7 +61,7 @@ function pageLoaded(e) {
     fieldFileHandler(shortImageField);
 };
 
-function fieldTextHandler(field, previews, key) {
+function fieldTextHandler(field, previewElement, key) {
     let required = requiredsMap.get(key);
 
     field.addEventListener('focus', () => {
@@ -82,20 +82,41 @@ function fieldTextHandler(field, previews, key) {
         if (field.value === "") {
             dataMap.set(key, field.value);
             if (required) {
-                indicateFieldTextEmpty(field);
+                showEmptyFieldPrompt(field);
             }
-            
+            // написать для превьюхи при пустых значениях
+            let defaultString = "Please, enter " + field.parentElement.getElementsByClassName('form__description').textContent.toLowerCase;
+            updateEmptyPreview(previewElement, defaultString);
+        } else {
+            dataMap.set(key, field.value);
+            if (required) {
+                showFullFieldPrompt(field);
+            }
+            updatePreview(key, field.value);
         }
     });
 }
 
 
-function indicateFieldTextEmpty(field){
+function showEmptyFieldPrompt(field) {
     const reqPrompt = field.parentElement.querySelector('.form__required');
     reqPrompt.classList.remove("hide_element");
     field.classList.remove("form__field_full");
     field.classList.remove("form__field_focused");
+}
 
+function showFullFieldPrompt(field){
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.add("hide_element");
+}
+
+function updateEmptyPreview(previewElement, contentString) {
+    previewElement.textContent = contentString;
+}
+
+
+function updatePreview(previewElement, contentString) {
+    previewElement.textContent = contentString;
 }
 
 
