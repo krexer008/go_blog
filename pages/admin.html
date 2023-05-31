@@ -21,7 +21,7 @@
       </div>
       <div class="header_menu">
         <div class="header_menu__item avatar avatar_default">
-          <img src=""/>
+          <img src="" />
         </div>
         <a href="" class="header_menu__item logout">
           <img class="logout_icon" src="/static/img/admin/logout_invers.png" alt="logout">
@@ -76,14 +76,12 @@
 
             <div class="form__item">
               <label class="form__description">Author Photo</label>
+              <input class="upload__author-image hide_element" type="file" name="inputAuthorImage" id="AuthorImage"
+                accept=".jpg, .png, .gif" value="" tabindex="4">
               <div class="author-image">
-                <input class="upload__author-image hide_element" type="file" name="inputAuthorImage" id="AuthorImage"
-                  accept=".jpg, .png, .gif" value="" tabindex="4">
-
                 <label class="author-image__preview author-image__preview_button" for="AuthorImage">
                   <img class="image__preview image__preview_icon author-avatar hide_element" src="">
                 </label>
-
                 <label for="AuthorImage" class="form__image-upload hide_ele ment">
                   <span class="upload__image-button-text">Upload</span>
                 </label>
@@ -111,7 +109,7 @@
             </div>
 
             <div class="form__item">
-              <label class="form__description">Hero Image</label>
+              <label class="form__description">Post Page Image</label>
               <div class="form__post-image-field image-field_empty">
                 <img class="post-image__preview post-image" src="/static/img/for_upload/large-image.jpg">
                 <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
@@ -135,7 +133,7 @@
             </div>
 
             <div class="form__item">
-              <label class="form__description">Hero Image</label>
+              <label class="form__description">Post Card Image</label>
               <div class="form__card-image-field image-field_empty">
                 <img class="card-image__preview card-image" src="/static/img/for_upload/short-image.jpg">
                 <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
