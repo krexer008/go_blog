@@ -23,12 +23,12 @@ const dataMap = new Map([
 const required = true;
 const unRequired = false;
 
-const requiredsMap = new Map([
+const requiredMap = new Map([
     [keyTitle, required],
     [keySubtitle, required],
     [keyAuthorName, unRequired],
     [keyAuthorImage, unRequired],
-    [keyPublishDate, unRequired],
+    [keyPublishDate, required],
     [keyLargeImage, required],
     [keyShortImage, required],
     [keyContent, required],
@@ -36,46 +36,82 @@ const requiredsMap = new Map([
 
 window.addEventListener('load', pageLoaded);
 
-const titleField = this.document.getElementById(keyTitle);
-const subtitleField = this.document.getElementById(keySubtitle);
-const authorNameField = this.document.getElementById(keyAuthorName);
-const authorImageField = this.document.getElementById(keyAuthorImage);
-const dateField = this.document.getElementById(keyPublishDate);
-const largeImageField = this.document.getElementById(keyLargeImage);
-const shortImageField = this.document.getElementById(keyShortImage);
-const contentField = this.document.getElementById(keyContent);
+const titleField = document.getElementById(keyTitle);
+const subtitleField = document.getElementById(keySubtitle);
+const authorNameField = document.getElementById(keyAuthorName);
+const authorImageField = document.getElementById(keyAuthorImage);
+const dateField = document.getElementById(keyPublishDate);
+const largeImageField = document.getElementById(keyLargeImage);
+const shortImageField = document.getElementById(keyShortImage);
+const contentField = document.getElementById(keyContent);
 
 function pageLoaded(e) {
 
-    const previewTitle = document.getElementsByClassName('preview__title');
-    fieldTextHandler(titleField, previewTitle, keyTitle);
+    const titlePreviews = document.querySelectorAll('.preview__title');
+    fieldTextHandler(titleField, titlePreviews, keyTitle);
 
+    const subtitlePreviews = document.querySelectorAll('.preview__subtitle');
+    fieldTextHandler(subtitleField, subtitlePreviews, keySubtitle);
 
-    fieldTextHandler(subtitleField);
-    fieldTextHandler(authorNameField);
-    fieldTextHandler(dateField);
-    fieldTextHandler(contentField);
+    const authorNamePreview = document.querySelectorAll('.preview__authorname');
+    fieldTextHandler(authorNameField, authorNamePreview, keyAuthorName);
+
+    const dataPreview = document.querySelectorAll('.preview__date');
+    fieldTextHandler(dateField, dataPreview, keyPublishDate);
+
+    areaTextHandler(contentField, keyContent);
+
 
     fieldFileHandler(authorImageField);
     fieldFileHandler(largeImageField);
     fieldFileHandler(shortImageField);
 };
 
-function fieldTextHandler(field, previewElement, key) {
-    let required = requiredsMap.get(key);
+function fieldTextHandler(field, previewElements, key) {
+    let required = requiredMap.get(key);
 
     field.addEventListener('focus', () => {
-        e.target.classList.remove('form__field_full');
-        e.target.classList.add('form__field_focused');
+        field.target.classList.remove('form__field_full');
+        field.target.classList.add('form__field_focused');
     });
 
     field.addEventListener('blur', () => {
-        e.target.classList.remove('form__field_focused');
-        if (e.target.value === "") {
-            e.target.classList.remove('form__field_full');
+        field.target.classList.remove('form__field_focused');
+        if (field.target.value === "") {
+            field.target.classList.remove('form__field_full');
         } else {
-            e.target.classList.add('form__field_full');
+            field.target.classList.add('form__field_full');
         }
+    });
+
+    field.addEventListener('keyup', () => {
+        if (field.value === "") {
+            dataMap.set(key, "");
+            if (required) {
+                showEmptyFieldPrompt(field);
+            }
+            let emptyString = "Please, enter " + field.parentElement.querySelector('.form__description').textContent.toLowerCase;
+            updatePreviews(previewElements, emptyString);
+        } else {
+            dataMap.set(key, field.value);
+            if (required) {
+                showFullFieldPrompt(field);
+            }
+            updatePreviews(previewElements, field.value);
+        }
+    });
+}
+
+
+function areaTextHandler(field, key) {
+    let required = requiredMap.get(key);
+
+    field.addEventListener('focus', () => {
+        field.target.classList.add('form__area_focused');
+    });
+
+    field.addEventListener('blur', () => {
+        field.target.classList.remove('form__area_focused');
     });
 
     field.addEventListener('keyup', () => {
@@ -84,18 +120,16 @@ function fieldTextHandler(field, previewElement, key) {
             if (required) {
                 showEmptyFieldPrompt(field);
             }
-            // написать для превьюхи при пустых значениях
-            let defaultString = "Please, enter " + field.parentElement.getElementsByClassName('form__description').textContent.toLowerCase;
-            updateEmptyPreview(previewElement, defaultString);
         } else {
             dataMap.set(key, field.value);
             if (required) {
                 showFullFieldPrompt(field);
             }
-            updatePreview(key, field.value);
         }
     });
 }
+
+
 
 
 function showEmptyFieldPrompt(field) {
@@ -105,65 +139,13 @@ function showEmptyFieldPrompt(field) {
     field.classList.remove("form__field_focused");
 }
 
-function showFullFieldPrompt(field){
+function showFullFieldPrompt(field) {
     const reqPrompt = field.parentElement.querySelector('.form__required');
     reqPrompt.classList.add("hide_element");
 }
 
-function updateEmptyPreview(previewElement, contentString) {
-    previewElement.textContent = contentString;
-}
-
-
-function updatePreview(previewElement, contentString) {
-    previewElement.textContent = contentString;
-}
-
-
-
-
-
-function areaViewHandler(input) {
-    input.addEventListener('focus', areaFocused);
-    input.addEventListener('blur', areaBlurred);
-}
-
-
-function areaFocused(e) {
-    e.target.classList.add('form__area_focus');
-}
-
-function areaBlurred(e) {
-    e.target.classList.remove('form__area_focus');
-    if (e.target.value !== "") {
-        e.target.classList.remove('form__area_critical');
-    }
-    formData.set(e.target.id, e.target.value);
-    updatePreview(e);
-}
-
-function updatePreview(e) {
-    switch (e.target.id) {
-        case keyTitle:
-            console.log("Title Update");
-            document.getElementById("previewPageTitle").textContent = formData.get(keyTitle);
-            document.getElementById("previewPostCardTitle").textContent = formData.get(keyTitle);
-            break;
-        case keySubtitle:
-            console.log("Subtitle Update");
-            document.getElementById("previewPageSubtitle").textContent = formData.get(keySubtitle);
-            document.getElementById("previewPostCardSubtitle").textContent = formData.get(keySubtitle);
-            break;
-        case keyAuthorName:
-            console.log("AuthorName Update");
-            document.getElementById("previewAuthorName").textContent = formData.get(keyAuthorName);
-            break;
-        case keyPublishDate:
-            console.log("Date Update");
-            document.getElementById("previewPublishDate").textContent = formData.get(keyPublishDate);
-            break;
-        case keyContent:
-            console.log("Content Update");
-            break;
+function updatePreviews(previewElements, contentString) {
+    for (const previewElement of previewElements) {
+        previewElement.textContent = contentString;
     }
 }

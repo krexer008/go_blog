@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&family=Oxygen:wght@400&display=swap"
-        rel="stylesheet" />
+        rel="stylesheet"/>
   <link rel="stylesheet" href="/static/css/admin.css">
   <title>Admin</title>
 </head>
@@ -21,7 +21,7 @@
     </div>
     <div class="header_menu">
       <div class="header_menu__item avatar avatar_default">
-        <img src="" />
+        <img src=""/>
       </div>
       <a href="" class="header_menu__item logout">
         <img class="logout_icon" src="/static/img/admin/logout_invers.png" alt="logout">
@@ -59,7 +59,7 @@
           </div>
 
           <div class="form__item">
-            <label class="form__description" for="Subtitle">Short description</label>
+            <label class="form__description" for="Subtitle">Subtitle</label>
             <input class="form__field" id="Subtitle" name="subtitle" type="text" value="" autofocus tabindex="2">
             <span class="form__required form__required_critical" id="SubtitleRequired">
                 Subitle is required.
@@ -69,7 +69,7 @@
           <div class="form__item">
             <label class="form__description" for="AuthorName">Author name</label>
             <input class="form__field" id="AuthorName" name="name" type="text" value="" tabindex="3">
-            <span class="form__required form__required_critical" id="AuthorNameRequired">
+            <span class="form__required " id="AuthorNameRequired">
                 Author name is required.
               </span>
           </div>
@@ -171,7 +171,7 @@
                 <div class="preview__page-title preview__title" id="previewPageTitle" value="cas">
                   New Post
                 </div>
-                <div class="preview__page-subtitle" id="previewPageSubtitle">
+                <div class="preview__page-subtitle preview__subtitle" id="previewPageSubtitle">
                   Please, enter any description
                 </div>
                 <div class="preview__page-image">
@@ -195,15 +195,18 @@
                 <div class="preview__post-card-title preview__title" id="previewPostCardTitle">
                   New Post
                 </div>
-                <div class="preview__post-card-subtitle" id="previewPostCardSubtitle">
+                <div class="preview__post-card-subtitle preview__subtitle" id="previewPostCardSubtitle">
                   Please, enter any description
                 </div>
                 <div class="preview__post-card-info">
                   <div class="preview__post-card-author-avatar">
-                    <img class="image__preview image__preview_icon author-avatar hide_element" src="" />
+                    <img class="image__preview image__preview_icon author-avatar hide_element" src=""/>
                   </div>
-                  <span class="preview__post-card-author" id="previewAuthorName">Enter author name</span>
-                  <time class="preview__post-card-time" datetime="4.09.2023" id="previewPublishDate">4/19/2023</time>
+                  <span class="preview__post-card-author preview__authorname"
+                        id="previewAuthorName">Enter author name</span>
+                  <time class="preview__post-card-time preview__date" datetime="4.09.2023" id="previewPublishDate">
+                    4/19/2023
+                  </time>
                 </div>
               </div>
             </div>

@@ -716,7 +716,7 @@ body {
 }
 
 
-.form__area_focus {
+.form__area_focused {
     border: 2px solid #2E2E2E;
 }
 
