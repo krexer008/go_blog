@@ -56,31 +56,52 @@ function pageLoaded(e) {
     const authorNamePreview = document.querySelectorAll('.preview__authorname');
     fieldTextHandler(authorNameField, authorNamePreview, keyAuthorName);
 
-    const dataPreview = document.querySelectorAll('.preview__date');
+    const dataPreview = document.querySelector('.preview__date');
     fieldTextHandler(dateField, dataPreview, keyPublishDate);
 
     areaTextHandler(contentField, keyContent);
 
+    const authorImagePreviews = document.querySelectorAll('.author-avatar');
+    fieldFileHandler(authorImageField, authorImagePreview, keyAuthorImage);
 
-    fieldFileHandler(authorImageField);
     fieldFileHandler(largeImageField);
+
     fieldFileHandler(shortImageField);
 };
+
+
+function fieldFileHandler(field, previewElements, key){
+    let required = requiredMap.get(key);
+const fieldUplod = field.parentElement.querySelector('');
+
+}
+
+
 
 function fieldTextHandler(field, previewElements, key) {
     let required = requiredMap.get(key);
 
+
+    field.addEventListener('mouseover', () => {
+        field.classList.add('form__field_hover');
+    });
+
+    field.addEventListener('mouseout', () => {
+        field.classList.remove('form__field_hover');
+    });
+
+
     field.addEventListener('focus', () => {
-        field.target.classList.remove('form__field_full');
-        field.target.classList.add('form__field_focused');
+        field.classList.remove('form__field_full');
+        field.classList.add('form__field_focused');
     });
 
     field.addEventListener('blur', () => {
-        field.target.classList.remove('form__field_focused');
-        if (field.target.value === "") {
-            field.target.classList.remove('form__field_full');
+        field.classList.remove('form__field_focused');
+        if (field.value === "") {
+            field.classList.remove('form__field_full');
         } else {
-            field.target.classList.add('form__field_full');
+            field.classList.add('form__field_full');
         }
     });
 
@@ -90,7 +111,8 @@ function fieldTextHandler(field, previewElements, key) {
             if (required) {
                 showEmptyFieldPrompt(field);
             }
-            let emptyString = "Please, enter " + field.parentElement.querySelector('.form__description').textContent.toLowerCase;
+            let emptyString = "Enter " + field.parentElement
+            .querySelector('.form__description').textContent;
             updatePreviews(previewElements, emptyString);
         } else {
             dataMap.set(key, field.value);
@@ -102,16 +124,23 @@ function fieldTextHandler(field, previewElements, key) {
     });
 }
 
-
 function areaTextHandler(field, key) {
     let required = requiredMap.get(key);
 
+    field.addEventListener('mouseover', () => {
+        field.classList.add('form__area_hover');
+    });
+
+    field.addEventListener('mouseout', () => {
+        field.classList.remove('form__area_hover');
+    });
+
     field.addEventListener('focus', () => {
-        field.target.classList.add('form__area_focused');
+        field.classList.add('form__area_focused');
     });
 
     field.addEventListener('blur', () => {
-        field.target.classList.remove('form__area_focused');
+        field.classList.remove('form__area_focused');
     });
 
     field.addEventListener('keyup', () => {
@@ -129,14 +158,10 @@ function areaTextHandler(field, key) {
     });
 }
 
-
-
-
 function showEmptyFieldPrompt(field) {
     const reqPrompt = field.parentElement.querySelector('.form__required');
     reqPrompt.classList.remove("hide_element");
     field.classList.remove("form__field_full");
-    field.classList.remove("form__field_focused");
 }
 
 function showFullFieldPrompt(field) {

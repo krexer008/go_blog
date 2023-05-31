@@ -274,6 +274,10 @@ body {
     color: #2E2E2E;
 }
 
+.form__field_hover {
+    border-bottom: 1px solid #D3D3D3;
+}
+
 .form__field_focused {
     border-bottom: 2px solid #2E2E2E;
 }
@@ -703,7 +707,7 @@ body {
     /* Background/Default */
 
     background: #FFFFFF;
-    border: 1px solid #D3D3D3;
+    border: 1px solid #EAEAEA;
     border-radius: 5px;
 
     font-family: 'Oxygen';
@@ -715,6 +719,10 @@ body {
     color: #2E2E2E;
 }
 
+
+.form__area_hover {
+    border: 1px solid #D3D3D3;
+}
 
 .form__area_focused {
     border: 2px solid #2E2E2E;

@@ -21,7 +21,7 @@
     </div>
     <div class="header_menu">
       <div class="header_menu__item avatar avatar_default">
-        <img src=""/>
+        <img class="author-avatar" src=""/>
       </div>
       <a href="" class="header_menu__item logout">
         <img class="logout_icon" src="/static/img/admin/logout_invers.png" alt="logout">
@@ -114,11 +114,11 @@
               <img class="post-image__preview post-image" src="/static/img/for_upload/large-image.jpg">
               <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
                      value="" tabindex="6">
-
               <label for="LargeImage" class="form__image-upload_center " id="upload-button">
                 <span class="upload__image-button-text">Upload</span>
               </label>
             </div>
+
             <div class="form__menu hide_el ement after-upload">
               <label for="LargeImage" class="form__image-upload-new">
                 <span class="upload__image-button-text">Upload New</span>
@@ -221,7 +221,7 @@
       <form class="content__form">
         <div class="form__item">
           <label class="form__description">Post content (plain text)</label>
-          <textarea class="form__area form__area_critical" name="content" id="Content" type="text"
+          <textarea class="form__area" name="content" id="Content" type="text"
                     placeholder="Type anything you want ..." tabindex="8"></textarea>
           <span class="form__required form__required_critical" id="Content_required">
               Post content is required.
