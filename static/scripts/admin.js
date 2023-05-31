@@ -47,10 +47,8 @@ const contentField = this.document.getElementById(keyContent);
 
 function pageLoaded(e) {
 
-
     const previewTitle = document.getElementsByClassName('preview__title');
     fieldTextHandler(titleField, previewTitle, keyTitle);
-
 
 
     fieldTextHandler(subtitleField);
@@ -61,30 +59,65 @@ function pageLoaded(e) {
     fieldFileHandler(authorImageField);
     fieldFileHandler(largeImageField);
     fieldFileHandler(shortImageField);
-
-
-
-
-
 };
 
-function fieldTextHandler(field, previews, key) {
-    let req = requiredsMap.get(key);
-    
-    field.addEventListener('focus', fieldFocused);
+function fieldTextHandler(field, previewElement, key) {
+    let required = requiredsMap.get(key);
 
+    field.addEventListener('focus', () => {
+        e.target.classList.remove('form__field_full');
+        e.target.classList.add('form__field_focused');
+    });
 
-    
-    field.addEventListener('blur', fieldBlurred);
+    field.addEventListener('blur', () => {
+        e.target.classList.remove('form__field_focused');
+        if (e.target.value === "") {
+            e.target.classList.remove('form__field_full');
+        } else {
+            e.target.classList.add('form__field_full');
+        }
+    });
+
+    field.addEventListener('keyup', () => {
+        if (field.value === "") {
+            dataMap.set(key, field.value);
+            if (required) {
+                showEmptyFieldPrompt(field);
+            }
+            // написать для превьюхи при пустых значениях
+            let defaultString = "Please, enter " + field.parentElement.getElementsByClassName('form__description').textContent.toLowerCase;
+            updateEmptyPreview(previewElement, defaultString);
+        } else {
+            dataMap.set(key, field.value);
+            if (required) {
+                showFullFieldPrompt(field);
+            }
+            updatePreview(key, field.value);
+        }
+    });
 }
 
-function fieldFocused(e) {
-    e.target.classList.remove('form__field_full');
-    e.target.classList.add('form__field_focused');
+
+function showEmptyFieldPrompt(field) {
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.remove("hide_element");
+    field.classList.remove("form__field_full");
+    field.classList.remove("form__field_focused");
+}
+
+function showFullFieldPrompt(field){
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.add("hide_element");
+}
+
+function updateEmptyPreview(previewElement, contentString) {
+    previewElement.textContent = contentString;
 }
 
 
-
+function updatePreview(previewElement, contentString) {
+    previewElement.textContent = contentString;
+}
 
 
 function areaViewHandler(input) {
@@ -93,21 +126,8 @@ function areaViewHandler(input) {
 }
 
 
-
 function areaFocused(e) {
     e.target.classList.add('form__area_focus');
-}
-
-function fieldBlurred(e) {
-    e.target.classList.remove('form__field_focused');
-    if (e.target.value === "") {
-        e.target.classList.remove('form__field_full');
-    } else {
-        e.target.classList.remove('form__field_critical');
-        e.target.classList.add('form__field_full');
-        formData.set(e.target.id, e.target.value);
-        updatePreview(e);
-    }
 }
 
 function areaBlurred(e) {
