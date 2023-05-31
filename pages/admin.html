@@ -6,233 +6,233 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&family=Oxygen:wght@400&display=swap"
-        rel="stylesheet"/>
+    rel="stylesheet" />
   <link rel="stylesheet" href="/static/css/admin.css">
   <title>Admin</title>
 </head>
 
 <body>
 
-<header class="header">
-  <div class="header-container">
-    <div class="header_logo">
-      <span class="logo">Escape.</span>
-      <span class="header-title">author</span>
-    </div>
-    <div class="header_menu">
-      <div class="header_menu__item avatar avatar_default">
-        <img class="author-avatar" src=""/>
+  <header class="header">
+    <div class="header-container">
+      <div class="header_logo">
+        <span class="logo">Escape.</span>
+        <span class="header-title">author</span>
       </div>
-      <a href="" class="header_menu__item logout">
-        <img class="logout_icon" src="/static/img/admin/logout_invers.png" alt="logout">
-      </a>
+      <div class="header_menu">
+        <div class="header_menu__item avatar avatar_default">
+          <img class="author-avatar" src="" />
+        </div>
+        <a href="" class="header_menu__item logout">
+          <img class="logout_icon" src="/static/img/admin/logout_invers.png" alt="logout">
+        </a>
+      </div>
     </div>
-  </div>
-</header>
-<div class="main">
-  <div class="post_header">
-    <div class="post_description">
-      <h1 class="post__title">New Post</h1>
-      <span class="post_subtittle">
+  </header>
+  <div class="main">
+    <div class="post_header">
+      <div class="post_description">
+        <h1 class="post__title">New Post</h1>
+        <span class="post_subtittle">
           Fill out the form bellow and publish your article
         </span>
+      </div>
+      <button class="publish-button">Publish</button>
     </div>
-    <button class="publish-button">Publish</button>
-  </div>
-  <div class="post">
-    <div class="post__status status__error hide_element">
-      Whoops! Some fields need your attention :o
-    </div>
-    <div class="post__status status__success hide_element">
-      Publish complete
-    </div>
-    <div class="content">
-      <h2 class="content__title">Main Information</h2>
-      <div class="content__wrap">
-        <form class="form">
-          <div class="form__item" for="Title">
-            <label class="form__description" for="Title">Title</label>
-            <input class="form__field" id="Title" type="text" value="" tabindex="1" autofocus>
-            <span class="form__required form__required_critical" id="TitleRequired">
+    <div class="post">
+      <div class="post__status status__error hide_element">
+        Whoops! Some fields need your attention :o
+      </div>
+      <div class="post__status status__success hide_element">
+        Publish complete
+      </div>
+      <div class="content">
+        <h2 class="content__title">Main Information</h2>
+        <div class="content__wrap">
+          <form class="form">
+            <div class="form__item" for="Title">
+              <label class="form__description" for="Title">Title</label>
+              <input class="form__field" id="Title" type="text" value="" tabindex="1" autofocus>
+              <span class="form__required form__required_critical" id="TitleRequired">
                 Title is required.
               </span>
-          </div>
+            </div>
 
-          <div class="form__item">
-            <label class="form__description" for="Subtitle">Subtitle</label>
-            <input class="form__field" id="Subtitle" name="subtitle" type="text" value="" autofocus tabindex="2">
-            <span class="form__required form__required_critical" id="SubtitleRequired">
+            <div class="form__item">
+              <label class="form__description" for="Subtitle">Subtitle</label>
+              <input class="form__field" id="Subtitle" name="subtitle" type="text" value="" autofocus tabindex="2">
+              <span class="form__required form__required_critical" id="SubtitleRequired">
                 Subitle is required.
               </span>
-          </div>
+            </div>
 
-          <div class="form__item">
-            <label class="form__description" for="AuthorName">Author name</label>
-            <input class="form__field" id="AuthorName" name="name" type="text" value="" tabindex="3">
-            <span class="form__required " id="AuthorNameRequired">
+            <div class="form__item">
+              <label class="form__description" for="AuthorName">Author name</label>
+              <input class="form__field" id="AuthorName" name="name" type="text" value="" tabindex="3">
+              <span class="form__required " id="AuthorNameRequired">
                 Author name is required.
               </span>
-          </div>
+            </div>
 
-          <div class="form__item">
-            <label class="form__description">Author Photo</label>
-            <input class="upload__author-image hide_element" type="file" name="inputAuthorImage" id="AuthorImage"
-                   accept=".jpg, .png, .gif" value="" tabindex="4">
-            <div class="author-image">
-              <label class="author-image__preview author-image__preview_button" for="AuthorImage">
-                <img class="image__preview image__preview_icon author-avatar hide_element" src="">
-              </label>
-              <label for="AuthorImage" class="form__image-upload hide_ele ment">
-                <span class="upload__image-button-text">Upload</span>
-              </label>
-              <div class="form__menu hide_ele ment">
-                <label for="AuthorImage" class="form__image-upload-new">
-                  <span class="upload__image-button-text ">Upload New</span>
+            <div class="form__item">
+              <label class="form__description">Author Photo</label>
+              <input class="upload__author-image hide_element" type="file" name="inputAuthorImage" id="AuthorImage"
+                accept=".jpg, .png, .gif" value="" tabindex="4">
+              <div class="author-image">
+                <label class="author-image__preview author-image__preview_button" for="AuthorImage">
+                  <img class="image__preview image__preview_icon author-avatar hide_element" src="">
                 </label>
-                <div class="form__image-remove">
-                  <span class="remove__image-button-text">Remove</span>
+                <label for="AuthorImage" class="form__image-upload hide_ele ment upload__image-button-text">
+                  Upload
+                </label>
+                <div class="form__menu hide_ele ment">
+                  <label for="AuthorImage" class="form__image-upload-new upload__image-button-text">
+                    Upload New
+                  </label>
+                  <div class="form__image-remove remove__image-button-text">
+                    Remove
+                  </div>
                 </div>
               </div>
-            </div>
-            <span class="form__required after-upload" id="AuthorImageRequired">
+              <span class="form__required after-upload" id="AuthorImageRequired">
                 Size up to 10mb. Format: png, jpeg, gif.
               </span>
-          </div>
+            </div>
 
-          <div class="form__item">
-            <label class="form__description">Publish Date</label>
-            <input class="form__field form__field_publish-date" type="date" value="" tabindex="5" id="PublishDate"
-                   min="2023-05-01" max="2100-12-31">
-            <span class="form__required form__required_critical" id="PublishDateRequired">
+            <div class="form__item">
+              <label class="form__description">Publish Date</label>
+              <input class="form__field form__field_publish-date" type="date" value="" tabindex="5" id="PublishDate"
+                min="2023-05-01" max="2100-12-31">
+              <span class="form__required form__required_critical" id="PublishDateRequired">
                 This date will be in card
               </span>
-          </div>
-
-          <div class="form__item">
-            <label class="form__description">Post Page Image</label>
-            <div class="form__post-image-field image-field_empty">
-              <img class="post-image__preview post-image" src="/static/img/for_upload/large-image.jpg">
-              <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
-                     value="" tabindex="6">
-              <label for="LargeImage" class="form__image-upload_center " id="upload-button">
-                <span class="upload__image-button-text">Upload</span>
-              </label>
             </div>
 
-            <div class="form__menu hide_el ement after-upload">
-              <label for="LargeImage" class="form__image-upload-new">
-                <span class="upload__image-button-text">Upload New</span>
-              </label>
-              <div class="form__image-remove">
-                <span class="remove__image-button-text">Remove</span>
+            <div class="form__item">
+              <label class="form__description">Post Page Image</label>
+              <div class="form__post-image-field image-field_empty">
+                <img class="post-image__preview post-image" src="/static/img/for_upload/large-image.jpg">
+                <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
+                  value="" tabindex="6">
+                <label for="LargeImage" class="form__image-upload_center upload__image-button-text" id="upload-button">
+                  Upload
+                </label>
               </div>
-            </div>
-            <span class="form__required after-upload" id="LargeImageRequired">
+
+              <div class="form__menu hide_el ement after-upload">
+                <label for="LargeImage" class="form__image-upload-new upload__image-button-text">
+                  Upload New
+                </label>
+                <div class="form__image-remove remove__image-button-text">
+                  Remove
+                </div>
+              </div>
+              <span class="form__required after-upload" id="LargeImageRequired">
                 Size up to 10mb. Format: png, jpeg, gif.
               </span>
-          </div>
+            </div>
 
-          <div class="form__item">
-            <label class="form__description">Post Card Image</label>
-            <div class="form__card-image-field image-field_empty">
-              <img class="card-image__preview card-image" src="/static/img/for_upload/short-image.jpg">
-              <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
-                     value="" tabindex="7">
-              <label for="ShortImage" class="form__image-upload_center">
-                <span class="upload__image-button-text">Upload</span>
-              </label>
-            </div>
-            <div class="form__menu hide_element after-upload">
-              <label for="ShortImage" class="form__image-upload-new">
-                <span class="upload__image-button-text">Upload New</span>
-              </label>
-              <div class="form__image-remove">
-                <span class="remove__image-button-text">Remove</span>
+            <div class="form__item">
+              <label class="form__description">Post Card Image</label>
+              <div class="form__card-image-field image-field_empty">
+                <img class="card-image__preview card-image" src="/static/img/for_upload/short-image.jpg">
+                <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
+                  value="" tabindex="7">
+                <label for="ShortImage" class="form__image-upload_center upload__image-button-text">
+                  Upload
+                </label>
               </div>
-            </div>
-            <span class="form__required after-upload" id="ShortImageRequired">
+              <div class="form__menu hide_el ement after-upload">
+                <label for="ShortImage" class="form__image-upload-new upload__image-button-text">
+                  Upload New
+                </label>
+                <div class="form__image-remove remove__image-button-text">
+                  Remove
+                </div>
+              </div>
+              <span class="form__required after-upload" id="ShortImageRequired">
                 Size up to 10mb. Format: png, jpeg, gif.
               </span>
-          </div>
-        </form>
-
-        <!--  PREVIEW page -->
-
-        <div class="preview">
-          <div class="preview__section">
-            <div class="section__title">Article preview</div>
-            <div class="preview__wrap preview__wrap_page">
-              <div class="preview__page">
-                <div class="preview__page-menu">
-                  <div class="ellipse"></div>
-                  <div class="ellipse"></div>
-                  <div class="ellipse"></div>
-                </div>
-                <div class="preview__page-title preview__title" id="previewPageTitle" value="cas">
-                  New Post
-                </div>
-                <div class="preview__page-subtitle preview__subtitle" id="previewPageSubtitle">
-                  Please, enter any description
-                </div>
-                <div class="preview__page-image">
-                  <img class="preview_image post-image hide_element" src="">
-                </div>
-              </div>
             </div>
-            <div class="preview__gradient-horizontal"></div>
-            <div class="preview__gradient-vertical"></div>
-          </div>
+          </form>
 
-          <!--  PREVIEW postcard -->
+          <!--  PREVIEW page -->
 
-          <div class="preview__section">
-            <div class="section__title">Post card preview</div>
-            <div class="preview__wrap preview__wrap_post-card">
-              <div class="preview__post-card">
-                <div class="preview__post-card-image">
-                  <img class="preview_image card-image hide_element" src="">
-                </div>
-                <div class="preview__post-card-title preview__title" id="previewPostCardTitle">
-                  New Post
-                </div>
-                <div class="preview__post-card-subtitle preview__subtitle" id="previewPostCardSubtitle">
-                  Please, enter any description
-                </div>
-                <div class="preview__post-card-info">
-                  <div class="preview__post-card-author-avatar">
-                    <img class="image__preview image__preview_icon author-avatar hide_element" src=""/>
+          <div class="preview">
+            <div class="preview__section">
+              <div class="section__title">Article preview</div>
+              <div class="preview__wrap preview__wrap_page">
+                <div class="preview__page">
+                  <div class="preview__page-menu">
+                    <div class="ellipse"></div>
+                    <div class="ellipse"></div>
+                    <div class="ellipse"></div>
                   </div>
-                  <span class="preview__post-card-author preview__authorname"
-                        id="previewAuthorName">Enter author name</span>
-                  <time class="preview__post-card-time preview__date" datetime="4.09.2023" id="previewPublishDate">
-                    4/19/2023
-                  </time>
+                  <div class="preview__page-title preview__title" id="previewPageTitle" value="cas">
+                    New Post
+                  </div>
+                  <div class="preview__page-subtitle preview__subtitle" id="previewPageSubtitle">
+                    Please, enter any description
+                  </div>
+                  <div class="preview__page-image">
+                    <img class="preview_image post-image hide_element" src="">
+                  </div>
                 </div>
               </div>
+              <div class="preview__gradient-horizontal"></div>
+              <div class="preview__gradient-vertical"></div>
             </div>
-            <div class="preview__gradient-horizontal"></div>
-            <div class="preview__gradient-vertical"></div>
+
+            <!--  PREVIEW postcard -->
+
+            <div class="preview__section">
+              <div class="section__title">Post card preview</div>
+              <div class="preview__wrap preview__wrap_post-card">
+                <div class="preview__post-card">
+                  <div class="preview__post-card-image">
+                    <img class="preview_image card-image hide_element" src="">
+                  </div>
+                  <div class="preview__post-card-title preview__title" id="previewPostCardTitle">
+                    New Post
+                  </div>
+                  <div class="preview__post-card-subtitle preview__subtitle" id="previewPostCardSubtitle">
+                    Please, enter any description
+                  </div>
+                  <div class="preview__post-card-info">
+                    <div class="preview__post-card-author-avatar">
+                      <img class="image__preview image__preview_icon author-avatar hide_element" src="" />
+                    </div>
+                    <span class="preview__post-card-author preview__authorname" id="previewAuthorName">Enter author
+                      name</span>
+                    <time class="preview__post-card-time preview__date" datetime="4.09.2023" id="previewPublishDate">
+                      4/19/2023
+                    </time>
+                  </div>
+                </div>
+              </div>
+              <div class="preview__gradient-horizontal"></div>
+              <div class="preview__gradient-vertical"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="content">
-      <h2 class="content__title">Content</h2>
-      <form class="content__form">
-        <div class="form__item">
-          <label class="form__description">Post content (plain text)</label>
-          <textarea class="form__area" name="content" id="Content" type="text"
-                    placeholder="Type anything you want ..." tabindex="8"></textarea>
-          <span class="form__required form__required_critical" id="Content_required">
+      <div class="content">
+        <h2 class="content__title">Content</h2>
+        <form class="content__form">
+          <div class="form__item">
+            <label class="form__description">Post content (plain text)</label>
+            <textarea class="form__area" name="content" id="Content" type="text"
+              placeholder="Type anything you want ..." tabindex="8"></textarea>
+            <span class="form__required form__required_critical" id="Content_required">
               Post content is required.
             </span>
-        </div>
-      </form>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-</div>
-<script src="/static/scripts/admin.js"></script>
+  </div>
+  <script src="/static/scripts/admin.js"></script>
 </body>
 
 </html>

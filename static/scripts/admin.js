@@ -56,13 +56,13 @@ function pageLoaded(e) {
     const authorNamePreview = document.querySelectorAll('.preview__authorname');
     fieldTextHandler(authorNameField, authorNamePreview, keyAuthorName);
 
-    const dataPreview = document.querySelector('.preview__date');
-    fieldTextHandler(dateField, dataPreview, keyPublishDate);
+    const datePreview = document.querySelectorAll('.preview__date');
+    fieldTextHandler(dateField, datePreview, keyPublishDate);
 
     areaTextHandler(contentField, keyContent);
 
     const authorImagePreviews = document.querySelectorAll('.author-avatar');
-    fieldFileHandler(authorImageField, authorImagePreview, keyAuthorImage);
+    fieldFileHandler(authorImageField, authorImagePreviews, keyAuthorImage);
 
     fieldFileHandler(largeImageField);
 
@@ -70,10 +70,43 @@ function pageLoaded(e) {
 };
 
 
-function fieldFileHandler(field, previewElements, key){
+function fieldFileHandler(field, previewElements, key) {
     let required = requiredMap.get(key);
-const fieldUplod = field.parentElement.querySelector('');
+    const fieldUpload = field.parentElement.querySelector('.form__image-upload-new');
 
+    formUpload.addEventListener('click', () => {
+        field.click();
+    });
+
+    const formRemove = field.parentElement.querySelector('.form__image-remove');
+
+    formRemove.addEventListener('click', () => {
+        field.value = "";
+        let eventChange = new Event('change');
+        field.dispatchEvent(eventChange);
+    });
+
+    field.addEventListener('change', () => {
+        if (field.value === "") {
+            dataMap.set(key, "");
+            if (required) {
+                showEmptyFileField(field);
+            }
+
+        }
+    });
+
+
+
+
+
+}
+
+function showEmptyFileField(field) {
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    const formmPreview = field.parentElement.querySelector('.');
+    reqPrompt.classList.remove("hide_element");
+    field.classList.remove("form__field_full");
 }
 
 
@@ -112,7 +145,7 @@ function fieldTextHandler(field, previewElements, key) {
                 showEmptyFieldPrompt(field);
             }
             let emptyString = "Enter " + field.parentElement
-            .querySelector('.form__description').textContent;
+                .querySelector('.form__description').textContent;
             updatePreviews(previewElements, emptyString);
         } else {
             dataMap.set(key, field.value);
