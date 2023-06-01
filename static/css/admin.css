@@ -332,8 +332,9 @@ body {
 
 .author-image__preview {
     margin-right: 16px;
+    width: 48px;
     min-width: 48px;
-    min-height: 48px;
+    height: 48px;
     background-color: #F7F7F7;
     background: url(/static/img/admin/camera.png) no-repeat center;
     border-radius: 50%;
@@ -352,9 +353,16 @@ body {
     border-radius: 50%;
 }
 
-
 .upload__image {
     display: none;
+    /*
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    */
 }
 
 .upload__button {

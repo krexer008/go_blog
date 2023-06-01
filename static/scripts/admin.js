@@ -63,57 +63,74 @@ function pageLoaded(e) {
 
     const authorImagePreviews = document.querySelectorAll('.author-avatar');
     fieldFileHandler(authorImageField, authorImagePreviews, keyAuthorImage);
-
-    fieldFileHandler(largeImageField);
-
-    fieldFileHandler(shortImageField);
+    /*
+        const postImagePreviews = document.querySelectorAll('.post-image');
+        fieldFileHandler(largeImageField, postImagePreviews, keyLargeImage);
+    
+        const cardImagePreviews = document.querySelectorAll('.card-image');
+        fieldFileHandler(shortImageField, cardImagePreviews, keyShortImage);
+        */
 };
-
 
 function fieldFileHandler(field, previewElements, key) {
     let required = requiredMap.get(key);
-    const fieldUpload = field.parentElement.querySelector('.upload__button');
-
-    fieldUpload.addEventListener('change', () => {
-        field.change();
-    });
-
-    const formRemove = field.parentElement.querySelector('.form__image-remove');
-
-    formRemove.addEventListener('click', () => {
+    let previewSrc = "";
+    /*
+        const uploadButton = field.parentElement.querySelectorAll('.upload__button');
+    
+        uploadButton[0].addEventListener('click', () => {
+            field.click();
+        });
+        uploadButton[1].addEventListener('click', () => {
+            field.click();
+        });
+    */
+    const removeButton = field.parentElement.querySelector('.remove__button');
+    removeButton.addEventListener('click', () => {    
         field.value = "";
+        previewSrc = "";
+        dataMap.set(key, previewSrc);        
         let eventChange = new Event('change');
         field.dispatchEvent(eventChange);
     });
 
     field.addEventListener('change', () => {
-        if (field.value === "") {
-            dataMap.set(key, "");
-            if (required) {
-                showEmptyFileField(field);
-            }
-
+        let file = field.files[0];
+        let preview = field.parentElement.querySelector('.image__preview_el');        
+        let reader = new FileReader();
+        reader.onloadend = () => {
+            previewSrc = reader.result;
+            preview.src = previewSrc;
+            dataMap.set(key, previewSrc);
+        };
+        if (file) {
+            reader.readAsDataURL(file);
         }
+        else {
+            preview.src = "";
+            dataMap.set(key, previewSrc);
+        }
+        alert(previewSrc);
     });
 
+}
+function updateImagePreviews(previewElements, content) {
+    for (const previewElement of previewElements) {
+        previewElement.src = content;
 
-
-
-
+    }
 }
 
+/*
 function showEmptyFileField(field) {
     const reqPrompt = field.parentElement.querySelector('.form__required');
     const formmPreview = field.parentElement.querySelector('.');
     reqPrompt.classList.remove("hide_element");
     field.classList.remove("form__field_full");
 }
-
-
-
+*/
 function fieldTextHandler(field, previewElements, key) {
     let required = requiredMap.get(key);
-
 
     field.addEventListener('mouseover', () => {
         field.classList.add('form__field_hover');

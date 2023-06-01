@@ -77,18 +77,18 @@
             <div class="form__item">
               <label class="form__description">Author Photo</label>
               <div class="author-image">
-                <input class="upload__author-image hide_element" type="file" name="inputAuthorImage" id="AuthorImage"
-                  accept=".jpg, .png, .gif" value="" tabindex="4">
-                <div class="upload__button author-image__preview">
-                  <img class="image__preview image__preview_icon author-avatar hide_element" src="">
+                <input class="upload__image" type="file" accept=".jpg, .png, .gif" value="" name="inputAuthorImage"
+                  id="AuthorImage" accept=".jpg, .png, .gif" value="" tabindex="4">
+                <div class="author-image__preview">
+                  <img class="image__preview image__preview_icon author-avatar hide_ele ment image__preview_el" src="">
                 </div>
-                <span class="upload__button">
+                <label for="AuthorImage" class="upload__button">
                   Upload
-                </span>
+                </label>
                 <div class="form__menu hid e_element">
-                  <span class="upload__button upload__button_new">
+                  <label for="AuthorImage" class="upload__button upload__button_new">
                     Upload New
-                  </span>
+                  </label>
                   <span class="remove__button">
                     Remove
                   </span>
@@ -114,46 +114,46 @@
                 <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
                   value="" tabindex="6">
                 <img class="post-image__preview post-image" src="/static/img/for_upload/large-image.jpg">
-                <span class="upload__button upload__button_center" id="upload-button">
+                <label for="LargeImage" class="upload__button upload__button_center" id="upload-button">
                   Upload
+                </label>
+                </span>
+
+                <div class="form__menu hide_el ement after-upload">
+                  <label for="LargeImage" class="upload__button upload__button_new">
+                    Upload New
+                  </label>
+                  <span class="remove__button">
+                    Remove
+                  </span>
                 </div>
-              </span>
+                <span class="form__required after-upload" id="LargeImageRequired">
+                  Size up to 10mb. Format: png, jpeg, gif.
+                </span>
+              </div>
 
-              <div class="form__menu hide_el ement after-upload">
-                <span class="upload__button upload__button_new">
-                  Upload New
-                </span>
-                <span class="remove__button">
-                  Remove
-                </span>
-              </div>
-              <span class="form__required after-upload" id="LargeImageRequired">
-                Size up to 10mb. Format: png, jpeg, gif.
-              </span>
-            </div>
-
-            <div class="form__item">
-              <label class="form__description">Post Card Image</label>
-              <div class="form__card-image-field image-field_empty">
-                <img class="card-image__preview card-image" src="/static/img/for_upload/short-image.jpg">
-                <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
-                  value="" tabindex="7">
-                <span class="upload__button upload__button_center">
-                  Upload
-                </span>
-              </div>
-              <div class="form__menu hide_el ement after-upload">
-                <span class="upload__button upload__button_new">
-                  Upload New
-                </span>
-                <span class="remove__button">
-                  Remove
+              <div class="form__item">
+                <label class="form__description">Post Card Image</label>
+                <div class="form__card-image-field image-field_empty">
+                  <img class="card-image__preview card-image" src="/static/img/for_upload/short-image.jpg">
+                  <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
+                    value="" tabindex="7">
+                  <label for="ShortImage" class="upload__button upload__button_center">
+                    Upload
+                  </label>
+                </div>
+                <div class="form__menu hide_el ement after-upload">
+                  <label for="ShortImage" class="upload__button upload__button_new">
+                    Upload New
+                  </label>
+                  <span class="remove__button">
+                    Remove
+                  </span>
+                </div>
+                <span class="form__required after-upload" id="ShortImageRequired">
+                  Size up to 10mb. Format: png, jpeg, gif.
                 </span>
               </div>
-              <span class="form__required after-upload" id="ShortImageRequired">
-                Size up to 10mb. Format: png, jpeg, gif.
-              </span>
-            </div>
           </form>
 
           <!--  PREVIEW page -->
