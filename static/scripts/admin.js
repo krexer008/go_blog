@@ -89,7 +89,6 @@ function fieldFileHandler(field, previewElements, key) {
         reader.onloadend = () => {
             imagBase64 = reader.result;
             dataMap.set(key, imagBase64);
-            alert(dataMap.get(key));
             updateImagePreviews(previewElements, dataMap.get(key));
         };
 
