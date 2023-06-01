@@ -73,7 +73,6 @@ function pageLoaded(e) {
 
 function fieldFileHandler(field, previewElements, key) {
     let required = requiredMap.get(key);
-    let imagBase64 = "";
 
     const removeButton = field.parentElement.querySelector('.remove__button');
     removeButton.addEventListener('click', () => {
@@ -83,29 +82,62 @@ function fieldFileHandler(field, previewElements, key) {
     });
 
     field.addEventListener('change', () => {
+        let imageBase64 = "";
         let file = field.files[0];
         let reader = new FileReader();
 
         reader.onloadend = () => {
-            imagBase64 = reader.result;
-            dataMap.set(key, imagBase64);
+            imageBase64 = reader.result;
+            dataMap.set(key, imageBase64);
             updateImagePreviews(previewElements, dataMap.get(key));
         };
 
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-        else {         
+        if (!file) {
             dataMap.set(key, "");
+            if (required) {
+                showEmptyFileFieldPrompt(field);
+            }
+            hideMenu(field);
             updateImagePreviews(previewElements, dataMap.get(key));
+        }
+        else {
+            reader.readAsDataURL(file);
         }
     });
 
 }
+
+function hideMenu(field) {
+    const formMenu = field.parentElement.querySelector('.form__menu');
+    formMenu.classList.add("hide_element");
+    showUpload(field);
+}
+
+function showUpload(field) {
+    const uploadButton = field.parentElement.querySelector('.upload');
+    uploadButton.classList.remove("hide_element");
+}
+
+function hideUpload(field) {
+    const uploadButton = field.parentElement.querySelector('.upload');
+    uploadButton.classList.add("hide_element");
+}
+
+function showEmptyFileFieldPrompt() {
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.remove('hide_element');
+}
+
+
 function updateImagePreviews(previewElements, content) {
     for (const previewElement of previewElements) {
         previewElement.src = content;
-
+        if (content === "") {
+            previewElement.classList.add('hide_element');
+        }
+        else {
+            previewElement.classList.remove('hide_element');
+        }
     }
 }
 
