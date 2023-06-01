@@ -6,6 +6,18 @@
     margin: 0;
 }
 
+*::placeholder {
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    color: #999999;
+}
+
+
+
 body {
     margin: 0 auto;
     width: 100%;
@@ -295,9 +307,6 @@ body {
     padding: 8px 8px 8px 4px;
 }
 
-
-/*Required*/
-
 .form__required {
     margin-top: 5px;
     font-family: "Oxygen", sans-serif;
@@ -343,16 +352,13 @@ body {
     border-radius: 50%;
 }
 
-.author-image__preview_button {
-    cursor: pointer;
-}
 
 .upload__image {
     display: none;
 }
 
-.upload__image-button-text {
-    display: block;
+.upload__button {
+    display: flex;
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 400;
@@ -360,63 +366,53 @@ body {
     line-height: 24px;
     /* identical to box height, or 150% */
     color: #2E2E2E;
+    cursor: pointer;
 }
 
-.remove__image-button-text {
-    display: block;
+
+.upload__button_center {
+    position: absolute;
+    top: calc(50% - 24px/2);
+    left: calc(50% - 85px/2 - 0.5px);
+    
+}
+
+.upload__button_new {
+    margin-right: 16px;
+}
+
+.remove__button {
+    display: flex;
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     /* identical to box height, or 150% */
-    color: #E86961;
+    color: #E86961;    
+    cursor: pointer;
+}
+
+.remove__button::before {
+    content: '';
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+    background-image: url("/static/img/admin/trash-2.png");
+    background-size: cover;
 }
 
 .form__menu {
     display: flex;
 }
 
-.form__image-upload {
-    display: flex;
-    cursor: pointer;
-}
-
-.form__image-upload_center {
-    position: absolute;
-    top: calc(50% - 24px/2);
-    left: calc(50% - 85px/2 - 0.5px);
-    display: flex;
-    cursor: pointer;
-}
-
-.form__image-upload-new {
-    margin-right: 16px;
-    display: flex;
-    cursor: pointer;
-}
-
-.form__image-upload-new::before,
-.form__image-upload_center::before {
+.upload__button_new::before,
+.upload__button_center::before {
     content: '';
     margin-right: 8px;
     width: 24px;
     height: 24px;
     background-image: url("/static/img/admin/camera.png");
-    background-size: cover;
-}
-
-.form__image-remove {
-    display: flex;
-    cursor: pointer;
-}
-
-.form__image-remove::before {
-    content: '';
-    margin-right: 8px;
-    width: 24px;
-    height: 24px;
-    background-image: url("/static/img/admin/trash-2.png");
     background-size: cover;
 }
 
@@ -730,18 +726,6 @@ body {
 
 .form__area_critical {
     border: 1px solid #E86961;
-}
-
-.form__area::placeholder {
-    font-family: 'Oxygen';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    /* or 150% */
-
-    text-align: justify;
-    color: #999999;
 }
 
 .hide_element {
