@@ -72,10 +72,10 @@ function pageLoaded(e) {
 
 function fieldFileHandler(field, previewElements, key) {
     let required = requiredMap.get(key);
-    const fieldUpload = field.parentElement.querySelector('.form__image-upload-new');
+    const fieldUpload = field.parentElement.querySelector('.upload__button');
 
-    formUpload.addEventListener('click', () => {
-        field.click();
+    fieldUpload.addEventListener('change', () => {
+        field.change();
     });
 
     const formRemove = field.parentElement.querySelector('.form__image-remove');
