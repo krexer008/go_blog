@@ -63,54 +63,43 @@ function pageLoaded(e) {
 
     const authorImagePreviews = document.querySelectorAll('.author-avatar');
     fieldFileHandler(authorImageField, authorImagePreviews, keyAuthorImage);
-    /*
-        const postImagePreviews = document.querySelectorAll('.post-image');
-        fieldFileHandler(largeImageField, postImagePreviews, keyLargeImage);
-    
-        const cardImagePreviews = document.querySelectorAll('.card-image');
-        fieldFileHandler(shortImageField, cardImagePreviews, keyShortImage);
-        */
+
+    const postImagePreviews = document.querySelectorAll('.post-image');
+    fieldFileHandler(largeImageField, postImagePreviews, keyLargeImage);
+
+    const cardImagePreviews = document.querySelectorAll('.card-image');
+    fieldFileHandler(shortImageField, cardImagePreviews, keyShortImage);
 };
 
 function fieldFileHandler(field, previewElements, key) {
     let required = requiredMap.get(key);
-    let previewSrc = "";
-    /*
-        const uploadButton = field.parentElement.querySelectorAll('.upload__button');
-    
-        uploadButton[0].addEventListener('click', () => {
-            field.click();
-        });
-        uploadButton[1].addEventListener('click', () => {
-            field.click();
-        });
-    */
+    let imagBase64 = "";
+
     const removeButton = field.parentElement.querySelector('.remove__button');
-    removeButton.addEventListener('click', () => {    
+    removeButton.addEventListener('click', () => {
         field.value = "";
-        previewSrc = "";
-        dataMap.set(key, previewSrc);        
         let eventChange = new Event('change');
         field.dispatchEvent(eventChange);
     });
 
     field.addEventListener('change', () => {
         let file = field.files[0];
-        let preview = field.parentElement.querySelector('.image__preview_el');        
         let reader = new FileReader();
+
         reader.onloadend = () => {
-            previewSrc = reader.result;
-            preview.src = previewSrc;
-            dataMap.set(key, previewSrc);
+            imagBase64 = reader.result;
+            dataMap.set(key, imagBase64);
+            alert(dataMap.get(key));
+            updateImagePreviews(previewElements, dataMap.get(key));
         };
+
         if (file) {
             reader.readAsDataURL(file);
         }
-        else {
-            preview.src = "";
-            dataMap.set(key, previewSrc);
+        else {         
+            dataMap.set(key, "");
+            updateImagePreviews(previewElements, dataMap.get(key));
         }
-        alert(previewSrc);
     });
 
 }

@@ -20,8 +20,8 @@
         <span class="header-title">author</span>
       </div>
       <div class="header_menu">
-        <div class="header_menu__item avatar avatar_default">
-          <img class="author-avatar" src="" />
+        <div class="header_menu__item avatar_default">
+          <img class="image__preview image__preview_icon author-avatar" src="" />
         </div>
         <a href="" class="header_menu__item logout">
           <img class="logout_icon" src="/static/img/admin/logout_invers.png" alt="logout">
@@ -80,7 +80,7 @@
                 <input class="upload__image" type="file" accept=".jpg, .png, .gif" value="" name="inputAuthorImage"
                   id="AuthorImage" accept=".jpg, .png, .gif" value="" tabindex="4">
                 <div class="author-image__preview">
-                  <img class="image__preview image__preview_icon author-avatar hide_ele ment image__preview_el" src="">
+                  <img class="image__preview image__preview_icon author-avatar" src="">
                 </div>
                 <label for="AuthorImage" class="upload__button">
                   Upload
@@ -110,50 +110,49 @@
 
             <div class="form__item">
               <label class="form__description">Post Page Image</label>
+              <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
+                value="" tabindex="6">
               <div class="form__post-image-field image-field_empty">
-                <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
-                  value="" tabindex="6">
-                <img class="post-image__preview post-image" src="/static/img/for_upload/large-image.jpg">
+                <img class="post-image__preview post-image" src="">
                 <label for="LargeImage" class="upload__button upload__button_center" id="upload-button">
                   Upload
                 </label>
-                </span>
-
-                <div class="form__menu hide_el ement after-upload">
-                  <label for="LargeImage" class="upload__button upload__button_new">
-                    Upload New
-                  </label>
-                  <span class="remove__button">
-                    Remove
-                  </span>
-                </div>
-                <span class="form__required after-upload" id="LargeImageRequired">
-                  Size up to 10mb. Format: png, jpeg, gif.
+              </div>
+              <div class="form__menu hide_el ement after-upload">
+                <label for="LargeImage" class="upload__button upload__button_new">
+                  Upload New
+                </label>
+                <span class="remove__button">
+                  Remove
                 </span>
               </div>
+              <span class="form__required after-upload" id="LargeImageRequired">
+                Size up to 10mb. Format: png, jpeg, gif.
+              </span>
+            </div>
 
-              <div class="form__item">
-                <label class="form__description">Post Card Image</label>
-                <div class="form__card-image-field image-field_empty">
-                  <img class="card-image__preview card-image" src="/static/img/for_upload/short-image.jpg">
-                  <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
-                    value="" tabindex="7">
-                  <label for="ShortImage" class="upload__button upload__button_center">
-                    Upload
-                  </label>
-                </div>
-                <div class="form__menu hide_el ement after-upload">
-                  <label for="ShortImage" class="upload__button upload__button_new">
-                    Upload New
-                  </label>
-                  <span class="remove__button">
-                    Remove
-                  </span>
-                </div>
-                <span class="form__required after-upload" id="ShortImageRequired">
-                  Size up to 10mb. Format: png, jpeg, gif.
+            <div class="form__item">
+              <label class="form__description">Post Card Image</label>
+              <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
+                value="" tabindex="7">
+              <div class="form__card-image-field image-field_empty">
+                <img class="post-image__preview card-image" src="">
+                <label for="ShortImage" class="upload__button upload__button_center">
+                  Upload
+                </label>
+              </div>
+              <div class="form__menu hide_el ement after-upload">
+                <label for="ShortImage" class="upload__button upload__button_new">
+                  Upload New
+                </label>
+                <span class="remove__button">
+                  Remove
                 </span>
               </div>
+              <span class="form__required after-upload" id="ShortImageRequired">
+                Size up to 10mb. Format: png, jpeg, gif.
+              </span>
+            </div>
           </form>
 
           <!--  PREVIEW page -->
@@ -175,7 +174,7 @@
                     Please, enter any description
                   </div>
                   <div class="preview__page-image">
-                    <img class="preview_image post-image hide_element" src="">
+                    <img class="preview_image post-image" src="">
                   </div>
                 </div>
               </div>
@@ -190,7 +189,7 @@
               <div class="preview__wrap preview__wrap_post-card">
                 <div class="preview__post-card">
                   <div class="preview__post-card-image">
-                    <img class="preview_image card-image hide_element" src="">
+                    <img class="preview_image card-image" src="">
                   </div>
                   <div class="preview__post-card-title preview__title" id="previewPostCardTitle">
                     New Post
@@ -200,7 +199,7 @@
                   </div>
                   <div class="preview__post-card-info">
                     <div class="preview__post-card-author-avatar">
-                      <img class="image__preview image__preview_icon author-avatar hide_element" src="" />
+                      <img class="image__preview image__preview_icon author-avatar hide_elem ent" src="" />
                     </div>
                     <span class="preview__post-card-author preview__authorname" id="previewAuthorName">Enter author
                       name</span>
