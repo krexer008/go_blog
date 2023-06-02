@@ -79,13 +79,13 @@
               <input class="upload__image" type="file" accept=".jpg, .png, .gif" value="" name="inputAuthorImage"
                 id="AuthorImage" accept=".jpg, .png, .gif" value="" tabindex="4">
               <div class="author-image">
-                <div class="author-image__preview">
+                <div class="author-image__preview form__preview">
                   <img class="image__preview image__preview_icon author-avatar hide_element" src="">
                 </div>
                 <label for="AuthorImage" class="upload__button upload">
                   Upload
                 </label>
-                <div class="form__menu">
+                <div class="form__menu hide_element">
                   <label for="AuthorImage" class="upload__button upload__button_new">
                     Upload New
                   </label>
@@ -93,9 +93,9 @@
                     Remove
                   </span>
                 </div>
-              </div>
-              <span class="form__required after-upload" id="AuthorImageRequired">
-                Size up to 10mb. Format: png, jpeg, gif.
+              </div>              
+              <span class="form__limit after-upload" id="AuthorImageLimit">
+                Size up to 1 mb. Format: png, jpeg, gif.
               </span>
             </div>
 
@@ -112,13 +112,13 @@
               <label class="form__description">Post Page Image</label>
               <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
                 value="" tabindex="6">
-              <div class="form__post-image-field image-field_empty">
-                <img class="post-image__preview post-image hide_element" src="">
+              <div class="form__post-image-field image-field_empty form__preview">
+                <img class="preview-image post-image__preview post-image hide_element" src="">
                 <label for="LargeImage" class="upload__button upload__button_center upload" id="upload-button">
                   Upload
                 </label>
               </div>
-              <div class="form__menu hide_el ement after-upload">
+              <div class="form__menu hide_element after-upload">
                 <label for="LargeImage" class="upload__button upload__button_new">
                   Upload New
                 </label>
@@ -126,8 +126,8 @@
                   Remove
                 </span>
               </div>
-              <span class="form__required after-upload" id="LargeImageRequired">
-                Size up to 10mb. Format: png, jpeg, gif.
+              <span class="form__limit after-upload" id="LargeImageLimit">
+                Size up to 10 mb. Format: png, jpeg, gif.
               </span>
             </div>
 
@@ -135,13 +135,13 @@
               <label class="form__description">Post Card Image</label>
               <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
                 value="" tabindex="7">
-              <div class="form__card-image-field image-field_empty">
+              <div class="form__card-image-field image-field_empty form__preview">
                 <img class="post-image__preview card-image hide_element" src="">
                 <label for="ShortImage" class="upload__button upload__button_center upload">
                   Upload
                 </label>
               </div>
-              <div class="form__menu hide_el ement after-upload">
+              <div class="form__menu hide_element after-upload">
                 <label for="ShortImage" class="upload__button upload__button_new">
                   Upload New
                 </label>
@@ -149,8 +149,8 @@
                   Remove
                 </span>
               </div>
-              <span class="form__required after-upload" id="ShortImageRequired">
-                Size up to 10mb. Format: png, jpeg, gif.
+              <span class="form__limit after-upload" id="ShortImageLimit">
+                Size up to 5 mb. Format: png, jpeg, gif.
               </span>
             </div>
           </form>

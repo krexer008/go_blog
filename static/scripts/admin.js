@@ -34,6 +34,10 @@ const requiredMap = new Map([
     [keyContent, required],
 ])
 
+const maxAvatarSize = 1 * 1024 * 1024;
+const maxShortImageSize = 10 * 1024 * 1024;
+const maxLargeImageSize = 5 * 1024 * 1024;
+
 window.addEventListener('load', pageLoaded);
 
 const titleField = document.getElementById(keyTitle);
@@ -62,19 +66,19 @@ function pageLoaded(e) {
     areaTextHandler(contentField, keyContent);
 
     const authorImagePreviews = document.querySelectorAll('.author-avatar');
-    fieldFileHandler(authorImageField, authorImagePreviews, keyAuthorImage);
+    fieldFileHandler(authorImageField, maxAvatarSize, authorImagePreviews, keyAuthorImage);
 
     const postImagePreviews = document.querySelectorAll('.post-image');
-    fieldFileHandler(largeImageField, postImagePreviews, keyLargeImage);
+    fieldFileHandler(largeImageField, maxLargeImageSize, postImagePreviews, keyLargeImage);
 
     const cardImagePreviews = document.querySelectorAll('.card-image');
-    fieldFileHandler(shortImageField, cardImagePreviews, keyShortImage);
+    fieldFileHandler(shortImageField, maxShortImageSize, cardImagePreviews, keyShortImage);
 };
 
-function fieldFileHandler(field, previewElements, key) {
+function fieldFileHandler(field, limit, previewElements, key) {
     let required = requiredMap.get(key);
-
     const removeButton = field.parentElement.querySelector('.remove__button');
+   
     removeButton.addEventListener('click', () => {
         field.value = "";
         let eventChange = new Event('change');
@@ -84,15 +88,10 @@ function fieldFileHandler(field, previewElements, key) {
     field.addEventListener('change', () => {
         let imageBase64 = "";
         let file = field.files[0];
+
         let reader = new FileReader();
 
-        reader.onloadend = () => {
-            imageBase64 = reader.result;
-            dataMap.set(key, imageBase64);
-            updateImagePreviews(previewElements, dataMap.get(key));
-        };
-
-        if (!file) {
+        if (field.value ==="") {
             dataMap.set(key, "");
             if (required) {
                 showEmptyFileFieldPrompt(field);
@@ -101,16 +100,43 @@ function fieldFileHandler(field, previewElements, key) {
             updateImagePreviews(previewElements, dataMap.get(key));
         }
         else {
-            reader.readAsDataURL(file);
+            if (file.size > limit) {
+                if (required) {
+                    showEmptyFileFieldPrompt(field);
+                }
+                showLimitError(field);
+                showMenu(field);
+            } else {
+                reader.onloadend = () => {
+                    imageBase64 = reader.result;
+                    dataMap.set(key, imageBase64);
+                    showMenu(field);
+                    updateImagePreviews(previewElements, dataMap.get(key));
+                }
+                reader.onerror = (e) => {
+                    console.log("Error in event: " + e);
+                    alert("File reading error!");
+                }
+                reader.readAsDataURL(file);
+                if (required) {
+                    showCompleteFileFieldPrompt(field);
+                }
+                hideLimitError(field);
+                hideLimit(field);
+            }
         }
     });
-
 }
 
 function hideMenu(field) {
     const formMenu = field.parentElement.querySelector('.form__menu');
     formMenu.classList.add("hide_element");
     showUpload(field);
+}
+function showMenu(field) {
+    const formMenu = field.parentElement.querySelector('.form__menu');
+    formMenu.classList.remove("hide_element");
+    hideUpload(field);
 }
 
 function showUpload(field) {
@@ -123,9 +149,40 @@ function hideUpload(field) {
     uploadButton.classList.add("hide_element");
 }
 
-function showEmptyFileFieldPrompt() {
+function showEmptyFileFieldPrompt(field) {
     const reqPrompt = field.parentElement.querySelector('.form__required');
     reqPrompt.classList.remove('hide_element');
+    const formImage = field.parentElement.querySelector('.form__preview');
+    formImage.classList.add('image-field_empty');
+}
+
+function showCompleteFileFieldPrompt(field) {
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.add('hide_element');
+    const formImage = field.parentElement.querySelector('.form__preview');
+    formImage.classList.remove(image - field_empty);
+}
+
+function showLimitError(field) {
+    showLimit(field);
+    const reqPrompt = field.parentElement.querySelector('.form__limit');
+    reqPrompt.classList.add('form__limit_critical');
+}
+
+function hideLimitError(field) {
+    showLimit(field);
+    const reqPrompt = field.parentElement.querySelector('.form__limit');
+    reqPrompt.classList.remove('form__limit_critical');
+}
+
+function showLimit(field) {
+    const reqPrompt = field.parentElement.querySelector('.form__limit');
+    reqPrompt.classList.remove('hide_element');
+}
+
+function hideLimit(field) {
+    const reqPrompt = field.parentElement.querySelector('.form__limit');
+    reqPrompt.classList.add('hide_element');
 }
 
 
