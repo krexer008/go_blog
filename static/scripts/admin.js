@@ -27,7 +27,7 @@ const requiredMap = new Map([
     [keyTitle, required],
     [keySubtitle, required],
     [keyAuthorName, unRequired],
-    [keyAuthorImage, unRequired],
+    [keyAuthorImage, required],
     [keyPublishDate, required],
     [keyLargeImage, required],
     [keyShortImage, required],
@@ -77,8 +77,8 @@ function pageLoaded(e) {
 
 function fieldFileHandler(field, limit, previewElements, key) {
     let required = requiredMap.get(key);
+
     const removeButton = field.parentElement.querySelector('.remove__button');
-   
     removeButton.addEventListener('click', () => {
         field.value = "";
         let eventChange = new Event('change');
@@ -86,29 +86,30 @@ function fieldFileHandler(field, limit, previewElements, key) {
     });
 
     field.addEventListener('change', () => {
-        let imageBase64 = "";
+
         let file = field.files[0];
+        
 
-        let reader = new FileReader();
-
-        if (field.value ==="") {
+        if (field.value === "") {
             dataMap.set(key, "");
             if (required) {
                 showEmptyFileFieldPrompt(field);
             }
             hideMenu(field);
+            hideLimitError(field);
+            let imageBase64 = "";
             updateImagePreviews(previewElements, dataMap.get(key));
-        }
-        else {
-            if (file.size > limit) {
+        } else {
+            if (field.files[0].size > limit) {
                 if (required) {
                     showEmptyFileFieldPrompt(field);
                 }
                 showLimitError(field);
                 showMenu(field);
-            } else {
+            } else {     
+                let reader = new FileReader();                
                 reader.onloadend = () => {
-                    imageBase64 = reader.result;
+                    let imageBase64 = reader.result;
                     dataMap.set(key, imageBase64);
                     showMenu(field);
                     updateImagePreviews(previewElements, dataMap.get(key));
