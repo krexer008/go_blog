@@ -151,15 +151,15 @@ function hideUpload(field) {
 }
 
 function showEmptyFileFieldPrompt(field) {
-    const reqPrompt = field.parentElement.querySelector('.form__required');
-    reqPrompt.classList.remove('hide_element');
+    //const reqPrompt = field.parentElement.querySelector('.form__required');
+    //reqPrompt.classList.remove('hide_element');
     const formImage = field.parentElement.querySelector('.form__preview');
     formImage.classList.add('image-field_empty');
 }
 
 function showCompleteFileFieldPrompt(field) {
-    const reqPrompt = field.parentElement.querySelector('.form__required');
-    reqPrompt.classList.add('hide_element');
+    //const reqPrompt = field.parentElement.querySelector('.form__required');
+    //reqPrompt.classList.add('hide_element');
     const formImage = field.parentElement.querySelector('.form__preview');
     formImage.classList.remove(image - field_empty);
 }

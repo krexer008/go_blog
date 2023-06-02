@@ -82,9 +82,7 @@ body {
     background: url("/static/img/admin/avatar.png");
 }
 
-.avatar{
-
-}
+.avatar {}
 
 .logout {
     width: 40px;
@@ -345,10 +343,9 @@ body {
     width: 48px;
     min-width: 48px;
     height: 48px;
-    background-color: #F7F7F7;
     background: url(/static/img/admin/camera.png) no-repeat center;
     border-radius: 50%;
-    border: 1px dashed #D3D3D3;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -392,7 +389,7 @@ body {
     position: absolute;
     top: calc(50% - 24px/2);
     left: calc(50% - 85px/2 - 0.5px);
-    
+
 }
 
 .upload__button_new {
@@ -407,7 +404,7 @@ body {
     font-size: 16px;
     line-height: 24px;
     /* identical to box height, or 150% */
-    color: #E86961;    
+    color: #E86961;
     cursor: pointer;
 }
 
@@ -438,6 +435,7 @@ body {
     position: relative;
     width: 560px;
     height: 160px;
+    border-radius: 6px;    
 }
 
 .post-image__preview {
@@ -451,7 +449,6 @@ body {
 .image-field_empty {
     background: #F7F7F7;
     border: 1px dashed #D3D3D3;
-    border-radius: 6px;
 }
 
 .after-upload {
