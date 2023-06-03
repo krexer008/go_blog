@@ -26,8 +26,8 @@ const unRequired = false;
 const requiredMap = new Map([
     [keyTitle, required],
     [keySubtitle, required],
-    [keyAuthorName, unRequired],
-    [keyAuthorImage, required],
+    [keyAuthorName, required],
+    [keyAuthorImage, unRequired],
     [keyPublishDate, required],
     [keyLargeImage, required],
     [keyShortImage, required],
@@ -73,7 +73,79 @@ function pageLoaded(e) {
 
     const cardImagePreviews = document.querySelectorAll('.card-image');
     fieldFileHandler(shortImageField, maxShortImageSize, cardImagePreviews, keyShortImage);
+
+    let eventFocus = new Event('focus');
+    titleField.dispatchEvent(eventFocus);
+
+    const publishButton = document.querySelector('#publishButton');
+    publishButton.addEventListener('click', sendForm);
 };
+
+
+async function sendForm(e) {
+    const main = document.querySelector('main');
+    main.classList.add('_sending');
+    let errors = formValidate();
+    if (errors) {
+        showErrorBar();
+        main.classList.remove('_sending');
+    } else {
+        let date = new Date(dataMap.get(keyPublishDate)); // получить дату
+        let dateString = date.toLocaleDateString('en-US'); // записать в строку по стандарту
+
+        let jsonData = {
+            Title: dataMap.get(keyTitle),
+            Subtitle: dataMap.get(keySubtitle),
+            AuthorName: dataMap.get(keyAuthorName),
+            AuthorImage: dataMap.get(keyAuthorImage),
+            AuthorImageName: (dataMap.get(keyAuthorImage) === "") ? "" : authorImageField.files[0].name,
+            PublishDate: dateString,
+            LargeImage: dataMap.get(keyLargeImage),
+            LargeImageName: largeImageField.files[0].name,
+            ShortImage: dataMap.get(keyShortImage),
+            ShortImageName: shortImageField.files[0].name,
+            Content: dataMap.get(keyContent)
+        }
+
+        console.log(jsonData);
+
+
+
+    }
+}
+
+function formValidate() {
+    let errors = 0;
+    let eventChange = new Event('change');
+    let eventKeyUp = new Event('keyup');
+    requiredMap.forEach(fieldValidate);
+    function fieldValidate(required, key){
+        if (required) {
+            if (!dataMap.get(key)){
+            const field = document.getElementById(key);
+            field.dispatchEvent(eventChange);
+            field.dispatchEvent(eventKeyUp);
+            errors++;
+            }
+        }
+    }
+    return errors;
+}
+
+function showSuccessBar() {
+    let successBar = document.querySelector('.status__success');
+    successBar.classList.remove('hide_element');
+    let errorBar = document.querySelector('.status__error');
+    errorBar.classList.add('hide_element');
+}
+
+function showErrorBar() {
+    let errorBar = document.querySelector('.status__error');
+    errorBar.classList.remove('hide_element');
+    let successBar = document.querySelector('.status__success');
+    successBar.classList.add('hide_element');
+}
+
 
 function fieldFileHandler(field, limit, previewElements, key) {
     let required = requiredMap.get(key);
