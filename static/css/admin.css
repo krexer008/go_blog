@@ -82,8 +82,6 @@ body {
     background: url("/static/img/admin/avatar.png");
 }
 
-.avatar {}
-
 .logout {
     width: 40px;
     height: 40px;
@@ -459,6 +457,7 @@ body {
     position: relative;
     width: 296px;
     height: 150px;
+    border-radius: 6px;
 }
 
 /* Preview */

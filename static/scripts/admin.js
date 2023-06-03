@@ -77,19 +77,14 @@ function pageLoaded(e) {
 
 function fieldFileHandler(field, limit, previewElements, key) {
     let required = requiredMap.get(key);
-
     const removeButton = field.parentElement.querySelector('.remove__button');
     removeButton.addEventListener('click', () => {
         field.value = "";
         let eventChange = new Event('change');
         field.dispatchEvent(eventChange);
     });
-
     field.addEventListener('change', () => {
-
         let file = field.files[0];
-        
-
         if (field.value === "") {
             dataMap.set(key, "");
             if (required) {
@@ -106,8 +101,8 @@ function fieldFileHandler(field, limit, previewElements, key) {
                 }
                 showLimitError(field);
                 showMenu(field);
-            } else {     
-                let reader = new FileReader();                
+            } else {
+                let reader = new FileReader();
                 reader.onloadend = () => {
                     let imageBase64 = reader.result;
                     dataMap.set(key, imageBase64);
@@ -134,6 +129,7 @@ function hideMenu(field) {
     formMenu.classList.add("hide_element");
     showUpload(field);
 }
+
 function showMenu(field) {
     const formMenu = field.parentElement.querySelector('.form__menu');
     formMenu.classList.remove("hide_element");
@@ -161,7 +157,7 @@ function showCompleteFileFieldPrompt(field) {
     //const reqPrompt = field.parentElement.querySelector('.form__required');
     //reqPrompt.classList.add('hide_element');
     const formImage = field.parentElement.querySelector('.form__preview');
-    formImage.classList.remove(image - field_empty);
+    formImage.classList.remove('image-field_empty');
 }
 
 function showLimitError(field) {
@@ -199,14 +195,6 @@ function updateImagePreviews(previewElements, content) {
     }
 }
 
-/*
-function showEmptyFileField(field) {
-    const reqPrompt = field.parentElement.querySelector('.form__required');
-    const formmPreview = field.parentElement.querySelector('.');
-    reqPrompt.classList.remove("hide_element");
-    field.classList.remove("form__field_full");
-}
-*/
 function fieldTextHandler(field, previewElements, key) {
     let required = requiredMap.get(key);
 
