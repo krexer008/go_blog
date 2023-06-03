@@ -23,7 +23,7 @@
         <div class="header_menu__item avatar_default">
           <img class="image__preview image__preview_icon author-avatar hide_element" src="" />
         </div>
-        <div class="header_menu__item logout">
+        <div class="header_menu__item logout" id="logout">
           <img class="logout_icon" src="/static/img/admin/logout_invers.png" alt="logout">
         </div>
       </div>
@@ -53,7 +53,7 @@
             <div class="form__item" for="Title">
               <label class="form__description" for="Title">Title</label>
               <input class="form__field" id="Title" type="text" value="" tabindex="1" autofocus>
-              <span class="form__required form__required_critical" id="TitleRequired">
+              <span class="form__required" id="TitleRequired">
                 Title is required.
               </span>
             </div>
@@ -61,7 +61,7 @@
             <div class="form__item">
               <label class="form__description" for="Subtitle">Subtitle</label>
               <input class="form__field" id="Subtitle" name="subtitle" type="text" value="" autofocus tabindex="2">
-              <span class="form__required form__required_critical" id="SubtitleRequired">
+              <span class="form__required" id="SubtitleRequired">
                 Subitle is required.
               </span>
             </div>
@@ -69,7 +69,7 @@
             <div class="form__item">
               <label class="form__description" for="AuthorName">Author name</label>
               <input class="form__field" id="AuthorName" name="name" type="text" value="" tabindex="3">
-              <span class="form__required " id="AuthorNameRequired">
+              <span class="form__required" id="AuthorNameRequired">
                 Author name is required.
               </span>
             </div>
@@ -94,21 +94,15 @@
                   </span>
                 </div>
               </div>
-              <!--
-              <span class="form__required hide_element after-upload" id="LargeImageRequired">
-                Author photo is required.
-              </span>
-              -->
               <span class="form__limit after-upload" id="AuthorImageLimit">
                 Size up to 1 mb. Format: png, jpeg, gif.
               </span>
             </div>
-
             <div class="form__item">
               <label class="form__description">Publish Date</label>
               <input class="form__field form__field_publish-date" type="date" value="" tabindex="5" id="PublishDate"
                 min="2023-05-01" max="2100-12-31">
-              <span class="form__required form__required_critical" id="PublishDateRequired">
+              <span class="form__required" id="PublishDateRequired">
                 This date will be in card
               </span>
             </div>
@@ -131,11 +125,6 @@
                   Remove
                 </span>
               </div>
-              <!--
-              <span class="form__required hide_element after-upload" id="LargeImageRequired">
-                Post page Image is required.
-              </span>
-              -->
               <span class="form__limit after-upload" id="LargeImageLimit">
                 Size up to 10 mb. Format: png, jpeg, gif.
               </span>
@@ -159,11 +148,6 @@
                   Remove
                 </span>
               </div>
-              <!--
-              <span class="form__required hide_element after-upload" id="ShortImageRequired">
-                Post card image is required.
-              </span>
-              -->
               <span class="form__limit after-upload" id="ShortImageLimit">
                 Size up to 5 mb. Format: png, jpeg, gif.
               </span>
@@ -237,7 +221,7 @@
             <label class="form__description">Post content (plain text)</label>
             <textarea class="form__area" name="content" id="Content" type="text"
               placeholder="Type anything you want ..." tabindex="8"></textarea>
-            <span class="form__required form__required_critical" id="Content_required">
+            <span class="form__required" id="Content_required">
               Post content is required.
             </span>
           </div>

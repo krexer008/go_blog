@@ -342,7 +342,7 @@ body {
     width: 48px;
     min-width: 48px;
     height: 48px;
-    background: url(/static/img/admin/camera.png) no-repeat center;
+    background:#F7F7F7 url(/static/img/admin/camera.png) no-repeat center;
     border-radius: 50%;
 
     display: flex;
@@ -434,7 +434,8 @@ body {
     position: relative;
     width: 560px;
     height: 160px;
-    border-radius: 6px;    
+    border-radius: 6px;  
+    background: #F7F7F7;  
 }
 
 .post-image__preview {
@@ -446,7 +447,6 @@ body {
 }
 
 .image-field_empty {
-    background: #F7F7F7;
     border: 1px dashed #D3D3D3;
 }
 
@@ -459,6 +459,7 @@ body {
     width: 296px;
     height: 150px;
     border-radius: 6px;
+    background: #F7F7F7
 }
 
 /* Preview */

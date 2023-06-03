@@ -35,8 +35,8 @@ const requiredMap = new Map([
 ])
 
 const maxAvatarSize = 1 * 1024 * 1024;
-const maxShortImageSize = 10 * 1024 * 1024;
-const maxLargeImageSize = 5 * 1024 * 1024;
+const maxShortImageSize = 1 * 1024 * 1024;
+const maxLargeImageSize = 1 * 1024 * 1024;
 
 window.addEventListener('load', pageLoaded);
 
@@ -50,10 +50,10 @@ const shortImageField = document.getElementById(keyShortImage);
 const contentField = document.getElementById(keyContent);
 
 function pageLoaded(e) {
-
-    const exit = document.querySelector();
-    exit.addEventListener('click', logOut);
-
+    /*
+        const exit = document.querySelector('#logout');
+        exit.addEventListener('click', logOut);
+    */
     const titlePreviews = document.querySelectorAll('.preview__title');
     fieldTextHandler(titleField, titlePreviews, keyTitle);
 
@@ -83,8 +83,14 @@ function pageLoaded(e) {
     const publishButton = document.querySelector('#publishButton');
     publishButton.addEventListener('click', sendForm);
 };
-
-
+/*
+function logOut(e) {
+    const response = await fetch('/logout');
+    if (response.ok) {
+        window.location.href = response.url;
+    }
+}
+*/
 async function sendForm(e) {
     let errors = formValidate();
     if (errors) {
@@ -108,18 +114,18 @@ async function sendForm(e) {
         }
 
         console.log(jsonData);
-
-        let response = await fetch('/api/post', {
-            method: 'POST',
-            body: JSON.stringify(jsonData)
-        });
-
-        if (response.ok) {
-            showSuccessBar();
-        } else {
-            showErrorBar();
-        }
-
+        /*
+                let response = await fetch('/api/post', {
+                    method: 'POST',
+                    body: JSON.stringify(jsonData)
+                });
+        
+                if (response.ok) {
+                    showSuccessBar();
+                } else {
+                    showErrorBar();
+                }
+        */
     }
 }
 
@@ -135,6 +141,10 @@ function formValidate() {
                 field.dispatchEvent(eventChange);
                 field.dispatchEvent(eventKeyUp);
                 errors++;
+                const formRequired = field.parentElement.querySelector('form__required');
+                formRequired.classList.add('form__required_critical');
+                const formLimit = field.parentElement.querySelector('form__required');
+                formLimit.classList.add('form__limit_critical');
             }
         }
     }
@@ -155,19 +165,20 @@ function showErrorBar() {
     successBar.classList.add('hide_element');
 }
 
-
 function fieldFileHandler(field, limit, previewElements, key) {
     let required = requiredMap.get(key);
+
     const removeButton = field.parentElement.querySelector('.remove__button');
     removeButton.addEventListener('click', () => {
         field.value = "";
+        dataMap.set(key, "");
         let eventChange = new Event('change');
         field.dispatchEvent(eventChange);
     });
+
     field.addEventListener('change', () => {
         let file = field.files[0];
         if (field.value === "") {
-            dataMap.set(key, "");
             if (required) {
                 showEmptyFileFieldPrompt(field);
             }
@@ -181,7 +192,9 @@ function fieldFileHandler(field, limit, previewElements, key) {
                     showEmptyFileFieldPrompt(field);
                 }
                 showLimitError(field);
-                showMenu(field);
+                if (dataMap.get(key) === "") {
+                    hideMenu(field);
+                }
             } else {
                 let reader = new FileReader();
                 reader.onloadend = () => {
@@ -195,6 +208,7 @@ function fieldFileHandler(field, limit, previewElements, key) {
                     alert("File reading error!");
                 }
                 reader.readAsDataURL(file);
+                showCompleteFileFieldPrompt(field);
                 if (required) {
                     showCompleteFileFieldPrompt(field);
                 }
@@ -228,15 +242,12 @@ function hideUpload(field) {
 }
 
 function showEmptyFileFieldPrompt(field) {
-    //const reqPrompt = field.parentElement.querySelector('.form__required');
-    //reqPrompt.classList.remove('hide_element');
     const formImage = field.parentElement.querySelector('.form__preview');
     formImage.classList.add('image-field_empty');
 }
 
 function showCompleteFileFieldPrompt(field) {
-    //const reqPrompt = field.parentElement.querySelector('.form__required');
-    //reqPrompt.classList.add('hide_element');
+    hideLimit(field);
     const formImage = field.parentElement.querySelector('.form__preview');
     formImage.classList.remove('image-field_empty');
 }
