@@ -136,7 +136,7 @@ function formValidate() {
     requiredMap.forEach(fieldValidate);
     function fieldValidate(required, key) {
         if (required) {
-            if (!dataMap.get(key)) {
+            if (dataMap.get(key) === "") {
                 const field = document.getElementById(key);
                 field.dispatchEvent(eventChange);
                 field.dispatchEvent(eventKeyUp);
