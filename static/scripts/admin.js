@@ -51,6 +51,9 @@ const contentField = document.getElementById(keyContent);
 
 function pageLoaded(e) {
 
+    const exit = document.querySelector();
+    exit.addEventListener('click', logOut);
+
     const titlePreviews = document.querySelectorAll('.preview__title');
     fieldTextHandler(titleField, titlePreviews, keyTitle);
 
@@ -83,12 +86,9 @@ function pageLoaded(e) {
 
 
 async function sendForm(e) {
-    const main = document.querySelector('main');
-    main.classList.add('_sending');
     let errors = formValidate();
     if (errors) {
         showErrorBar();
-        main.classList.remove('_sending');
     } else {
         let date = new Date(dataMap.get(keyPublishDate)); // получить дату
         let dateString = date.toLocaleDateString('en-US'); // записать в строку по стандарту
@@ -109,8 +109,16 @@ async function sendForm(e) {
 
         console.log(jsonData);
 
-        let request = fetch(url);
+        let response = await fetch('/api/post', {
+            method: 'POST',
+            body: JSON.stringify(jsonData)
+        });
 
+        if (response.ok) {
+            showSuccessBar();
+        } else {
+            showErrorBar();
+        }
 
     }
 }
@@ -120,13 +128,13 @@ function formValidate() {
     let eventChange = new Event('change');
     let eventKeyUp = new Event('keyup');
     requiredMap.forEach(fieldValidate);
-    function fieldValidate(required, key){
+    function fieldValidate(required, key) {
         if (required) {
-            if (!dataMap.get(key)){
-            const field = document.getElementById(key);
-            field.dispatchEvent(eventChange);
-            field.dispatchEvent(eventKeyUp);
-            errors++;
+            if (!dataMap.get(key)) {
+                const field = document.getElementById(key);
+                field.dispatchEvent(eventChange);
+                field.dispatchEvent(eventKeyUp);
+                errors++;
             }
         }
     }

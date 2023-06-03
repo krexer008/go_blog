@@ -93,6 +93,7 @@ body {
 .logout_icon {
     width: 24px;
     height: 24px;
+    background: url('/static/img/admin/logout_invers.png');
 }
 
 .main {
