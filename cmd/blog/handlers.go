@@ -188,7 +188,8 @@ const queri
 
 
 	const query = `
-	INSERT INTO post
+	INSERT INTO
+	` + "`posts`" + `
 	(
 		title,
 		subtitle,
