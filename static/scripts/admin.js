@@ -29,14 +29,14 @@ const requiredMap = new Map([
     [keyAuthorName, required],
     [keyAuthorImage, unRequired],
     [keyPublishDate, required],
-    [keyLargeImage, required],
-    [keyShortImage, required],
+    [keyLargeImage, unRequired],
+    [keyShortImage, unRequired],
     [keyContent, required],
 ])
 
 const maxAvatarSize = 1 * 1024 * 1024;
-const maxShortImageSize = 1 * 1024 * 1024;
-const maxLargeImageSize = 1 * 1024 * 1024;
+const maxLargeImageSize = 10 * 1024 * 1024;
+const maxShortImageSize = 5 * 1024 * 1024;
 
 window.addEventListener('load', pageLoaded);
 
@@ -108,9 +108,9 @@ async function sendForm(e) {
             AuthorImageName: (dataMap.get(keyAuthorImage) === "") ? "" : authorImageField.files[0].name,
             PublishDate: dateString,
             LargeImage: dataMap.get(keyLargeImage),
-            LargeImageName: largeImageField.files[0].name,
+            LargeImageName: (dataMap.get(keyLargeImage) === "") ? "" : largeImageField.files[0].name,
             ShortImage: dataMap.get(keyShortImage),
-            ShortImageName: shortImageField.files[0].name,
+            ShortImageName: (dataMap.get(keyShortImage) === "") ? "" : shortImageField.files[0].name,
             Content: dataMap.get(keyContent)
         }
 

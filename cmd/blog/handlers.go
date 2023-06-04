@@ -46,16 +46,16 @@ type indexPagePostData struct { //indexPagePostData
 
 type createPostDataType struct {
 	Title           string `json: "title"`
-	Subtitle        string `json: "Title"`
-	AuthorName      string `json: "Title"`
-	AuthorImage     string `json: "Title"`
-	AuthorImageName string `json: "Title"`
-	PublishDate     string `json: "Title"`
-	LargeImage      string `json: "Title"`
-	LargeImageName  string `json: "Title"`
-	ShortImage      string `json: "Title"`
-	ShortImageName  string `json: "Title"`
-	Content         string `json: "Title"`
+	Subtitle        string `json: "Subtitle"`
+	AuthorName      string `json: "AuthorName"`
+	AuthorImage     string `json: "AuthorImage"`
+	AuthorImageName string `json: "AuthorImageName"`
+	PublishDate     string `json: "PublishDate"`
+	LargeImage      string `json: "LargeImage"`
+	LargeImageName  string `json: "LargeImageName"`
+	ShortImage      string `json: "ShortImage"`
+	ShortImageName  string `json: "ShortImageName"`
+	Content         string `json: "Content"`
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -179,6 +179,41 @@ func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 		}
 		log.Println("Request completed succesfully")
 	}
+}
+
+func savePost(db *sqlx.DB, req createPostDataType) error {
+const queri
+
+
+
+
+	const query = `
+	INSERT INTO post
+	(
+		title,
+		subtitle,
+		category,
+		image_url,
+		author_id,
+		publish_date,
+		content,
+		featured
+	)
+	VALUES
+	(?, ?, ?, ?, ?, ?, ?, ?)
+	`
+
+	db.Exec(query,
+		req.Title,
+		req.Subtitle,
+		"",
+		req.LargeImage,
+		authorId,
+		req.PublishDate,
+		req.Content,
+		1
+	)
+
 }
 
 // Возвращаем не просто []indexPagePostData, а []*indexPagePostData - так у нас получится подставить PostURL в структуре
