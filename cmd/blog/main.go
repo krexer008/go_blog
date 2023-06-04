@@ -29,21 +29,20 @@ func main() {
 
 	dbx := sqlx.NewDb(db, dbDriverName) // Расширяем стандартный клиент к базе
 
-	// Обязательно подключить github.com/gorilla/mux в импортах
 	mux := mux.NewRouter()
 	mux.HandleFunc("/home", index(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
+	mux.HandleFunc("/post/{postID}", post(dbx))
+	//mux.HandleFunc("/login", loginPage(dbx))
+	//mux.HandleFunc("/api/login", authorizationLogin(dbx)).Methods(http.MethodPost)
 
-	// Обязательно подключить github.com/gorilla/mux в импортах
+	mux.HandleFunc("/admin", admin(dbx))
+	mux.HandleFunc("/api/post", createPost(dbx)).Methods(http.MethodPost)
 
-	mux.HandleFunc("/admin", admin(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
+	//mux.HandleFunc("/logOut", createPost(dbx))
 
 	// Указывем postID поста в URL для перехода на конкретный пост
-	mux.HandleFunc("/post/{postID}", post(dbx))
 
 	// Реализуем отдачу статики
-	/*
-		mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-	*/
 	mux.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	log.Println("Start server" + port)
@@ -53,7 +52,6 @@ func main() {
 	}
 }
 
-func openDB() (*sql.DB, error) {
-	// Здесь прописываем соединение к базе данных
+func openDB() (*sql.DB, error) { // Здесь прописываем соединение к базе данных
 	return sql.Open(dbDriverName, USER+":"+PASS+"@tcp("+HOST+":"+PORT+")/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
 }

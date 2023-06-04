@@ -115,7 +115,6 @@ async function sendForm(e) {
         }
 
         console.log(jsonData);
-        /*
                 let response = await fetch('/api/post', {
                     method: 'POST',
                     body: JSON.stringify(jsonData)
@@ -126,7 +125,6 @@ async function sendForm(e) {
                 } else {
                     showErrorBar();
                 }
-        */
     }
 }
 

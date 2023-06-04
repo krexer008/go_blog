@@ -2,7 +2,9 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"html/template" // Модуль отвечает за шаблонизацию html страниц
+	"io"
 	"log"
 	"net/http"
 	"strconv"
@@ -40,6 +42,20 @@ type indexPagePostData struct { //indexPagePostData
 	AuthorImg    string `db:"author_image"`
 	PublishDate  string `db:"publish_date"`
 	PostURL      string // URL ордера, на который мы будем переходить для конкретного поста
+}
+
+type createPostDataType struct {
+	Title           string `json: "title"`
+	Subtitle        string `json: "Title"`
+	AuthorName      string `json: "Title"`
+	AuthorImage     string `json: "Title"`
+	AuthorImageName string `json: "Title"`
+	PublishDate     string `json: "Title"`
+	LargeImage      string `json: "Title"`
+	LargeImageName  string `json: "Title"`
+	ShortImage      string `json: "Title"`
+	ShortImageName  string `json: "Title"`
+	Content         string `json: "Title"`
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -80,27 +96,39 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		var req createPostDataType
+		err = json.Unmarshal(body, &req)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		log.Println(req)
+
+		log.Println("Request completed succesfully")
+	}
+}
+
 func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		featuredPosts, err := getIndexPagePosts(db, featured)
+		ts, err := template.ParseFiles("pages/admin.html") // Страница блога
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
 			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
 			return                                      // Завершение функции
 		}
 
-		ts, err := template.ParseFiles("pages/admin.html") // Страница блога
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
-			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
-			return
-		}
-
-		data := indexPageData{
-			FeaturedPosts: featuredPosts,
-		}
-
-		err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
+		err = ts.Execute(w, nil) // Заставляем шаблонизатор вывести шаблон в тело ответа
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			log.Println(err.Error())
