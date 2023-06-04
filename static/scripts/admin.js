@@ -96,6 +96,7 @@ async function sendForm(e) {
     if (errors) {
         showErrorBar();
     } else {
+        hideErrorBar();
         let date = new Date(dataMap.get(keyPublishDate)); // получить дату
         let dateString = date.toLocaleDateString('en-US'); // записать в строку по стандарту
 
@@ -134,17 +135,14 @@ function formValidate() {
     let eventChange = new Event('change');
     let eventKeyUp = new Event('keyup');
     requiredMap.forEach(fieldValidate);
+
     function fieldValidate(required, key) {
         if (required) {
             if (dataMap.get(key) === "") {
                 const field = document.getElementById(key);
-                field.dispatchEvent(eventChange);
-                field.dispatchEvent(eventKeyUp);
                 errors++;
-                const formRequired = field.parentElement.querySelector('form__required');
+                const formRequired = field.parentElement.querySelector('.form__required');
                 formRequired.classList.add('form__required_critical');
-                const formLimit = field.parentElement.querySelector('form__required');
-                formLimit.classList.add('form__limit_critical');
             }
         }
     }
@@ -154,15 +152,23 @@ function formValidate() {
 function showSuccessBar() {
     let successBar = document.querySelector('.status__success');
     successBar.classList.remove('hide_element');
-    let errorBar = document.querySelector('.status__error');
-    errorBar.classList.add('hide_element');
+    hideErrorBar();
 }
 
 function showErrorBar() {
     let errorBar = document.querySelector('.status__error');
     errorBar.classList.remove('hide_element');
+    hideSuccessBar();
+}
+
+function hideSuccessBar() {
     let successBar = document.querySelector('.status__success');
     successBar.classList.add('hide_element');
+}
+
+function hideErrorBar() {
+    let errorBar = document.querySelector('.status__error');
+    errorBar.classList.add('hide_element');
 }
 
 function fieldFileHandler(field, limit, previewElements, key) {
@@ -254,23 +260,23 @@ function showCompleteFileFieldPrompt(field) {
 
 function showLimitError(field) {
     showLimit(field);
-    const reqPrompt = field.parentElement.querySelector('.form__limit');
-    reqPrompt.classList.add('form__limit_critical');
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.add('form__required_critical');
 }
 
 function hideLimitError(field) {
     showLimit(field);
-    const reqPrompt = field.parentElement.querySelector('.form__limit');
-    reqPrompt.classList.remove('form__limit_critical');
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.remove('form__required_critical');
 }
 
 function showLimit(field) {
-    const reqPrompt = field.parentElement.querySelector('.form__limit');
+    const reqPrompt = field.parentElement.querySelector('.form__required');
     reqPrompt.classList.remove('hide_element');
 }
 
 function hideLimit(field) {
-    const reqPrompt = field.parentElement.querySelector('.form__limit');
+    const reqPrompt = field.parentElement.querySelector('.form__required');
     reqPrompt.classList.add('hide_element');
 }
 

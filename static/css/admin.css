@@ -314,18 +314,7 @@ body {
     /* identical to box height, or 133% */
 }
 
-.form__limit {
-    margin-top: 5px;
-    font-family: "Oxygen", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
-    color: #999999;
-}
-
-.form__required_critical,
-.form__limit_critical {
+.form__required_critical {
     color: #E86961
 }
 
