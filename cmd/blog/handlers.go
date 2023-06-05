@@ -45,17 +45,17 @@ type indexPagePostData struct { //indexPagePostData
 }
 
 type createPostDataType struct {
-	Title           string `json: "title"`
-	Subtitle        string `json: "Subtitle"`
-	AuthorName      string `json: "AuthorName"`
-	AuthorImage     string `json: "AuthorImage"`
-	AuthorImageName string `json: "AuthorImageName"`
-	PublishDate     string `json: "PublishDate"`
-	LargeImage      string `json: "LargeImage"`
-	LargeImageName  string `json: "LargeImageName"`
-	ShortImage      string `json: "ShortImage"`
-	ShortImageName  string `json: "ShortImageName"`
-	Content         string `json: "Content"`
+	Title           string `json:"Title"`
+	Subtitle        string `json:"Subtitle"`
+	AuthorName      string `json:"AuthorName"`
+	AuthorImage     string `json:"AuthorImage"`
+	AuthorImageName string `json:"AuthorImageName"`
+	PublishDate     string `json:"PublishDate"`
+	LargeImage      string `json:"LargeImage"`
+	LargeImageName  string `json:"LargeImageName"`
+	ShortImage      string `json:"ShortImage"`
+	ShortImageName  string `json:"ShortImageName"`
+	Content         string `json:"Content"`
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -105,7 +105,7 @@ func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		var req createPostDataType
+		var req createPostDataType // Объявляем переменную полученных данных с JSON
 		err = json.Unmarshal(body, &req)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
@@ -182,12 +182,30 @@ func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 }
 
 func savePost(db *sqlx.DB, req createPostDataType) error {
-const queri
+	var authorImageURL string
+	var largeImageURL string
+	var shortImageURL string
 
+	saveImage(authorImageURL)
 
+	const queryAuthor = `
+	INSERT INTO
+		authors
+	(
+		author_name,
+   		author_image
+	)
+	VALUES
+		(?, ?)
+	`
 
+	if req.AuthorImage == "" {
 
-	const query = `
+	}
+
+	_, err := db.Exec(queryAuthor, req.AuthorName, req.AuthorImage)
+
+	const queryPost = `
 	INSERT INTO
 	` + "`posts`" + `
 	(
@@ -201,7 +219,7 @@ const queri
 		featured
 	)
 	VALUES
-	(?, ?, ?, ?, ?, ?, ?, ?)
+		(?, ?, ?, ?, ?, ?, ?, ?)
 	`
 
 	db.Exec(query,
@@ -212,7 +230,7 @@ const queri
 		authorId,
 		req.PublishDate,
 		req.Content,
-		1
+		1,
 	)
 
 }
