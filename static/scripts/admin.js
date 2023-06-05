@@ -115,7 +115,7 @@ async function sendForm(e) {
         }
 
         console.log(jsonData);
-                let response = await fetch('/api/post', {
+                const response = await fetch('/api/post', {
                     method: 'POST',
                     body: JSON.stringify(jsonData)
                 });

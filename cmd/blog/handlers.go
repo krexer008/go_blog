@@ -30,20 +30,22 @@ type postPageData struct {
 	Title          string `db:"title"`
 	Subtitle       string `db:"subtitle"`
 	PostImage      string `db:"image_url"`
+	PostCardImage  string `db:"short_image_url"`
 	Text           string `db:"content"`
 	PostParagraphs []string
 }
 
 type indexPagePostData struct { //indexPagePostData
-	PostID       int    `db:"post_id"`
-	Title        string `db:"title"`
-	Subtitle     string `db:"subtitle"`
-	PostCategory string `db:"category"`
-	PostImage    string `db:"image_url"`
-	Author       string `db:"author_name"`
-	AuthorImg    string `db:"author_image"`
-	PublishDate  string `db:"publish_date"`
-	PostURL      string // URL ордера, на который мы будем переходить для конкретного поста
+	PostID        int    `db:"post_id"`
+	Title         string `db:"title"`
+	Subtitle      string `db:"subtitle"`
+	PostCategory  string `db:"category"`
+	PostImage     string `db:"image_url"`
+	PostCardImage string `db:"short_image_url"`
+	Author        string `db:"author_name"`
+	AuthorImg     string `db:"author_image"`
+	PublishDate   string `db:"publish_date"`
+	PostURL       string // URL ордера, на который мы будем переходить для конкретного поста
 }
 
 type createPostDataType struct {
@@ -112,6 +114,13 @@ func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			log.Println(err.Error())
+			return
+		}
+
+		errq := savePost(db, req)
+		if errq != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(errq.Error())
 			return
 		}
 
@@ -191,6 +200,7 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]*indexPagePostData, error) 
         subtitle,
         category,
 		image_url,
+		short_image_url,
         author_name,
         author_image,
         publish_date
@@ -206,6 +216,7 @@ func getIndexPagePosts(db *sqlx.DB, featured int) ([]*indexPagePostData, error) 
 	if err != nil {                                        // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return nil, err
 	}
+
 	/*
 		for i := range indexPagePostsData {
 			indexPagePostsData[i].PostURL = "/post/" + strconv.Itoa(indexPagePostsData[i].PostID)
@@ -231,7 +242,6 @@ func getPostPageByID(db *sqlx.DB, postID int) (postPageData, error) {
     WHERE
         post_id = ?
     `
-	// В SQL-запросе добавились параметры, как в шаблоне. ? означает параметр, который мы передаем в запрос ниже
 
 	var pageData postPageData
 
@@ -247,9 +257,24 @@ func getPostPageByID(db *sqlx.DB, postID int) (postPageData, error) {
 
 func savePost(db *sqlx.DB, req createPostDataType) error {
 
-	authorImageURL := saveImage(req.AuthorImage, req.AuthorImageName)
-	largeImageURL := saveImage(req.LargeImage, req.LargeImageName)
-	//shortImageURL := saveImage(req.ShortImage, req.ShortImageName)
+	authorImageURL, err := saveImage(req.AuthorImage, req.AuthorImageName)
+	if err != nil {
+		return err
+	}
+	largeImageURL, err := saveImage(req.LargeImage, req.LargeImageName)
+	if err != nil {
+		return err
+	}
+	shortImageURL, err := saveImage(req.ShortImage, req.ShortImageName)
+	if err != nil {
+		return err
+	}
+
+	if largeImageURL == "" && shortImageURL != "" {
+		largeImageURL = shortImageURL
+	} else if largeImageURL != "" && shortImageURL == "" {
+		shortImageURL = largeImageURL
+	}
 
 	const queryAuthor = `
 	INSERT INTO
@@ -261,19 +286,20 @@ func savePost(db *sqlx.DB, req createPostDataType) error {
 	`
 	const queryPost = `
 	INSERT INTO
-	` + "`posts`" + `
+	` + "`post`" + `
 	(
+		author_id,
 		title,
 		subtitle,
 		category,
 		image_url,
-		author_id,
+		short_image_url,
 		publish_date,
 		content,
 		featured
 	)
 	VALUES
-		(?, ?, ?, ?, ?, ?, ?, ?)		
+		(?, ?, ?, ?, ?, ?, ?, ?, ?)		
 	`
 
 	const queryAuthorId = `
@@ -286,6 +312,7 @@ func savePost(db *sqlx.DB, req createPostDataType) error {
 	`
 
 	if req.AuthorName != "" {
+
 		_, err := db.Exec( // Сами данные передаются через аргументы к ф-ии Exec
 			queryAuthor,
 			req.AuthorName,
@@ -294,53 +321,43 @@ func savePost(db *sqlx.DB, req createPostDataType) error {
 			return err
 		}
 
-		var authorId string
-		err := db.Get(&authorId, query, req.AuthorName)
-		if err != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
-			return err
+		var authorId int
+		errr := db.Get(&authorId, queryAuthorId, req.AuthorName)
+		if errr != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
+			return errr
 		}
 
-		_, err := db.Exec( // Сами данные передаются через аргументы к ф-ии Exec
-			queryPost,
-			req.Title,
-			req.Subtitle,
-			"",
-			largeImageURL,
-			authorId,
-			req.PublishDate,
-			req.Content,
-			0)
-		if err != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
-			return err
+		_, errrr := db.Exec(queryPost, authorId, req.Title, req.Subtitle, "", largeImageURL, shortImageURL, req.PublishDate, req.Content, 0)
+		if errrr != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
+			return errrr
 		}
-	} else {
-		return
+
 	}
-
+	return nil
 }
 
-func saveImage(image string, imageName string) (url string) {
-	if image == "" {
-		url = ""
-	} else {
+func saveImage(Base64Image string, imageName string) (string, error) {
+	var url string
+	if Base64Image != "" {
 		url = "/static/img/" + imageName
+		//img, err := base64.StdEncoding.DecodeString(image)
+		img, err := base64.StdEncoding.DecodeString(strings.Split(Base64Image, "base64,")[1])
+		if err != nil {
+			return "", err
+		}
 
-		img, err := base64.StdEncoding.DecodeString(image)
 		file, err := os.Create("static/img/" + imageName)
 		if err != nil {
-			//http.Error(w, "Internal Server Error", 500)
-			log.Println(err.Error())
-			return
+			return "", err
 		}
 		// создаем файл с именем переданным от фронта в папке static/img
 		_, err = file.Write(img) // Записываем контент картинки в файл
 		if err != nil {
-			//http.Error(w, "Internal Server Error", 500)
-			log.Println(err.Error())
-			return
+			return "", err
 		}
+		return url, nil
+	} else {
+		url = ""
+		return url, nil
 	}
-
-	return url
-
 }
