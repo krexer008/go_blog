@@ -141,7 +141,12 @@ function formValidate() {
                 errors++;
                 const formRequired = field.parentElement.querySelector('.form__required');
                 formRequired.classList.add('form__required_critical');      
-                field.classList.add('form__field_critical');                
+                if (field.classList.contains('form__area')){
+                    field.classList.add('form__area_critical');  
+                } else{
+                    field.classList.add('form__field_critical');  
+                }
+                             
             }
         }
     }
