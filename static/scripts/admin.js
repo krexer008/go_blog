@@ -145,8 +145,7 @@ function formValidate() {
                     field.classList.add('form__area_critical');  
                 } else{
                     field.classList.add('form__field_critical');  
-                }
-                             
+                }                             
             }
         }
     }
