@@ -140,7 +140,8 @@ function formValidate() {
                 const field = document.getElementById(key);
                 errors++;
                 const formRequired = field.parentElement.querySelector('.form__required');
-                formRequired.classList.add('form__required_critical');
+                formRequired.classList.add('form__required_critical');      
+                field.classList.add('form__field_critical');                
             }
         }
     }
@@ -330,6 +331,8 @@ function fieldTextHandler(field, previewElements, key) {
             dataMap.set(key, field.value);
             if (required) {
                 showFullFieldPrompt(field);
+                field.classList.remove('form__field_critical');
+                
             }
             updatePreviews(previewElements, field.value);
         }
@@ -365,6 +368,7 @@ function areaTextHandler(field, key) {
             dataMap.set(key, field.value);
             if (required) {
                 showFullFieldPrompt(field);
+                field.classList.remove('form__area_critical');
             }
         }
     });
