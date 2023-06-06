@@ -48,6 +48,14 @@ type indexPagePostData struct { //indexPagePostData
 	PostURL       string // URL ордера, на который мы будем переходить для конкретного поста
 }
 
+type adminDataType struct {
+	AdminID     int    `db:"author_id"`
+	AuthorName  string `db:"author_name"`
+	AuthorImage string `db:"author_image"`
+	UserEmail   string `db:"author_email"`
+	UserPass    string `db:"author_password"`
+}
+
 type createPostDataType struct {
 	Title           string `json:"Title"`
 	Subtitle        string `json:"Subtitle"`
@@ -117,10 +125,10 @@ func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		errq := savePost(db, req)
-		if errq != nil {
+		err = savePost(db, req)
+		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
-			log.Println(errq.Error())
+			log.Println(err.Error())
 			return
 		}
 
@@ -154,7 +162,7 @@ func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 		postID, err := strconv.Atoi(postIDStr) // Конвертируем строку postID в число
 		if err != nil || postID < 1 {
-			http.Error(w, "Invalid post id", 403)
+			http.Error(w, "Invalid post id", 402)
 			log.Println(err)
 			return // Завершение функции
 		}
@@ -262,10 +270,12 @@ func savePost(db *sqlx.DB, req createPostDataType) error {
 	if err != nil {
 		return err
 	}
+
 	largeImageURL, err := saveImage(req.LargeImage, req.LargeImageName)
 	if err != nil {
 		return err
 	}
+
 	shortImageURL, err := saveImage(req.ShortImage, req.ShortImageName)
 	if err != nil {
 		return err
@@ -323,14 +333,14 @@ func savePost(db *sqlx.DB, req createPostDataType) error {
 		}
 
 		var authorId int
-		errr := db.Get(&authorId, queryAuthorId, req.AuthorName)
-		if errr != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
-			return errr
+		err = db.Get(&authorId, queryAuthorId, req.AuthorName)
+		if err != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
+			return err
 		}
 
-		_, errrr := db.Exec(queryPost, authorId, req.Title, req.Subtitle, "", largeImageURL, shortImageURL, req.PublishDate, req.Content, 0)
-		if errrr != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
-			return errrr
+		_, err = db.Exec(queryPost, authorId, req.Title, req.Subtitle, "", largeImageURL, shortImageURL, req.PublishDate, req.Content, 0)
+		if err != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
+			return err
 		}
 
 	}
