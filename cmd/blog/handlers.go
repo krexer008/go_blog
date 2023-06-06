@@ -130,6 +130,7 @@ func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+
 		ts, err := template.ParseFiles("pages/admin.html") // Страница блога
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
