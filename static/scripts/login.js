@@ -27,10 +27,6 @@ window.addEventListener('DOMContentLoaded', function () {
         const needcheckField = document.querySelector('#status-need_check');
         incorrectField.target.classList.add('hide_element');
         needcheckField.target.classList.add('hide_element');
-
-        const formRequired = e.target
-
-
     }
 
     function fieldViewHandler(input) {
