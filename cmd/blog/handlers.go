@@ -71,7 +71,7 @@ type createPostDataType struct {
 }
 
 // логин
-
+/*
 func loginPage(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 
@@ -121,7 +121,7 @@ func authorizationLogin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request
 		log.Println("Request completed succesfully")
 	}
 }
-
+*/
 // главная страница
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {

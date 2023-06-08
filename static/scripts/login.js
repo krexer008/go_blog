@@ -4,22 +4,22 @@ window.addEventListener('DOMContentLoaded', function () {
 
     const form = this.document.querySelector('#form');
     const elemToggle = this.document.querySelector('#toggle');
-    const elemEmail = this.document.getElementById('input_email');
-    const elemPasword = this.document.querySelector('#input_password');
+    const userEmail = this.document.querySelector('#input_email');
+    const userPasword = this.document.querySelector('#input_password');
     const elemButton = this.document.querySelector('#submitButton');
 
     elemToggle.addEventListener('click', toggleClick);
-    fieldViewHandler(elemEmail);
-    fieldViewHandler(elemPasword);
+    fieldViewHandler(userEmail);
+    fieldViewHandler(userPasword);
 
-    fieldKeyUpHandler(elemEmail);+
-    fieldKeyUpHandler(elemPasword);
+    fieldKeyUpHandler(userEmail);
+    fieldKeyUpHandler(userPasword);
 
-    form.addEventListener("submit", alert('Hi send'));
+    //form.addEventListener("submit", senForm);
 
 
-    function fieldKeyUpHandler(e) {
-        e.addEventListener('keyup', fieldKeyUp);
+    function fieldKeyUpHandler(field) {
+        field.addEventListener('keyup', fieldKeyUp);
     }
 
     function fieldKeyUp(e) {
@@ -27,6 +27,8 @@ window.addEventListener('DOMContentLoaded', function () {
         const needcheckField = document.querySelector('#status-need_check');
         incorrectField.target.classList.add('hide_element');
         needcheckField.target.classList.add('hide_element');
+        const formRequired = e.target.parentElement.querySelector('form__required');
+        formError = e.target.parentElement.querySelector('')
     }
 
     function fieldViewHandler(input) {
@@ -47,8 +49,6 @@ window.addEventListener('DOMContentLoaded', function () {
             e.target.classList.add('form__field_full');
         }
     }
-
-
 
     function toggleClick(e) {
         if (elemToggle.src.includes("/static/img/admin/eye-off.png")) {
