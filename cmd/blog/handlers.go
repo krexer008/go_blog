@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"html/template" // Модуль отвечает за шаблонизацию html страниц
 	"io"
 	"log"
@@ -124,6 +125,60 @@ func authorizationLogin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request
 */
 // главная страница
 
+func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		var req createPostDataType // Объявляем переменную полученных данных с JSON
+		err = json.Unmarshal(body, &req)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		err = checkRequestValues(req)
+		if err != nil {
+			log.Println(err.Error())
+			return
+		}
+
+		err = savePost(db, req)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		log.Println("Request completed succesfully")
+	}
+}
+
+func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+		ts, err := template.ParseFiles("pages/admin.html") // Страница блога
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
+			return                                      // Завершение функции
+		}
+
+		err = ts.Execute(w, nil) // Заставляем шаблонизатор вывести шаблон в тело ответа
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+		log.Println("Request completed succesfully")
+	}
+}
+
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		featuredPosts, err := getIndexPagePosts(db, featured)
@@ -153,54 +208,6 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 		}
 
 		err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500)
-			log.Println(err.Error())
-			return
-		}
-		log.Println("Request completed succesfully")
-	}
-}
-
-func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		body, err := io.ReadAll(r.Body)
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500)
-			log.Println(err.Error())
-			return
-		}
-
-		var req createPostDataType // Объявляем переменную полученных данных с JSON
-		err = json.Unmarshal(body, &req)
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500)
-			log.Println(err.Error())
-			return
-		}
-
-		err = savePost(db, req)
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500)
-			log.Println(err.Error())
-			return
-		}
-
-		log.Println("Request completed succesfully")
-	}
-}
-
-func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-
-		ts, err := template.ParseFiles("pages/admin.html") // Страница блога
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
-			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
-			return                                      // Завершение функции
-		}
-
-		err = ts.Execute(w, nil) // Заставляем шаблонизатор вывести шаблон в тело ответа
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			log.Println(err.Error())
@@ -318,6 +325,46 @@ func getPostPageByID(db *sqlx.DB, postID int) (postPageData, error) {
 	return pageData, nil
 }
 
+func checkRequestValues(req createPostDataType) error {
+
+	errCount := 0
+
+	if req.Title == "" {
+		errCount++
+		log.Println("Title value empty")
+	}
+
+	if req.Subtitle == "" {
+		errCount++
+		log.Println("Subtitle value empty")
+	}
+	if req.AuthorName == "" {
+		errCount++
+		log.Println("AuthorName value empty")
+	}
+	if req.PublishDate == "" {
+		errCount++
+		log.Println("PublishDate value empty")
+	}
+
+	if req.LargeImage == "" || req.LargeImageName == "" {
+		errCount++
+		log.Println("LargeImage values empty")
+	}
+
+	if req.Content == "" {
+		errCount++
+		log.Println("Content value empty")
+	}
+
+	if errCount > 0 {
+		err := errors.New("Request value empty error")
+		return err
+	}
+
+	return nil
+}
+
 func savePost(db *sqlx.DB, req createPostDataType) error {
 
 	authorImageURL, err := saveImage(req.AuthorImage, req.AuthorImageName)
@@ -376,7 +423,6 @@ func savePost(db *sqlx.DB, req createPostDataType) error {
 	`
 
 	if req.AuthorName != "" {
-
 		_, err := db.Exec( // Сами данные передаются через аргументы к ф-ии Exec
 			queryAuthor,
 			req.AuthorName,

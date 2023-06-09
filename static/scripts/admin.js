@@ -105,12 +105,12 @@ async function sendForm(e) {
             Subtitle: dataMap.get(keySubtitle),
             AuthorName: dataMap.get(keyAuthorName),
             AuthorImage: dataMap.get(keyAuthorImage),
-            AuthorImageName: (dataMap.get(keyAuthorImage) === "") ? "" : authorImageField.files[0].name,
+            AuthorImageName: (dataMap.get(keyAuthorImage) === "") ? "keyAuthorImage".toLowerCase : authorImageField.files[0].name,
             PublishDate: dateString,
             LargeImage: dataMap.get(keyLargeImage),
-            LargeImageName: (dataMap.get(keyLargeImage) === "") ? "" : largeImageField.files[0].name,
+            LargeImageName: (dataMap.get(keyLargeImage) === "") ? "keyLargeImage".toLowerCase : largeImageField.files[0].name,
             ShortImage: dataMap.get(keyShortImage),
-            ShortImageName: (dataMap.get(keyShortImage) === "") ? "" : shortImageField.files[0].name,
+            ShortImageName: (dataMap.get(keyShortImage) === "") ? "keyShortImage".toLowerCase : shortImageField.files[0].name,
             Content: dataMap.get(keyContent)
         }
 
