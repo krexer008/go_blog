@@ -262,7 +262,6 @@ func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 // Возвращаем не просто []indexPagePostData, а []*indexPagePostData - так у нас получится подставить PostURL в структуре
 func getIndexPagePosts(db *sqlx.DB, featured int) ([]*indexPagePostData, error) {
-	// Составляем SQL-запрос для получения записей для секции featured-posts
 	const query = `
     SELECT
         post_id,

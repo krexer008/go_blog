@@ -1,66 +1,69 @@
 "use strict";
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', pageLoaded);
 
-    const form = this.document.querySelector('#form');
-    const elemToggle = this.document.querySelector('#toggle');
-    const userEmail = this.document.querySelector('#input_email');
-    const userPasword = this.document.querySelector('#input_password');
-    const elemButton = this.document.querySelector('#submitButton');
+const form = this.document.querySelector('#form');
+const userEmail = this.document.querySelector('#input_email');
+const userPasword = this.document.querySelector('#input_password');
+const elemToggle = this.document.querySelector('#toggle');
+const elemButton = this.document.querySelector('#submitButton');
+
+function pageLoaded(e) {
+    fieldTextHandler(userEmail);
+    //fieldTextHandler(userPasword);
 
     elemToggle.addEventListener('click', toggleClick);
-    fieldViewHandler(userEmail);
-    fieldViewHandler(userPasword);
-
-    fieldKeyUpHandler(userEmail);
-    fieldKeyUpHandler(userPasword);
 
     //form.addEventListener("submit", senForm);
+}
+
+function fieldTextHandler(field) {
+
+    field.addEventListener('mouseover', () => {
+        field.classList.add('form__field_hover');
+    });
+
+    field.addEventListener('mouseout', () => {
+        field.classList.remove('form__field_hover');
+    });
 
 
-    function fieldKeyUpHandler(field) {
-        field.addEventListener('keyup', fieldKeyUp);
-    }
+    field.addEventListener('focus', () => {
+        field.classList.remove('form__field_full');
+        field.classList.add('form__field_focused');
+    });
 
-    function fieldKeyUp(e) {
-        const incorrectField = document.querySelector('#status-incorect');
-        const needcheckField = document.querySelector('#status-need_check');
-        incorrectField.target.classList.add('hide_element');
-        needcheckField.target.classList.add('hide_element');
-        const formRequired = e.target.parentElement.querySelector('form__required');
-        formError = e.target.parentElement.querySelector('')
-    }
-
-    function fieldViewHandler(input) {
-        input.addEventListener('focus', fieldFocused);
-        input.addEventListener('blur', fieldBlured);
-    }
-
-    function fieldFocused(e) {
-        e.target.classList.remove('form__field_full');
-        e.target.classList.add('form__field_focused');
-    }
-
-    function fieldBlured(e) {
-        e.target.classList.remove('form__field_focused');
-        if (e.target.value == "") {
-            e.target.classList.remove('form__field_full');
+    field.addEventListener('blur', () => {
+        field.classList.remove('form__field_focused');
+        if (field.value === "") {
+            field.classList.remove('form__field_full');
         } else {
-            e.target.classList.add('form__field_full');
+            field.classList.add('form__field_full');
         }
-    }
+    });
 
-    function toggleClick(e) {
-        if (elemToggle.src.includes("/static/img/admin/eye-off.png")) {
-            elemToggle.src = "../static/img/admin/eye.png";
-            elemPasword.setAttribute('type', 'password');
+    field.addEventListener('keyup', () => {
+        if (field.value === "") {
+            dataMap.set(key, "");
+            showEmptyFieldPrompt(field);
+
+
         } else {
-            elemToggle.src = "../static/img/admin/eye-off.png";
-            elemPasword.setAttribute('type', 'text');
+            dataMap.set(key, field.value);
+            showFullFieldPrompt(field);
+            field.classList.remove('form__field_critical');
+
+
         }
+    });
+}
+
+function toggleClick(e) {
+    if (elemToggle.src.includes("/static/img/admin/eye-off.png")) {
+        elemToggle.src = "../static/img/admin/eye.png";
+        elemPasword.setAttribute('type', 'password');
+    } else {
+        elemToggle.src = "../static/img/admin/eye-off.png";
+        elemPasword.setAttribute('type', 'text');
     }
-
-
-
-
-});
+}

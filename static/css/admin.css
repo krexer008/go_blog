@@ -133,10 +133,7 @@ body {
 }
 
 .publish-button {
-    width: 100px;
-    height: 48px;
     padding: 12px 24px;
-
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 400;
@@ -153,6 +150,19 @@ body {
     /* Text/Oncolor Default */
     color: #FFFFFF;
     cursor: pointer;
+}
+
+.publish-button_hover {
+    opacity: 0.8;
+}
+
+.publish-button_pressed {
+    width: 82px;
+    height: 45px;
+}
+
+.publish-button_focused {
+    border: 2px solid rgba(221, 120, 63, 0.4);
 }
 
 .post {
@@ -331,7 +341,7 @@ body {
     width: 48px;
     min-width: 48px;
     height: 48px;
-    background:#F7F7F7 url(/static/img/admin/camera.png) no-repeat center;
+    background: #F7F7F7 url(/static/img/admin/camera.png) no-repeat center;
     border-radius: 50%;
 
     display: flex;
@@ -423,8 +433,8 @@ body {
     position: relative;
     width: 560px;
     height: 160px;
-    border-radius: 6px;  
-    background: #F7F7F7;  
+    border-radius: 6px;
+    background: #F7F7F7;
 }
 
 .post-image__preview {
