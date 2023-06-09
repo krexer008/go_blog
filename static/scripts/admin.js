@@ -29,7 +29,7 @@ const requiredMap = new Map([
     [keyAuthorName, required],
     [keyAuthorImage, unRequired],
     [keyPublishDate, required],
-    [keyLargeImage, unRequired],
+    [keyLargeImage, required],
     [keyShortImage, unRequired],
     [keyContent, required],
 ])

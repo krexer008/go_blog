@@ -330,14 +330,13 @@ func savePost(db *sqlx.DB, req createPostDataType) error {
 		return err
 	}
 
-	shortImageURL, err := saveImage(req.ShortImage, req.ShortImageName)
-	if err != nil {
-		return err
-	}
-
-	if largeImageURL == "" && shortImageURL != "" {
-		largeImageURL = shortImageURL
-	} else if largeImageURL != "" && shortImageURL == "" {
+	var shortImageURL string
+	if req.ShortImage != "" {
+		shortImageURL, err = saveImage(req.ShortImage, req.ShortImageName)
+		if err != nil {
+			return err
+		}
+	} else {
 		shortImageURL = largeImageURL
 	}
 
