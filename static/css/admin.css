@@ -150,19 +150,24 @@ body {
     /* Text/Oncolor Default */
     color: #FFFFFF;
     cursor: pointer;
+    transition: ease 0.28s;
 }
 
-.publish-button_hover {
+.publish-button:hover {
     opacity: 0.8;
+    transition: ease 0.28s;
 }
 
-.publish-button_pressed {
-    width: 82px;
-    height: 45px;
-}
-
-.publish-button_focused {
+.publish-button:focus {
+    outline: none;
     border: 2px solid rgba(221, 120, 63, 0.4);
+    transition: ease 0.28s;
+}
+
+.publish-button:active {
+    transform: scale(0.87, 0.87);
+    border-radius: 3px;
+    transition: ease 0.28s;
 }
 
 .post {
@@ -380,7 +385,16 @@ body {
     /* identical to box height, or 150% */
     color: #2E2E2E;
     cursor: pointer;
+    transition: ease 0.28s;
 }
+
+.upload__button:active,
+.remove__button:active {
+    transform: scale(0.87, 0.87);
+    transition: ease 0.28s;
+
+}
+
 
 
 .upload__button_center {
@@ -715,7 +729,6 @@ body {
     /* or 150% */
     color: #2E2E2E;
 }
-
 
 .form__area_hover {
     border: 1px solid #D3D3D3;

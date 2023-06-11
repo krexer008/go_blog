@@ -1,23 +1,34 @@
 "use strict";
 
+const keyEmail = "Email";
+const keyPassword = "Password";
+
+const dataMap = new Map([
+    [keyEmail, ""],
+    [keyPassword, ""],
+])
+
 window.addEventListener('load', pageLoaded);
 
 const form = this.document.querySelector('#form');
-const userEmail = this.document.querySelector('#input_email');
-const userPasword = this.document.querySelector('#input_password');
-const elemToggle = this.document.querySelector('#toggle');
-const elemButton = this.document.querySelector('#submitButton');
+const userEmail = this.document.getElementById(keyEmail);
+const userPassword = this.document.getElementById(keyPassword);
+const elemButton = this.document.getElementById('submitButton');
+const elemToggle = this.document.getElementById('toggle');
 
 function pageLoaded(e) {
-    fieldTextHandler(userEmail);
-    //fieldTextHandler(userPasword);
+
+
+    fieldTextHandler(userEmail, keyEmail);
+
+    fieldTextHandler(userPassword, keyPassword);
+
+    //button.addEventListener("click", senForm);
 
     elemToggle.addEventListener('click', toggleClick);
-
-    //form.addEventListener("submit", senForm);
 }
 
-function fieldTextHandler(field) {
+function fieldTextHandler(field, key) {
 
     field.addEventListener('mouseover', () => {
         field.classList.add('form__field_hover');
@@ -26,7 +37,6 @@ function fieldTextHandler(field) {
     field.addEventListener('mouseout', () => {
         field.classList.remove('form__field_hover');
     });
-
 
     field.addEventListener('focus', () => {
         field.classList.remove('form__field_full');
@@ -46,24 +56,32 @@ function fieldTextHandler(field) {
         if (field.value === "") {
             dataMap.set(key, "");
             showEmptyFieldPrompt(field);
-
-
         } else {
             dataMap.set(key, field.value);
             showFullFieldPrompt(field);
-            field.classList.remove('form__field_critical');
-
-
         }
     });
+}
+
+function showEmptyFieldPrompt(field) {
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.remove("hide_element");
+    field.classList.remove("form__field_full");
+}
+
+function showFullFieldPrompt(field) {
+    field.classList.add('form__field_full');
+    field.classList.remove('form__field_critical');
+    const reqPrompt = field.parentElement.querySelector('.form__required');
+    reqPrompt.classList.add("hide_element");
 }
 
 function toggleClick(e) {
     if (elemToggle.src.includes("/static/img/admin/eye-off.png")) {
         elemToggle.src = "../static/img/admin/eye.png";
-        elemPasword.setAttribute('type', 'password');
+        userPassword.setAttribute('type', 'password');
     } else {
         elemToggle.src = "../static/img/admin/eye-off.png";
-        elemPasword.setAttribute('type', 'text');
+        userPassword.setAttribute('type', 'text');
     }
 }

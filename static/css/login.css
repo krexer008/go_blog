@@ -195,6 +195,7 @@ html {
 }
 
 .form__button {
+    display: block;
     padding: 12px 24px;
     font-family: 'Oxygen';
     font-style: normal;
@@ -209,19 +210,24 @@ html {
     border: 0;
     border-radius: 3px;
     cursor: pointer;
+    transition: ease 0.28s;
 }
 
-.publish-button_hover {
+.form__button:hover {
     opacity: 0.8;
+    transition: ease 0.28s;
 }
 
-.publish-button_pressed {
-    width: 82px;
-    height: 45px;
-}
-
-.publish-button_focused {
+.form__button:focus {
+    outline: none;
     border: 2px solid rgba(221, 120, 63, 0.4);
+    transition: ease 0.28s;
+}
+
+.form__button:active {
+    transform: scale(0.87, 0.87);
+    border-radius: 3px;
+    transition: ease 0.28s;
 }
 
 .hide_element {
