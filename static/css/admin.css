@@ -82,18 +82,27 @@ body {
     background: url("/static/img/admin/avatar.png");
 }
 
+.cabinet{
+    cursor: pointer;
+}
+
 .logout {
     width: 40px;
     height: 40px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    background: url("/static/img/admin/logout_btn.svg") center no-repeat;
+    cursor: pointer;
+    border: non;
 }
 
-.logout_icon {
-    width: 24px;
-    height: 24px;
-    background: url('/static/img/admin/logout_invers.png');
+.logout:hover {
+    opacity: 0.8;
+}
+
+.logout:focus {
+    outline: none;
+    border: 2px solid rgba(221, 120, 63, 0.4);
+    border-radius: 8px;
 }
 
 .main {
@@ -133,6 +142,7 @@ body {
 }
 
 .publish-button {
+    display: block;
     padding: 12px 24px;
     font-family: 'Oxygen';
     font-style: normal;
@@ -140,13 +150,11 @@ body {
     font-size: 16px;
     line-height: 24px;
     /* identical to box height, or 150% */
-
     text-transform: capitalize;
     background: #DD783F;
     border: none;
     border-radius: 3px;
     align-self: center;
-
     /* Text/Oncolor Default */
     color: #FFFFFF;
     cursor: pointer;
@@ -155,19 +163,16 @@ body {
 
 .publish-button:hover {
     opacity: 0.8;
-    transition: ease 0.28s;
 }
 
 .publish-button:focus {
     outline: none;
     border: 2px solid rgba(221, 120, 63, 0.4);
-    transition: ease 0.28s;
 }
 
 .publish-button:active {
     transform: scale(0.87, 0.87);
     border-radius: 3px;
-    transition: ease 0.28s;
 }
 
 .post {
@@ -391,10 +396,20 @@ body {
 .upload__button:active,
 .remove__button:active {
     transform: scale(0.87, 0.87);
-    transition: ease 0.28s;
-
 }
 
+.upload__button:hover,
+.remove__button:hover {
+    opacity: 0.8;
+}
+
+.upload__button:focus,
+.remove__button:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.001);
+    box-shadow: 0px 0px 0px 2px rgba(221, 120, 63, 0.4);
+    border-radius: 3px;
+}
 
 
 .upload__button_center {

@@ -66,7 +66,6 @@ html {
 }
 
 /*  Form  */
-
 .form {
     width: 480px;
     height: 560px;
@@ -194,7 +193,7 @@ html {
     color: #E86961
 }
 
-.form__button {
+.button {
     display: block;
     padding: 12px 24px;
     font-family: 'Oxygen';
@@ -213,21 +212,18 @@ html {
     transition: ease 0.28s;
 }
 
-.form__button:hover {
+.button:hover {
     opacity: 0.8;
-    transition: ease 0.28s;
 }
 
-.form__button:focus {
+.button:focus {
     outline: none;
     border: 2px solid rgba(221, 120, 63, 0.4);
-    transition: ease 0.28s;
 }
 
-.form__button:active {
+.button:active {
     transform: scale(0.87, 0.87);
     border-radius: 3px;
-    transition: ease 0.28s;
 }
 
 .hide_element {

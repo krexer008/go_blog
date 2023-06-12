@@ -115,16 +115,16 @@ async function sendForm(e) {
         }
 
         console.log(jsonData);
-                const response = await fetch('/api/post', {
-                    method: 'POST',
-                    body: JSON.stringify(jsonData)
-                });
-        
-                if (response.ok) {
-                    showSuccessBar();
-                } else {
-                    showErrorBar();
-                }
+        const response = await fetch('/api/post', {
+            method: 'POST',
+            body: JSON.stringify(jsonData)
+        });
+
+        if (response.ok) {
+            showSuccessBar();
+        } else {
+            showErrorBar();
+        }
     }
 }
 
@@ -140,12 +140,12 @@ function formValidate() {
                 const field = document.getElementById(key);
                 errors++;
                 const formRequired = field.parentElement.querySelector('.form__required');
-                formRequired.classList.add('form__required_critical');      
-                if (field.classList.contains('form__area')){
-                    field.classList.add('form__area_critical');  
-                } else{
-                    field.classList.add('form__field_critical');  
-                }                             
+                formRequired.classList.add('form__required_critical');
+                if (field.classList.contains('form__area')) {
+                    field.classList.add('form__area_critical');
+                } else {
+                    field.classList.add('form__field_critical');
+                }
             }
         }
     }
@@ -191,9 +191,10 @@ function fieldFileHandler(field, limit, previewElements, key) {
             if (required) {
                 showEmptyFileFieldPrompt(field);
             }
-            hideMenu(field);
-            hideLimitError(field);
-            let imageBase64 = "";
+            if (dataMap.get(key) === "") {
+                hideMenu(field);
+                hideLimitError(field);
+            }
             updateImagePreviews(previewElements, dataMap.get(key));
         } else {
             if (field.files[0].size > limit) {
@@ -336,7 +337,7 @@ function fieldTextHandler(field, previewElements, key) {
             if (required) {
                 showFullFieldPrompt(field);
                 field.classList.remove('form__field_critical');
-                
+
             }
             updatePreviews(previewElements, field.value);
         }

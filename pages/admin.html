@@ -20,11 +20,10 @@
         <span class="header-title">author</span>
       </div>
       <div class="header_menu">
-        <div class="header_menu__item avatar_default">
+        <div class="header_menu__item avatar_default cabinet">
           <img class="image__preview image__preview_icon author-avatar hide_element" src="" />
         </div>
-        <div class="header_menu__item logout" id="logout">
-          <img class="logout_icon" src="/static/img/admin/logout_invers.png" alt="logout">
+        <div class="header_menu__item logout" id="logout" tabindex="1">
         </div>
       </div>
     </div>
@@ -37,7 +36,7 @@
           Fill out the form bellow and publish your article
         </span>
       </div>
-      <button class="publish-button" id="publishButton">Publish</button>
+      <button class="publish-button" id="publishButton" tabindex="2">Publish</button>
     </div>
     <div class="post">
       <div class="post__status status__error hide_element">
@@ -52,15 +51,14 @@
           <form class="form">
             <div class="form__item" for="Title">
               <label class="form__description" for="Title">Title</label>
-              <input class="form__field" id="Title" type="text" value="" tabindex="1" autofocus>
+              <input class="form__field" id="Title" type="text" value="" tabindex="2" autofocus>
               <span class="form__required" id="TitleRequired">
                 Title is required.
               </span>
             </div>
-
             <div class="form__item">
               <label class="form__description" for="Subtitle">Subtitle</label>
-              <input class="form__field" id="Subtitle" name="subtitle" type="text" value="" autofocus tabindex="2">
+              <input class="form__field" id="Subtitle" name="subtitle" type="text" value="" autofocus tabindex="3">
               <span class="form__required" id="SubtitleRequired">
                 Subitle is required.
               </span>
@@ -68,7 +66,7 @@
 
             <div class="form__item">
               <label class="form__description" for="AuthorName">Author name</label>
-              <input class="form__field" id="AuthorName" name="name" type="text" value="" tabindex="3">
+              <input class="form__field" id="AuthorName" name="name" type="text" value="" tabindex="4">
               <span class="form__required" id="AuthorNameRequired">
                 Author name is required.
               </span>
@@ -77,19 +75,19 @@
             <div class="form__item">
               <label class="form__description">Author Photo</label>
               <input class="upload__image" type="file" accept=".jpg, .png, .gif" value="" name="inputAuthorImage"
-                id="AuthorImage" accept=".jpg, .png, .gif" value="" tabindex="4">
+                id="AuthorImage" accept=".jpg, .png, .gif" value="">
               <div class="author-image">
                 <div class="author-image__preview image-field_empty form__preview">
                   <img class="image__preview image__preview_icon author-avatar hide_element" src="">
                 </div>
-                <label for="AuthorImage" class="upload__button upload">
+                <label for="AuthorImage" class="upload__button upload" tabindex="5">
                   Upload
                 </label>
                 <div class="form__menu hide_element">
-                  <label for="AuthorImage" class="upload__button upload__button_new">
+                  <label for="AuthorImage" class="upload__button upload__button_new" tabindex="5">
                     Upload New
                   </label>
-                  <span class="remove__button">
+                  <span class="remove__button" tabindex="6">
                     Remove
                   </span>
                 </div>
@@ -100,7 +98,7 @@
             </div>
             <div class="form__item">
               <label class="form__description" for="PublishDate">Publish Date</label>
-              <input class="form__field form__field_publish-date" type="date" value="" tabindex="5" id="PublishDate"
+              <input class="form__field form__field_publish-date" type="date" value="" tabindex="7" id="PublishDate"
                 min="2023-05-01" max="2100-12-31">
               <span class="form__required" id="PublishDateRequired">
                 This date will be in card
@@ -110,18 +108,18 @@
             <div class="form__item">
               <label class="form__description">Post Page Image</label>
               <input class="upload__image" type="file" name="large-image" id="LargeImage" accept=".jpg, .png, .gif"
-                value="" tabindex="6">
+                value="">
               <div class="form__post-image-field image-field_empty form__preview">
                 <img class="preview-image post-image__preview post-image hide_element" src="">
-                <label for="LargeImage" class="upload__button upload__button_center upload" id="upload-button">
+                <label for="LargeImage" class="upload__button upload__button_center upload " id="upload-button" tabindex="8">
                   Upload
                 </label>
               </div>
               <div class="form__menu hide_element after-upload">
-                <label for="LargeImage" class="upload__button upload__button_new">
+                <label for="LargeImage" class="upload__button upload__button_new" tabindex="8">
                   Upload New
                 </label>
-                <span class="remove__button">
+                <span class="remove__button" tabindex="9">
                   Remove
                 </span>
               </div>
@@ -133,18 +131,18 @@
             <div class="form__item">
               <label class="form__description">Post Card Image</label>
               <input class="upload__image" type="file" name="short-image" id="ShortImage" accept=".jpg, .png, .gif"
-                value="" tabindex="7">
+                value="">
               <div class="form__card-image-field image-field_empty form__preview">
                 <img class="post-image__preview card-image hide_element" src="">
-                <label for="ShortImage" class="upload__button upload__button_center upload">
+                <label for="ShortImage" class="upload__button upload__button_center upload" tabindex="10">
                   Upload
                 </label>
               </div>
               <div class="form__menu hide_element after-upload">
-                <label for="ShortImage" class="upload__button upload__button_new">
+                <label for="ShortImage" class="upload__button upload__button_new" tabindex="10">
                   Upload New
                 </label>
-                <span class="remove__button">
+                <span class="remove__button" tabindex="11">
                   Remove
                 </span>
               </div>
@@ -213,14 +211,14 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>      
       <div class="content">
         <h2 class="content__title">Content</h2>
         <form class="content__form">
           <div class="form__item">
             <label class="form__description" for="Content">Post content (plain text)</label>
             <textarea class="form__area" name="content" id="Content" type="text"
-              placeholder="Type anything you want ..." tabindex="8"></textarea>
+              placeholder="Type anything you want ..."  tabindex="12"></textarea>
             <span class="form__required" id="Content_required">
               Post content is required.
             </span>
