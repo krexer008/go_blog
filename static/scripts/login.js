@@ -32,8 +32,8 @@ async function sendForm(event) {
     const formIncorrect = document.querySelector('#status_incorect');
     const formInvalid = document.querySelector('#status_invalid');
 
-    formIncorrect.classList.add('hide_element');
-    formInvalid.classList.add('hide_element');
+    formIncorrect.classList.remove('status__visibility');
+    formInvalid.classList.remove('status__visibility');
 
     if (error === 0) {
 
@@ -47,19 +47,19 @@ async function sendForm(event) {
                 })
         
                 if (response.ok) {
-                    formInvalid.classList.add('hide_element');
-                    formIncorrect.classList.add('hide_element');
+                    formInvalid.classList.remove('status__visibility');
+                    formIncorrect.classList.remove('status__visibility');
                     //window.location.href - response.url;
                 } else if (response.status === 401) {
                     console.log("not authorizate");
-                    formIncorrect.classList.remove('hide_element');
+                    formIncorrect.classList.add('status__visibility');
                     userEmail.classList.add("form__field_critical");
                     userPassword.classList.add("form__field_critical");
                 }
         
                 */
     } else {
-        formInvalid.classList.remove('hide_element');
+        formInvalid.classList.add('status__visibility');
     }
 }
 
@@ -151,11 +151,11 @@ function hideStatuses() {
 
 function showStatusById(id) {
     const status = document.getElementById(id);
-    status.classList.remove('hide_element');
+    status.classList.add('status__visibility');
 }
 function hideStatusById(id) {
     const status = document.getElementById(id);
-    status.classList.add('hide_element');
+    status.classList.remove('status__visibility');
 }
 
 function showEmptyFieldPrompt(field) {

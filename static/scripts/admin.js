@@ -93,8 +93,6 @@ function logOut(e) {
 */
 async function sendForm(event) {
     event.preventDefault();
-
-    
     let errors = formValidate();
     if (errors) {
         showErrorBar();
@@ -116,7 +114,6 @@ async function sendForm(event) {
             ShortImageName: (dataMap.get(keyShortImage) === "") ? "keyShortImage".toLowerCase : shortImageField.files[0].name,
             Content: dataMap.get(keyContent)
         }
-
         console.log(jsonData);
         const response = await fetch('/api/post', {
             method: 'POST',
@@ -136,7 +133,6 @@ function formValidate() {
     let eventChange = new Event('change');
     let eventKeyUp = new Event('keyup');
     requiredMap.forEach(fieldValidate);
-
     function fieldValidate(required, key) {
         if (required) {
             if (dataMap.get(key) === "") {
@@ -155,26 +151,27 @@ function formValidate() {
     return errors;
 }
 
+
 function showSuccessBar() {
     let successBar = document.querySelector('.status__success');
-    successBar.classList.remove('hide_element');
+    successBar.classList.add('status__visibility');
     hideErrorBar();
 }
 
 function showErrorBar() {
     let errorBar = document.querySelector('.status__error');
-    errorBar.classList.remove('hide_element');
+    errorBar.classList.add('status__visibility');
     hideSuccessBar();
 }
 
 function hideSuccessBar() {
     let successBar = document.querySelector('.status__success');
-    successBar.classList.add('hide_element');
+    successBar.classList.remove('status__visibility');
 }
 
 function hideErrorBar() {
     let errorBar = document.querySelector('.status__error');
-    errorBar.classList.add('hide_element');
+    errorBar.classList.remove('status__visibility');
 }
 
 function fieldFileHandler(field, limit, previewElements, key) {
@@ -287,7 +284,6 @@ function hideLimit(field) {
     reqPrompt.classList.add('hide_element');
 }
 
-
 function updateImagePreviews(previewElements, content) {
     for (const previewElement of previewElements) {
         previewElement.src = content;
@@ -302,14 +298,6 @@ function updateImagePreviews(previewElements, content) {
 
 function fieldTextHandler(field, previewElements, key) {
     let required = requiredMap.get(key);
-
-    field.addEventListener('mouseover', () => {
-        field.classList.add('form__field_hover');
-    });
-
-    field.addEventListener('mouseout', () => {
-        field.classList.remove('form__field_hover');
-    });
 
     field.addEventListener('focus', () => {
         field.classList.remove('form__field_full');
@@ -348,22 +336,6 @@ function fieldTextHandler(field, previewElements, key) {
 
 function areaTextHandler(field, key) {
     let required = requiredMap.get(key);
-
-    field.addEventListener('mouseover', () => {
-        field.classList.add('form__area_hover');
-    });
-
-    field.addEventListener('mouseout', () => {
-        field.classList.remove('form__area_hover');
-    });
-
-    field.addEventListener('focus', () => {
-        field.classList.add('form__area_focused');
-    });
-
-    field.addEventListener('blur', () => {
-        field.classList.remove('form__area_focused');
-    });
 
     field.addEventListener('keyup', () => {
         if (field.value === "") {

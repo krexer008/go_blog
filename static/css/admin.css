@@ -82,7 +82,7 @@ body {
     background: url("/static/img/admin/avatar.png");
 }
 
-.cabinet{
+.cabinet {
     cursor: pointer;
 }
 
@@ -128,7 +128,6 @@ body {
     max-height: 68px;
     display: flex;
     justify-content: space-between;
-
 }
 
 .post_subtittle {
@@ -186,20 +185,18 @@ body {
 
 .post__status {
     display: flex;
-    padding-left: 14px;
     align-items: center;
-
+    padding-left: 14px;
     width: 100%;
-    height: 44px;
-    margin-top: 16px;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;    
+}
 
-    font-family: 'Oxygen';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    /* identical to box height, or 143% */
-    color: #2E2E2E;
+.status__visibility {
+    margin-top: 16px;
+    height: 44px;
+    transition: height 0.3s ease;
 }
 
 .status__error {
@@ -302,7 +299,7 @@ body {
     color: #2E2E2E;
 }
 
-.form__field_hover {
+.form__field:hover {
     border-bottom: 1px solid #D3D3D3;
 }
 
@@ -745,11 +742,12 @@ body {
     color: #2E2E2E;
 }
 
-.form__area_hover {
+.form__area:hover {
     border: 1px solid #D3D3D3;
 }
 
-.form__area_focused {
+.form__area:focus {
+    outline: none;
     border: 2px solid #2E2E2E;
 }
 
