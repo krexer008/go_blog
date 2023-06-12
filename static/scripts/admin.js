@@ -91,7 +91,10 @@ function logOut(e) {
     }
 }
 */
-async function sendForm(e) {
+async function sendForm(event) {
+    event.preventDefault();
+
+    
     let errors = formValidate();
     if (errors) {
         showErrorBar();
@@ -307,7 +310,6 @@ function fieldTextHandler(field, previewElements, key) {
     field.addEventListener('mouseout', () => {
         field.classList.remove('form__field_hover');
     });
-
 
     field.addEventListener('focus', () => {
         field.classList.remove('form__field_full');

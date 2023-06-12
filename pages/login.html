@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/static/css/login.css">
     <title>Login</title>
 </head>
+
 <body class="body">
     <div class="header">
         <div class="header__logo logo">
@@ -22,31 +23,28 @@
         <h1 class="form__title">
             Log In
         </h1>
-        <div class="form__status status__error hide_element" id="status-incorect">
+        <div class="form__status status__error hide_element" id="status_incorect">
             Email or password is incorrect.
         </div>
-        <div class="form__status status__error hide_element" id="status-need_check">
+        <div class="form__status status__error hide_element" id="status_invalid">
             A-Ah! Check all fields,
         </div>
         <div class="form__item">
             <label class="form__description" for="Email">Email</label>
-            <input class="form__field" id="Email" type="email" value="" autofocus="" tabindex="1">
-            <span class="form__required hide_element" id="email_required">
+            <input class="form__field" id="Email" type="text" value="" autofocus="" tabindex="1">
+            <span class="form__required hide_element field_required" id="email_required">
                 Email is required.
-            </span>            
+            </span>
             <span class="form__required form__required_critical hide_element" id="incorrect_email">
                 Incorrect email format. Correct format is ****@**.***
-            </span>
-            <span class="form__required form__required_critical hide_element" id="invaid_email">
-                Email is not valid. Please, enter correct one.
             </span>
         </div>
         <div class="form__item">
             <label class="form__description" for="Password">Password</label>
             <input class="form__field" id="Password" type="password" value="" autocapitalize="off" autocorrect="off"
                 tabindex="2">
-            <img class="form__toggle" id="toggle" src="/static/img/admin/eye.png">            
-            <span class="form__required hide_element" id="password_required">
+            <img class="form__toggle" id="toggle" src="/static/img/admin/eye.png">
+            <span class="form__required field_required hide_element" id="password_required">
                 Password is required.
             </span>
         </div>
