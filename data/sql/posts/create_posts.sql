@@ -1,14 +1,20 @@
 INSERT INTO authors (
         author_name,
-        author_image
+        author_image,
+        author_email,
+        author_password
     )
 VALUES(
         'Mat Vogels',
-        '/static/img/mat_vogels.jpg'
+        '/static/img/mat_vogels.jpg',
+        'vogels@gmail.com',
+        'password'
     ),
     (
         'William Wong',
-        '/static/img/william_wong.jpg'
+        '/static/img/william_wong.jpg',
+        'wong@gmail.com',
+        'password'
     );
 INSERT INTO post (
         author_id,

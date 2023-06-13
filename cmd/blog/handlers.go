@@ -57,6 +57,11 @@ type adminDataType struct {
 	UserPass    string `db:"author_password"`
 }
 
+type authorizationDataType struct {
+	UserEmail string `json:"userEmail"`
+	UserPass  string `json:"userPass"`
+}
+
 type createPostDataType struct {
 	Title           string `json:"Title"`
 	Subtitle        string `json:"Subtitle"`
@@ -72,18 +77,18 @@ type createPostDataType struct {
 }
 
 // логин
-/*
+
 func loginPage(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		ts, err := template.ParseFiles("pages/admin.html") // Страница блога
+		ts, err := template.ParseFiles("pages/login.html") // Страница блога
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
 			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
 			return                                      // Завершение функции
 		}
 
-		err = ts.Execute(w, nil) // Заставляем шаблонизатор вывести шаблон в тело ответа
+		err = ts.Execute(w, ts) // Заставляем шаблонизатор вывести шаблон в тело ответа
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			log.Println(err.Error())
@@ -94,8 +99,8 @@ func loginPage(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 }
 
 // авторизация
-
-func authorizationLogin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+/*
+func adminAuthorization(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		body, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -104,27 +109,31 @@ func authorizationLogin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request
 			return
 		}
 
-		var req createPostDataType // Объявляем переменную полученных данных с JSON
-		err = json.Unmarshal(body, &req)
+		var authorization authorizationDataType // Объявляем переменную полученных данных с JSON
+		err = json.Unmarshal(body, &authorization)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			log.Println(err.Error())
 			return
 		}
 
-		err = savePost(db, req)
+		adminData, err = checkAuthData(db, authorization.UserEmail, authorization.UserPass)
 		if err != nil {
+			if err == sql.ErrNoRows {
+				http.Error(w, "Incorrect password or email", http.StatusUnauthorized)
+				return
+			}
 			http.Error(w, "Internal Server Error", 500)
 			log.Println(err.Error())
 			return
 		}
 
-		log.Println("Request completed succesfully")
+
+		http.Redirect(w,r,"/admin",http.StatusSeeOther)
 	}
 }
 */
 // главная страница
-
 func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		body, err := io.ReadAll(r.Body)
@@ -159,7 +168,7 @@ func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+func adminPage(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		ts, err := template.ParseFiles("pages/admin.html") // Страница блога

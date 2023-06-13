@@ -36,8 +36,6 @@ async function sendForm(event) {
     formInvalid.classList.remove('status__visibility');
 
     if (error === 0) {
-
-        /*
                 const response = await fetch('/api/login', {
                     method: 'POST',
                     body: JSON.stringify({
@@ -55,9 +53,7 @@ async function sendForm(event) {
                     formIncorrect.classList.add('status__visibility');
                     userEmail.classList.add("form__field_critical");
                     userPassword.classList.add("form__field_critical");
-                }
-        
-                */
+                }        
     } else {
         formInvalid.classList.add('status__visibility');
     }
