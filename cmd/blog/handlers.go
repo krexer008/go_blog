@@ -49,19 +49,20 @@ type indexPagePostData struct { //indexPagePostData
 	PostURL       string // URL ордера, на который мы будем переходить для конкретного поста
 }
 
-type adminDataType struct {
-	AdminID     int    `db:"author_id"`
-	AuthorName  string `db:"author_name"`
-	AuthorImage string `db:"author_image"`
-	UserEmail   string `db:"author_email"`
-	UserPass    string `db:"author_password"`
-}
+/*
+	type adminDataType struct {
+		AdminID     int    `db:"author_id"`
+		AuthorName  string `db:"author_name"`
+		AuthorImage string `db:"author_image"`
+		UserEmail   string `db:"author_email"`
+		UserPass    string `db:"author_password"`
+	}
 
-type authorizationDataType struct {
-	UserEmail string `json:"userEmail"`
-	UserPass  string `json:"userPass"`
-}
-
+	type authorizationDataType struct {
+		UserEmail string `json:"userEmail"`
+		UserPass  string `json:"userPass"`
+	}
+*/
 type createPostDataType struct {
 	Title           string `json:"Title"`
 	Subtitle        string `json:"Subtitle"`

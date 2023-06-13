@@ -49,7 +49,7 @@ body {
 /* Header*/
 .header {
     max-width: 940px;
-    width: 100%;
+    width: calc(100% - 30px);
     height: 74px;
     display: flex;
     justify-content: space-between;
