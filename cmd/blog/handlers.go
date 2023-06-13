@@ -315,6 +315,7 @@ func getPostPageByID(db *sqlx.DB, postID int) (postPageData, error) {
         title,
         subtitle,
         image_url,
+		short_image_url,
         content
     FROM
         post
@@ -329,6 +330,10 @@ func getPostPageByID(db *sqlx.DB, postID int) (postPageData, error) {
 	if err != nil { // Проверяем, что запрос в базу данных не завершился с ошибкой
 		return postPageData{}, err
 	}
+	if pageData.PostImage == "" && pageData.PostCardImage != "" {
+		pageData.PostImage = pageData.PostCardImage
+	}
+
 	pageData.PostParagraphs = strings.Split(pageData.Text, "\n")
 
 	return pageData, nil
@@ -406,7 +411,7 @@ func savePost(db *sqlx.DB, req createPostDataType) error {
 	`
 	const queryPost = `
 	INSERT INTO
-	` + "`post`" + `
+		post
 	(
 		author_id,
 		title,
@@ -419,7 +424,7 @@ func savePost(db *sqlx.DB, req createPostDataType) error {
 		featured
 	)
 	VALUES
-		(?, ?, ?, ?, ?, ?, ?, ?, ?)		
+		(?, ?, ?, ?, ?, ?, ?, ?, ?)
 	`
 
 	const queryAuthorId = `

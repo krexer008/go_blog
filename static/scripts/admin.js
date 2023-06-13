@@ -54,6 +54,10 @@ function pageLoaded(e) {
         const exit = document.querySelector('#logout');
         exit.addEventListener('click', logOut);
     */
+    /*
+        const logo = document.querySelector('#logo');
+        logo.addEventListener('click', goHome);
+    */
     const titlePreviews = document.querySelectorAll('.preview__title');
     fieldTextHandler(titleField, titlePreviews, keyTitle);
 
@@ -83,6 +87,11 @@ function pageLoaded(e) {
     const publishButton = document.querySelector('#publishButton');
     publishButton.addEventListener('click', sendForm);
 };
+/*
+function goHome(e) {
+    window.location.href = '/home';
+}
+*/
 /*
 function logOut(e) {
     const response = await fetch('/logout');
@@ -114,7 +123,6 @@ async function sendForm(event) {
             ShortImageName: (dataMap.get(keyShortImage) === "") ? "keyShortImage".toLowerCase : shortImageField.files[0].name,
             Content: dataMap.get(keyContent)
         }
-        console.log(jsonData);
         const response = await fetch('/api/post', {
             method: 'POST',
             body: JSON.stringify(jsonData)
@@ -132,23 +140,24 @@ function formValidate() {
     let errors = 0;
     let eventChange = new Event('change');
     let eventKeyUp = new Event('keyup');
-    requiredMap.forEach(fieldValidate);
-    function fieldValidate(required, key) {
-        if (required) {
-            if (dataMap.get(key) === "") {
-                const field = document.getElementById(key);
-                errors++;
-                const formRequired = field.parentElement.querySelector('.form__required');
-                formRequired.classList.add('form__required_critical');
-                if (field.classList.contains('form__area')) {
-                    field.classList.add('form__area_critical');
-                } else {
-                    field.classList.add('form__field_critical');
-                }
+    requiredMap.forEach(fieldValidate);    
+    return errors;
+}
+
+function fieldValidate(required, key) {
+    if (required) {
+        if (dataMap.get(key) === "") {
+            const field = document.getElementById(key);
+            errors++;
+            const formRequired = field.parentElement.querySelector('.form__required');
+            formRequired.classList.add('form__required_critical');
+            if (field.classList.contains('form__area')) {
+                field.classList.add('form__area_critical');
+            } else {
+                field.classList.add('form__field_critical');
             }
         }
     }
-    return errors;
 }
 
 
