@@ -244,7 +244,7 @@ func indexResp(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			return                                      // Завершение функции
 		}
 
-		ts, err := template.ParseFiles("pages/index.html") // Главная страница блога
+		ts, err := template.ParseFiles("pages/indexResponse.html") // Главная страница блога
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
 			log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
