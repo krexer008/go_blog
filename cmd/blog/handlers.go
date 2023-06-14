@@ -264,7 +264,7 @@ func indexResp(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 		}
 		log.Println("Request completed succesfully")
 	}
-}
+} // end responsive
 
 func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
