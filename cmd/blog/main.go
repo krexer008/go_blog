@@ -31,6 +31,7 @@ func main() {
 
 	mux := mux.NewRouter()
 	mux.HandleFunc("/home", index(dbx)) // Передаём клиент к базе данных в ф-ию обработчик запроса
+	mux.HandleFunc("/home-resp", indexResp(dbx))
 	mux.HandleFunc("/post/{postID}", post(dbx))
 	mux.HandleFunc("/login", loginPage(dbx))
 	//mux.HandleFunc("/api/login", adminAuthorization(dbx)).Methods(http.MethodPost)

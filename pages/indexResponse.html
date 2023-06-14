@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&family=Oxygen:wght@400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/indexResponse.css" />
+  <title>Escape</title>
+</head>
+
+<body>
+  <div class="intro">
+    <header class="header">
+      <span class="logo">Escape.</span>
+      <nav class="nav">
+        <a class="nav__link nav__link_head" href="/home">Home</a>
+        <a class="nav__link nav__link_head" href="#">Categories</a>
+        <a class="nav__link nav__link_head" href="#">About</a>
+        <a class="nav__link nav__link_head" href="#">Contact</a>
+      </nav>
+    </header>
+    <h1 class="intro__title title">Let's do it together.</h1>
+    <p class="intro__descr descr">
+      We travel the world in search of stories. Come along for the ride.
+    </p>
+    <button class="intro__btn">View latest posts</button>
+  </div>
+  <div class="main-page">
+    <nav class="categories">
+      <a class="categories__link" href="#">Nature</a>
+      <a class="categories__link" href="#">Photography</a>
+      <a class="categories__link" href="#">Relaxation</a>
+      <a class="categories__link" href="#">Vacation</a>
+      <a class="categories__link" href="#">Travel</a>
+      <a class="categories__link" href="#">Adventure</a>
+    </nav>
+    <div class="main-page__content">
+      <section class="main-page__section">
+        <h2 class="section__header">Featured posts</h2>
+        <div class="section__content">
+          {{ range .FeaturedPosts }}
+          <a href="{{ .PostURL }}" class="featured-post"
+            style="background: url('{{ .PostImage }}') no-repeat; background-size: cover">
+            {{ if .PostCategory }} <span class="featured-post__category">{{ .PostCategory }}</span> {{ end }}
+            <h2 class="featured-post__title title">{{ .Title }}</h2>
+            <p class="featured-post__descr">
+              {{ .Subtitle }}
+            </p>
+            <div class="featured-post__info post-info">
+              <img class="post-info__author-avatar" src="{{ .AuthorImg }}" alt="{{ .Author }}" />
+              <span class="post-info__author">{{ .Author }}</span>
+              <time class="post-info__time" datetime="{{ .PublishDate }}">{{ .PublishDate }}</time>
+            </div>
+          </a>
+          {{ end }}
+        </div>
+      </section>
+      <section class="main-page__section">
+        <h2 class="section__header">Most recent</h2>
+        <div class="section__content">
+          {{ range .RecentPosts }}
+          <a href="{{ .PostURL }}" class="recent-post">
+            <img class="recent-post__image" src="{{ .PostCardImage }}" alt="{{ .Title }}" />
+            {{ if .PostCategory }}<span class="recent-post__category">{{ .PostCategory }}</span>{{ end }}
+            <h2 class="recent-post__title title">
+              {{ .Title }}
+            </h2>
+            <p class="recent-post__descr">
+              {{ .Subtitle }}
+            </p>
+            <div class="recent-post__info post-info">
+              <img class="post-info__author-avatar" src="{{ .AuthorImg }}" alt="{{ .Author }}" />
+              <span class="post-info__author">{{ .Author }}</span>
+              <time class="post-info__time" datetime="{{ .PublishDate }}">{{ .PublishDate }}</time>
+            </div>
+          </a>
+          {{ end }}
+        </div>
+      </section>
+    </div>
+  </div>
+  <footer class="footer">
+    <form class="subscribe">
+      <h2 class="subscribe__header">Stay in touch</h2>
+      <div class="subscribe__input">
+        <input placeholder="Enter your email address" type="email" name="email" class="input-email input">
+        <input type="Submit" value="Submit" class="input-button input">
+      </div>
+    </form>
+    <div class="footer__container">
+      <div class="footer__block">
+        <span class="logo">Escape.</span>
+        <nav class="nav">
+          <a class="nav__link nav__link_foot" href="/home">Home</a>
+          <a class="nav__link nav__link_foot" href="#">Categories</a>
+          <a class="nav__link nav__link_foot" href="#">About</a>
+          <a class="nav__link nav__link_foot" href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
