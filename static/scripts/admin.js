@@ -140,26 +140,28 @@ function formValidate() {
     let errors = 0;
     let eventChange = new Event('change');
     let eventKeyUp = new Event('keyup');
-    requiredMap.forEach(fieldValidate);    
-    return errors;
-}
-
-function fieldValidate(required, key) {
-    if (required) {
-        if (dataMap.get(key) === "") {
-            const field = document.getElementById(key);
-            errors++;
-            const formRequired = field.parentElement.querySelector('.form__required');
-            formRequired.classList.add('form__required_critical');
-            if (field.classList.contains('form__area')) {
-                field.classList.add('form__area_critical');
-            } else {
-                field.classList.add('form__field_critical');
+    requiredMap.forEach((required, key)=>{
+        if (required) {
+            if (dataMap.get(key) === "") {
+                const field = document.getElementById(key);
+                errors++;
+                const formRequired = field.parentElement.querySelector('.form__required');
+                formRequired.classList.add('form__required_critical');
+                if (field.classList.contains('form__area')) {
+                    field.classList.add('form__area_critical');
+                } else {
+                    field.classList.add('form__field_critical');
+                }
             }
         }
-    }
+    });    
+    return errors;
 }
-
+/*
+function fieldValidate(required, key) {
+    
+}
+*/
 
 function showSuccessBar() {
     let successBar = document.querySelector('.status__success');

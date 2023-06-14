@@ -228,6 +228,7 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 }
 
 // Responsive home page
+/*
 func indexResp(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		featuredPosts, err := getIndexPagePosts(db, featured)
@@ -265,7 +266,7 @@ func indexResp(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 		log.Println("Request completed succesfully")
 	}
 } // end responsive
-
+*/
 func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		postIDStr := mux.Vars(r)["postID"] // Получаем postID в виде строки из параметров урла
@@ -411,7 +412,7 @@ func checkRequestValues(req createPostDataType) error {
 	}
 
 	if errCount > 0 {
-		err := errors.New("Request value empty error")
+		err := errors.New("request value empty error")
 		return err
 	}
 
